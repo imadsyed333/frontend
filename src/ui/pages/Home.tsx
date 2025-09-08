@@ -12,11 +12,17 @@ export const Home = () => {
             minHeight: '100vh'
         }}>
             <Typography
-                variant='h1'>
+                variant='h1'
+                sx={{
+                    fontFamily: 'serif'
+                }}>
                 Welcome
             </Typography>
-            <Typography variant='h6'>
-                We make crazy frozen samosas. And other stuff (which are also pretty crazy).
+            <Typography variant='h6'
+                sx={{
+                    fontFamily: 'serif',
+                }}>
+                We make crazy frozen samosas. And other stuff.
             </Typography>
         </Box>
     )
