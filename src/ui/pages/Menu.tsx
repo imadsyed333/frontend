@@ -1,9 +1,10 @@
 import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
-import { products } from '../../constants'
+import { getProducts } from '../../actions'
 import { ProductCard } from '../components/ProductCard'
 
 export const Menu = () => {
+    let products = getProducts()
     return (
         <Container sx={{
             display: 'flex',
