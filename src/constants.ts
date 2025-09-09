@@ -22,20 +22,22 @@ export type User = {
 export const products: Array<Product> = [
     {
         id: 1,
-        name: 'creamy samosa',
+        name: 'Creamy Samosa',
         price: 10,
         description: 'A samosa filled with creamy garlic sauce.'
     },
     {
         id: 2,
-        name: 'chicken samosa',
+        name: 'Chicken Samosa',
         price: 12,
         description: 'The traditional ground chicken samosa.'
     },
     {
         id: 3,
-        name: 'veggie samosa',
+        name: 'Veggie Samosa',
         price: 9,
         description: 'The traditional veggie samosa',
     }
 ]
+
+export const imageLink = 'https://media.istockphoto.com/id/1430060145/photo/sweet-tasty-fried-indian-dish-samosha-indian-delicious-deep-fried-breakfast-samosa-also-know.jpg?s=612x612&w=0&k=20&c=bxOAfJThGKNSzugC7Id_vPO9l5UPljCKSgOc18-2vS0='
