@@ -4,6 +4,7 @@ export type Product = {
     name: string,
     price: number,
     description: string,
+    image: string,
 }
 
 export type Order = {
@@ -19,25 +20,11 @@ export type User = {
     cart: Array<Product>
 }
 
-export const products: Array<Product> = [
-    {
-        id: 1,
-        name: 'Creamy Samosa',
-        price: 10,
-        description: 'A samosa filled with creamy garlic sauce.'
-    },
-    {
-        id: 2,
-        name: 'Chicken Samosa',
-        price: 12,
-        description: 'The traditional ground chicken samosa.'
-    },
-    {
-        id: 3,
-        name: 'Veggie Samosa',
-        price: 9,
-        description: 'The traditional veggie samosa',
-    }
-]
+export type Purchase = {
+    product_id: number,
+    product_name: string,
+    product_price: number,
+    count: number,
+}
 
-export const imageLink = 'https://media.istockphoto.com/id/1430060145/photo/sweet-tasty-fried-indian-dish-samosha-indian-delicious-deep-fried-breakfast-samosa-also-know.jpg?s=612x612&w=0&k=20&c=bxOAfJThGKNSzugC7Id_vPO9l5UPljCKSgOc18-2vS0='
+export const apiUrl = 'http://localhost:5000'
