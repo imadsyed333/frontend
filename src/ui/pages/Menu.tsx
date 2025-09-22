@@ -1,10 +1,15 @@
 import { Box, Container, Typography } from '@mui/material'
-import React from 'react'
-import { getProducts } from '../../actions'
+import React, { useEffect, useState } from 'react'
+import { getProducts } from '../../actions/productActions'
 import { ProductCard } from '../components/ProductCard'
+import { Product } from '../../constants'
 
 export const Menu = () => {
-    let products = getProducts()
+    const [products, setProducts] = useState<Product[]>([])
+
+    useEffect(() => {
+        getProducts().then(res => setProducts(res))
+    }, [])
     return (
         <Container sx={{
             display: 'flex',

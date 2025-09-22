@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { getProductWithId } from '../../actions'
+import { getProductWithId } from '../../actions/productActions'
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
-import { imageLink } from '../../constants'
+import { Product } from '../../constants'
 
 export const ProductPage = () => {
     const { id } = useParams()
-    const product = getProductWithId(Number(id))
+    const [product, setProduct] = useState<Product>()
+
+    useEffect(() => {
+        getProductWithId(Number(id)).then(res => setProduct(res))
+    }, [id])
 
     const PageContent = () => {
         if (product) {
@@ -16,9 +20,15 @@ export const ProductPage = () => {
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    p: 2
+                    height: '85vh',
+                    width: '100vw',
+                    m: 5,
                 }}>
-                    <CardMedia component={'img'} image={imageLink} alt={product.name} />
+                    <CardMedia component={'img'} image={product.image} alt={product.name} sx={{
+                        height: '100%',
+                        width: '100%',
+                        objectFit: 'contain'
+                    }} />
                     <CardContent>
                         <Typography variant='h1'>
                             {product.name}
