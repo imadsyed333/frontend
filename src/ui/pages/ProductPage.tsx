@@ -1,12 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductWithId } from '../../actions/productActions'
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
-import { Product } from '../../constants'
+import { Product, Purchase } from '../../constants'
+import { IncrementalButton } from '../components/IncrementalButton'
+import { StoreContext } from '../../StoreContext'
 
 export const ProductPage = () => {
     const { id } = useParams()
     const [product, setProduct] = useState<Product>()
+    const [count, setCount] = useState(1)
+
+    const { cart, setCart } = useContext(StoreContext)
+
+    const addToCart = () => {
+        if (product) {
+            const copyCart = [...cart]
+            const productIndex = copyCart.findIndex(p => p.product_id === product.id)
+            if (productIndex !== -1) {
+                copyCart[productIndex].count += count
+                setCart([...copyCart])
+            } else {
+                const newPurchase: Purchase = {
+                    product_id: product.id,
+                    product_name: product.name,
+                    product_price: product.price,
+                    count,
+                }
+                setCart([...cart, newPurchase])
+            }
+        }
+    }
 
     useEffect(() => {
         getProductWithId(Number(id)).then(res => setProduct(res))
@@ -33,13 +57,16 @@ export const ProductPage = () => {
                         <Typography variant='h1'>
                             {product.name}
                         </Typography>
+                        <Typography variant='h3'>
+                            ${product.price}
+                        </Typography>
                         <Box>
-                            <Typography>
-                                ${product.price}
-                            </Typography>
-                            <Button>Add to Cart</Button>
+                            <IncrementalButton count={count} setCount={setCount} />
+                            <Button variant='contained' onClick={addToCart}>Add to Cart</Button>
                         </Box>
-                        <Typography>
+                        <Typography sx={{
+                            m: 1
+                        }}>
                             {product.description}
                         </Typography>
                     </CardContent>
