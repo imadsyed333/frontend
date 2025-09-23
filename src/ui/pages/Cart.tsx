@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Product } from '../../constants'
+import { StoreContext } from '../../StoreContext'
 
 export const Cart = () => {
+    const { cart, setCart } = useContext(StoreContext)
 
     return (
-        <div>This is the cart</div>
+        <div>{cart.toString()}</div>
     )
 }
