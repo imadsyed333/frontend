@@ -82,19 +82,26 @@ export const NavBar = () => {
                     display: 'flex',
                     flexDirection: 'row',
                 }}>
-                    <Typography variant='h6' noWrap
-                        sx={{
-                            mx: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'serif',
-                            fontWeight: 200,
-                            letterSpacing: '.1rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            alignItems: 'center'
-                        }}>
-                        My Cart
-                    </Typography>
+                    <CardActionArea sx={{
+                        m: 1,
+                        p: 1,
+                        borderRadius: 1,
+                        display: { xs: 'none', md: 'flex' },
+                        letterSpacing: '.1rem',
+                        color: 'inherit',
+                        textDecoration: 'none',
+                        alignItems: 'center',
+                    }} onClick={() => {
+                        navigate('/cart')
+                    }}>
+                        <Typography variant='h6'
+                            sx={{
+                                fontFamily: 'serif',
+                                fontWeight: 200,
+                            }}>
+                            My Cart
+                        </Typography>
+                    </CardActionArea>
                     <Typography variant='h6' noWrap
                         sx={{
                             mx: 2,
