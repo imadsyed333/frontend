@@ -1,6 +1,5 @@
 import React from 'react'
-import { AppBar, Box, CardActionArea, Menu, MenuItem, Typography } from '@mui/material'
-import { NavLink } from 'react-router'
+import { AppBar, Box, CardActionArea, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
 
 export const NavBar = () => {
