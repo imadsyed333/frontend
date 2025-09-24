@@ -5,6 +5,7 @@ import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/mate
 import { Product, Purchase } from '../../constants'
 import { IncrementalButton } from '../components/IncrementalButton'
 import { StoreContext } from '../../StoreContext'
+import { saveCart } from '../../actions/cartActions'
 
 export const ProductPage = () => {
     const { id } = useParams()
@@ -15,11 +16,12 @@ export const ProductPage = () => {
 
     const addToCart = () => {
         if (product) {
+            let newCart = []
             const copyCart = [...cart]
             const productIndex = copyCart.findIndex(p => p.product_id === product.id)
             if (productIndex !== -1) {
                 copyCart[productIndex].count += count
-                setCart([...copyCart])
+                newCart = [...copyCart]
             } else {
                 const newPurchase: Purchase = {
                     product_id: product.id,
@@ -27,8 +29,10 @@ export const ProductPage = () => {
                     product_price: product.price,
                     count,
                 }
-                setCart([...cart, newPurchase])
+                newCart = [...cart, newPurchase]
             }
+            saveCart(newCart)
+            setCart(newCart)
         }
     }
 
