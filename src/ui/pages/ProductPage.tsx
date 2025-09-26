@@ -43,38 +43,56 @@ export const ProductPage = () => {
     const PageContent = () => {
         if (product) {
             return (
-                <Card sx={{
+                <Box sx={{
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    height: '85vh',
-                    width: '100vw',
-                    m: 5,
+                    height: '89vh',
+                    width: '100%',
+                    mt: '85px',
                 }}>
-                    <CardMedia component={'img'} image={product.image} alt={product.name} sx={{
+                    <Card sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         height: '100%',
                         width: '100%',
-                        objectFit: 'contain'
-                    }} />
-                    <CardContent>
-                        <Typography variant='h1'>
-                            {product.name}
-                        </Typography>
-                        <Typography variant='h3'>
-                            ${product.price}
-                        </Typography>
-                        <Box>
-                            <IncrementalButton count={count} setCount={setCount} />
-                            <Button variant='contained' onClick={addToCart}>Add to Cart</Button>
-                        </Box>
-                        <Typography sx={{
-                            m: 1
-                        }}>
-                            {product.description}
-                        </Typography>
-                    </CardContent>
-                </Card>
+                        mx: 2,
+                    }}>
+                        <CardMedia component={'img'} image={product.image} alt={product.name} sx={{
+                            height: '100%',
+                            width: '100%',
+                            objectFit: 'contain'
+                        }} />
+                        <CardContent>
+                            <Typography variant='h1'>
+                                {product.name}
+                            </Typography>
+                            <Typography variant='h3'>
+                                ${product.price}
+                            </Typography>
+                            <Box sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center',
+                                px: 10,
+                                justifySelf: 'center',
+                            }}>
+                                <IncrementalButton count={count} setCount={setCount} />
+                                <Button variant='contained' onClick={addToCart} sx={{
+                                    my: 1,
+                                }}>Add to Cart</Button>
+                            </Box>
+                            <Typography sx={{
+                                m: 1
+                            }}>
+                                {product.description}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Box>
             )
         }
         return (
