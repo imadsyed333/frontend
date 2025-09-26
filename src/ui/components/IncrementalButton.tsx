@@ -1,7 +1,8 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Input, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import React, { useState } from 'react'
+import { NumberField } from '@base-ui-components/react'
+import React from 'react'
 
 export const IncrementalButton = ({ count, setCount }: { count: number, setCount: Function }) => {
 
@@ -18,30 +19,22 @@ export const IncrementalButton = ({ count, setCount }: { count: number, setCount
         <Box sx={{
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            my: 1,
+            backgroundColor: 'white',
+            border: 1,
+            borderRadius: 1,
+            borderColor: 'lightgray',
         }}>
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'white',
-                border: 1,
-                borderRadius: 1,
-                borderColor: 'lightgray',
-            }}>
-                <Button onClick={decrementCount} sx={{
-                    m: 1,
-                    color: 'black'
-                }}><RemoveIcon /></Button>
-                <Typography>{count}</Typography>
-                <Button onClick={incrementCount} sx={{
-                    m: 1,
-                    color: 'black'
-                }}><AddIcon /></Button>
-            </Box>
+            <Button onClick={decrementCount} sx={{
+                m: 1,
+                color: 'black'
+            }}><RemoveIcon /></Button>
+            <Typography>{count}</Typography>
+            <Button onClick={incrementCount} sx={{
+                m: 1,
+                color: 'black'
+            }}><AddIcon /></Button>
         </Box>
     )
 }
