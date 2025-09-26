@@ -19,22 +19,29 @@ export const IncrementalButton = ({ count, setCount }: { count: number, setCount
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            my: 1,
         }}>
-            <Button onClick={decrementCount} variant='contained' sx={{
-                m: 1
-            }}><RemoveIcon /></Button>
             <Box sx={{
-                backgroundColor: 'whitesmoke',
-                px: 1,
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'white',
                 border: 1,
-                borderRadius: 1
+                borderRadius: 1,
+                borderColor: 'lightgray',
             }}>
+                <Button onClick={decrementCount} sx={{
+                    m: 1,
+                    color: 'black'
+                }}><RemoveIcon /></Button>
                 <Typography>{count}</Typography>
+                <Button onClick={incrementCount} sx={{
+                    m: 1,
+                    color: 'black'
+                }}><AddIcon /></Button>
             </Box>
-            <Button onClick={incrementCount} variant='contained' sx={{
-                m: 1
-            }}><AddIcon /></Button>
         </Box>
     )
 }
