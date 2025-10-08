@@ -1,7 +1,6 @@
-import { Box, Button, Input, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
-import { NumberField } from '@base-ui-components/react'
 import React from 'react'
 
 export const IncrementalButton = ({ count, setCount }: { count: number, setCount: Function }) => {
@@ -15,6 +14,7 @@ export const IncrementalButton = ({ count, setCount }: { count: number, setCount
             setCount(count - 1)
         }
     }
+
     return (
         <Box sx={{
             display: 'flex',
