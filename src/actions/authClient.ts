@@ -7,12 +7,12 @@ const api = axios.create({
 })
 
 export const registerUser = async (email: string, password: string, name: string) => {
-    const res = await api.post<RegisterResponse>("user/register", { email, password, name })
+    const res = await api.post<RegisterResponse>("/user/register", { email, password, name })
     return res.data
 }
 
 export const loginUser = async (email: string, password: string) => {
-    const res = await api.post<LoginResponse>("user/login", { email, password })
+    const res = await api.post<LoginResponse>("/user/login", { email, password })
     return res.data
 }
 
