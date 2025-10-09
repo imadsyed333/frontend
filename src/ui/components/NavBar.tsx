@@ -1,9 +1,27 @@
 import React from 'react'
 import { AppBar, Box, CardActionArea, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
+import { useAuth } from '../../hooks/useAuth'
+import { AccountLinks } from './AccountLinks'
 
 export const NavBar = () => {
+    const { user } = useAuth()
     let navigate = useNavigate()
+
+    const MenuLink = () => {
+        if (user) {
+            return (
+                <Typography variant='h6'
+                    sx={{
+                        fontFamily: 'serif',
+                        fontWeight: 200,
+                    }}>
+                    Menu
+                </Typography>
+            )
+        }
+        return <></>
+    }
     return (
         <AppBar sx={{
             display: 'flex',
@@ -13,19 +31,17 @@ export const NavBar = () => {
         }}>
             <Box sx={{
                 display: 'flex',
-                flexDirection: 'row'
+                flexDirection: 'row',
+                mx: 2,
+                my: 2,
             }}>
                 <Typography variant="h4"
                     noWrap
                     sx={{
-                        mx: 2,
-                        my: 2,
-                        display: { xs: 'none', md: 'flex' },
                         fontFamily: 'serif',
                         fontWeight: 200,
-                        letterSpacing: '.1rem',
-                        color: 'inherit',
-                        textDecoration: 'none',
+                        alignContent: 'center',
+                        mr: 2,
                     }}>
                     Samosa Stuff
                 </Typography>
@@ -65,20 +81,15 @@ export const NavBar = () => {
                     }} onClick={() => {
                         navigate('/menu')
                     }}>
-                        <Typography variant='h6'
-                            sx={{
-                                fontFamily: 'serif',
-                                fontWeight: 200,
-                            }}>
-                            Menu
-                        </Typography>
+                        <MenuLink />
                     </CardActionArea>
                 </Box>
             </Box>
-            <Box sx={{
-                display: 'inherit'
-            }}>
-                <Box sx={{
+            {
+                user && <AccountLinks />
+            }
+            {
+                !user && <Box sx={{
                     display: 'flex',
                     flexDirection: 'row',
                 }}>
@@ -92,31 +103,12 @@ export const NavBar = () => {
                         textDecoration: 'none',
                         alignItems: 'center',
                     }} onClick={() => {
-                        navigate('/cart')
+                        navigate('/login')
                     }}>
-                        <Typography variant='h6'
-                            sx={{
-                                fontFamily: 'serif',
-                                fontWeight: 200,
-                            }}>
-                            My Cart
-                        </Typography>
+                        <Typography variant='h6' noWrap>Login</Typography>
                     </CardActionArea>
-                    <Typography variant='h6' noWrap
-                        sx={{
-                            mx: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'serif',
-                            fontWeight: 200,
-                            letterSpacing: '.1rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            alignItems: 'center'
-                        }}>
-                        Hi, Walter!
-                    </Typography>
                 </Box>
-            </Box>
+            }
         </AppBar>
     )
 }
