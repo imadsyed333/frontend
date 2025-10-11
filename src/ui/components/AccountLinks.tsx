@@ -1,11 +1,12 @@
 import { Box, CardActionArea, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router'
-import { useAuth } from '../../hooks/useAuth'
+import { AuthContext } from '../../AuthContext'
+import { AccountMenu } from './AccountMenu'
+
 
 export const AccountLinks = () => {
     const navigate = useNavigate()
-    const { user } = useAuth()
     return (
         <Box sx={{
             display: 'flex',
@@ -27,20 +28,7 @@ export const AccountLinks = () => {
                     My Cart
                 </Typography>
             </CardActionArea>
-            <CardActionArea sx={{
-                display: 'flex',
-                m: 1,
-                p: 1,
-            }}>
-                <Typography variant='h6' noWrap
-                    sx={{
-                        fontFamily: 'serif',
-                        fontWeight: 200,
-                        width: 'fit-content',
-                    }}>
-                    Hi, {user?.name}!
-                </Typography>
-            </CardActionArea>
+            <AccountMenu />
         </Box>
     )
 }
