@@ -1,11 +1,11 @@
 import { Box, Button, Card, TextField } from '@mui/material'
-import React from 'react'
-import { useAuth } from '../../hooks/useAuth'
+import React, { useContext } from 'react'
+import { AuthContext } from '../../AuthContext'
 
 export const Login = () => {
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
-    const { handleLogin } = useAuth();
+    const { login } = useContext(AuthContext)
 
     return (
         <Box sx={{
@@ -25,7 +25,7 @@ export const Login = () => {
             }}>
                 <TextField label='Username' variant='outlined' value={username} onChange={(e) => setUsername(e.target.value)} />
                 <TextField label='Password' type='password' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)} />
-                <Button variant='contained' sx={{ backgroundColor: 'orange' }} onClick={() => handleLogin(username, password)}>Login</Button>
+                <Button variant='contained' sx={{ backgroundColor: 'orange' }} onClick={() => login(username, password)}>Login</Button>
             </Card>
         </Box>
     )

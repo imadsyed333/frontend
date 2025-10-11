@@ -8,21 +8,24 @@ import { ProductPage } from './ui/pages/ProductPage';
 import { StoreProvider } from './StoreContext';
 import { Cart } from './ui/pages/Cart';
 import { Login } from './ui/pages/Login';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <StoreProvider>
-          <NavBar />
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path='menu' element={<Menu />} />
-            <Route path='/menu/:id' element={<ProductPage />} />
-            <Route path='cart' element={<Cart />} />
-            <Route path='/login' element={<Login />} />
-          </Routes>
-        </StoreProvider>
+        <AuthProvider>
+          <StoreProvider>
+            <NavBar />
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path='menu' element={<Menu />} />
+              <Route path='/menu/:id' element={<ProductPage />} />
+              <Route path='cart' element={<Cart />} />
+              <Route path='/login' element={<Login />} />
+            </Routes>
+          </StoreProvider>
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );

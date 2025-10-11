@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { AppBar, Box, CardActionArea, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
-import { useAuth } from '../../hooks/useAuth'
 import { AccountLinks } from './AccountLinks'
+import { AuthContext } from '../../AuthContext'
 
 export const NavBar = () => {
-    const { user } = useAuth()
+    const { user } = useContext(AuthContext)
     let navigate = useNavigate()
 
     const MenuLink = () => {
