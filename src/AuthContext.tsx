@@ -1,16 +1,18 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { User } from "./constants";
-import { loginUser, logoutUser, userProfile } from "./actions/authClient";
+import { loginUser, logoutUser, registerUser, userProfile } from "./actions/authClient";
 import { useNavigate } from "react-router";
 
 type AuthContextType = {
     user: User | null,
+    register: Function,
     login: Function,
     logout: Function
 }
 
 export const AuthContext = createContext<AuthContextType>({
     user: null,
+    register: () => { },
     login: () => { },
     logout: () => { }
 })
@@ -29,6 +31,15 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
         })
     }, [])
 
+    const register = async (email: string, password: string, name: string) => {
+        try {
+            const res = await registerUser(email, password, name)
+            navigate('/login')
+        } catch (e) {
+            console.log("Unexpected error")
+        }
+    }
+
     const login = async (email: string, password: string) => {
         try {
             await loginUser(email, password)
@@ -46,7 +57,7 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
         navigate('/')
     }
 
-    const value = useMemo(() => ({ user, login, logout }), [user])
+    const value = useMemo(() => ({ user, register, login, logout }), [user])
 
     return (
         <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
