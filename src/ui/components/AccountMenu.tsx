@@ -34,7 +34,10 @@ export const AccountMenu = () => {
                     Hi, {user?.name}!
                 </Typography>
             </CardActionArea>
-            <Menu {...bindMenu(popupState)}>
+            <Menu {...bindMenu(popupState)} anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right'
+            }}>
                 <MenuItem onClick={toProfile}>Profile</MenuItem>
                 <MenuItem onClick={toLogout}>Logout</MenuItem>
             </Menu>

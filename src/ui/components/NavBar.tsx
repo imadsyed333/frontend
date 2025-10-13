@@ -27,13 +27,13 @@ export const NavBar = () => {
             display: 'flex',
             backgroundColor: 'orange',
             flexDirection: 'row',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            maxHeight: '8vh'
         }}>
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
-                mx: 2,
-                my: 2,
+                m: 1
             }}>
                 <Typography variant="h4"
                     noWrap

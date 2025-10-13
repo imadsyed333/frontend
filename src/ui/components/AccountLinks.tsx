@@ -12,6 +12,7 @@ export const AccountLinks = () => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
+            m: 1,
         }}>
             <CardActionArea sx={{
                 display: 'flex',
