@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { StoreContext } from '../../StoreContext'
 import { Box, Button, Card, Typography } from '@mui/material'
 import { CartTable } from '../components/CartTable'
+import { ShoppingCart } from '@mui/icons-material'
 
 export const Cart = () => {
     const [cartTotal, setCartTotal] = useState(0)
@@ -14,6 +15,20 @@ export const Cart = () => {
         })
         setCartTotal(sum)
     }, [cart])
+
+    const showCart = () => {
+        if (cart.length > 0) {
+            return <CartTable />
+        }
+        return (
+            <Box>
+                <ShoppingCart sx={{
+                    fontSize: 100
+                }} />
+                <Typography>Your cart is empty. Go add something to it.</Typography>
+            </Box>
+        )
+    }
 
     return (
         <Box sx={{
@@ -34,10 +49,13 @@ export const Cart = () => {
                 alignItems: 'center',
             }}>
                 <Card sx={{
+                    display: 'flex',
                     height: '100%',
                     width: '100%',
+                    justifyContent: 'center',
+                    alignItems: (cart.length > 0) ? 'start' : 'center'
                 }}>
-                    <CartTable />
+                    {showCart()}
                 </Card>
 
             </Box>
@@ -70,7 +88,7 @@ export const Cart = () => {
                     </Box>
                     <Button variant='contained' sx={{
                         m: 1,
-                    }}>Proceed to Checkout</Button>
+                    }} disabled={(cart.length === 0)}>Proceed to Checkout</Button>
                 </Card>
             </Box >
         </Box >
