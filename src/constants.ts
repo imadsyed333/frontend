@@ -23,29 +23,7 @@ export type Purchase = {
     product_id: number,
     product_name: string,
     product_price: number,
-    count: number,
-}
-
-export type RegisterResponse = {
-    id: number,
-    email: string,
-    name: string,
-}
-
-export type LoginResponse = {
-    message: string,
-}
-
-export type RefreshResponse = {
-    message: string,
-}
-
-export type LogoutResponse = {
-    message: string,
-}
-
-export type ProfileResponse = {
-    user: User,
+    product_count: number,
 }
 
 export const apiUrl = 'http://localhost:5000'
