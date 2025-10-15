@@ -10,6 +10,7 @@ import { Cart } from './ui/pages/Cart';
 import { Login } from './ui/pages/Login';
 import { AuthProvider } from './AuthContext';
 import { Register } from './ui/pages/Register';
+import { Profile } from './ui/pages/Profile';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path='cart' element={<Cart />} />
               <Route path='login' element={<Login />} />
               <Route path='register' element={<Register />} />
+              <Route path='profile' element={<Profile />} />
             </Routes>
           </StoreProvider>
         </AuthProvider>
