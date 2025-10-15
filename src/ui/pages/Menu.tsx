@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { getProducts } from '../../actions/productActions'
+import { getProducts } from '../../api/productClient'
 import { ProductCard } from '../components/ProductCard'
 import { Product } from '../../constants'
 

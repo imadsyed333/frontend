@@ -1,7 +1,7 @@
 import { Box, Button, Card, TextField } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router'
-import { registerUser } from '../../actions/authClient'
+import { registerUser } from '../../api/authClient'
 import { AuthContext } from '../../AuthContext'
 
 export const Register = () => {
