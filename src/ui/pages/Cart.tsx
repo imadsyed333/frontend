@@ -3,18 +3,31 @@ import { StoreContext } from '../../StoreContext'
 import { Box, Button, Card, Typography } from '@mui/material'
 import { CartTable } from '../components/CartTable'
 import { ShoppingCart } from '@mui/icons-material'
+import { createOrder } from '../../api/orderClient'
+import { useNavigate } from 'react-router'
 
 export const Cart = () => {
     const [cartTotal, setCartTotal] = useState(0)
     const { cart } = useContext(StoreContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         let sum = 0
         cart.forEach(purchase => {
-            sum += (purchase.count * purchase.product_price)
+            sum += (purchase.product_count * purchase.product_price)
         })
         setCartTotal(sum)
     }, [cart])
+
+    const placeOrder = async () => {
+        try {
+            const res = await createOrder(cartTotal, cart)
+            console.log(res.message)
+            navigate("/")
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const showCart = () => {
         if (cart.length > 0) {
@@ -88,7 +101,7 @@ export const Cart = () => {
                     </Box>
                     <Button variant='contained' sx={{
                         m: 1,
-                    }} disabled={(cart.length === 0)}>Proceed to Checkout</Button>
+                    }} disabled={(cart.length === 0)} onClick={placeOrder}>Proceed to Checkout</Button>
                 </Card>
             </Box >
         </Box >

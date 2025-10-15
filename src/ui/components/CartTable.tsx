@@ -10,7 +10,7 @@ export const CartTable = () => {
 
     const setCountAt = (key: number, value: number) => {
         const copyCart: Purchase[] = [...cart]
-        copyCart[key].count = value
+        copyCart[key].product_count = value
         setCart(copyCart)
     }
 
@@ -53,9 +53,9 @@ export const CartTable = () => {
                                     px: 1
                                 }}>
 
-                                    <IncrementalButton count={purchase.count} setCount={(value: number) => { setCountAt(key, value) }} />
+                                    <IncrementalButton count={purchase.product_count} setCount={(value: number) => { setCountAt(key, value) }} />
                                 </TableCell>
-                                <TableCell align='right'>${purchase.product_price * purchase.count}</TableCell>
+                                <TableCell align='right'>${purchase.product_price * purchase.product_count}</TableCell>
                             </TableRow>
                         ))
                     }

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import { getProductWithId } from '../../actions/productActions'
+import { getProductWithId } from '../../api/productClient'
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
 import { Product, Purchase } from '../../constants'
 import { IncrementalButton } from '../components/IncrementalButton'
@@ -20,14 +20,14 @@ export const ProductPage = () => {
             const copyCart = [...cart]
             const productIndex = copyCart.findIndex(p => p.product_id === product.id)
             if (productIndex !== -1) {
-                copyCart[productIndex].count += count
+                copyCart[productIndex].product_count += count
                 newCart = [...copyCart]
             } else {
                 const newPurchase: Purchase = {
                     product_id: product.id,
                     product_name: product.name,
                     product_price: product.price,
-                    count,
+                    product_count: count,
                 }
                 newCart = [...cart, newPurchase]
             }
