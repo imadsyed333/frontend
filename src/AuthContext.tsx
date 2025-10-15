@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { User } from "./constants";
-import { loginUser, logoutUser, registerUser, userProfile } from "./actions/authClient";
+import { loginUser, logoutUser, registerUser, userProfile } from "./api/authClient";
 import { useNavigate } from "react-router";
 
 type AuthContextType = {
