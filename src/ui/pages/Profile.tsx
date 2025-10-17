@@ -22,7 +22,7 @@ export const Profile = () => {
             const order = orders.find((order) => order.id === currentOrderId)
             setCurrentOrder(order)
         }
-    }, [currentOrderId])
+    }, [currentOrderId, orders])
 
     return (
         <Box sx={{
