@@ -1,19 +1,24 @@
+import axios from "axios"
 import { Product, apiUrl } from "../constants"
 
-export const getProductWithId = async (id: number): Promise<Product> => {
-    const request: RequestInfo = new Request(`${apiUrl}/products/${id}`, {
-        method: 'GET',
-    })
-    return fetch(request).then(res => res.json()).then(res => {
-        return res as Product
-    })
+type ProductWithIdResponse = {
+    product: Product,
 }
 
-export const getProducts = async (): Promise<Product[]> => {
-    const request: RequestInfo = new Request(`${apiUrl}/products`, {
-        method: 'GET',
-    })
-    return fetch(request).then(res => res.json()).then(res => {
-        return res as Product[]
-    })
+type AllProductsResponse = {
+    products: Product[]
+}
+
+const api = axios.create({
+    baseURL: apiUrl
+})
+
+export const getProductWithId = async (id: number) => {
+    const res = await api.get<ProductWithIdResponse>(`/products/${id}`)
+    return res.data
+}
+
+export const getAllProducts = async () => {
+    const res = await api.get<AllProductsResponse>("/products/all")
+    return res.data
 }
