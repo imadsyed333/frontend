@@ -9,7 +9,8 @@ export type Product = {
 
 export type Order = {
     id: number,
-    date: string,
+    cost: number,
+    datetime: Date,
     products: Array<Purchase>,
 }
 
