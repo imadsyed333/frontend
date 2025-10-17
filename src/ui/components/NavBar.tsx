@@ -28,7 +28,7 @@ export const NavBar = () => {
             backgroundColor: 'orange',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            maxHeight: '8vh'
+            height: '70px'
         }}>
             <Box sx={{
                 display: 'flex',
