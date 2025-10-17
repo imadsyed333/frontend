@@ -1,6 +1,6 @@
 import { Box, Container, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { getProducts } from '../../api/productClient'
+import { getAllProducts } from '../../api/productClient'
 import { ProductCard } from '../components/ProductCard'
 import { Product } from '../../constants'
 
@@ -8,7 +8,9 @@ export const Menu = () => {
     const [products, setProducts] = useState<Product[]>([])
 
     useEffect(() => {
-        getProducts().then(res => setProducts(res))
+        getAllProducts().then((res) => {
+            setProducts(res.products)
+        }).catch((e) => console.log(e))
     }, [])
     return (
         <Container sx={{

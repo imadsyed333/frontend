@@ -37,7 +37,7 @@ export const ProductPage = () => {
     }
 
     useEffect(() => {
-        getProductWithId(Number(id)).then(res => setProduct(res))
+        getProductWithId(Number(id)).then(res => setProduct(res.product)).catch((e) => console.log(e))
     }, [id])
 
     const PageContent = () => {
