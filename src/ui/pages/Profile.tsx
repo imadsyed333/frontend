@@ -5,6 +5,7 @@ import { Order } from '../../constants'
 import { ProfileCard } from '../components/ProfileCard'
 import { AuthContext } from '../../AuthContext'
 import { OrderList } from '../components/OrderList'
+import { OrderInfoCard } from '../components/OrderInfoCard'
 
 export const Profile = () => {
     const [orders, setOrders] = useState<Order[]>([])
@@ -46,15 +47,7 @@ export const Profile = () => {
             }}>
                 <OrderList orders={orders} setCurrentOrderId={setCurrentOrderId} />
             </Card>
-            <Card sx={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
-                width: '100%',
-                mx: 2,
-            }}>Order #{currentOrder?.id}</Card>
+            <OrderInfoCard order={currentOrder} />
         </Box>
     )
 }
