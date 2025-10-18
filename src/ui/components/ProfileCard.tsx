@@ -6,13 +6,14 @@ export const ProfileCard = ({ name, email }: { name: string, email: string }) =>
     return (
         <Card sx={{
             display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+            flexDirection: 'column',
+            justifyContent: 'start',
+            alignItems: 'start',
             height: '100%',
             width: '100%',
             mx: 2,
         }}>
+            <Typography variant='h2'>My Profile</Typography>
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -27,7 +28,7 @@ export const ProfileCard = ({ name, email }: { name: string, email: string }) =>
                     fontSize: 100
                 }} />
                 <Box>
-                    <Typography>{name}</Typography>
+                    <Typography variant='h3'>{name}</Typography>
                     <Typography>{email}</Typography>
                 </Box>
             </Box>
