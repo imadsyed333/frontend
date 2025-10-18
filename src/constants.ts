@@ -11,7 +11,7 @@ export type Order = {
     id: number,
     cost: number,
     datetime: Date,
-    products: Array<Purchase>,
+    purchases: Array<Purchase>,
 }
 
 export type User = {
