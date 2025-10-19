@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router'
 
 export const Cart = () => {
     const [cartTotal, setCartTotal] = useState(0)
-    const { cart } = useContext(StoreContext)
+    const { cart, setCart } = useContext(StoreContext)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -23,6 +23,7 @@ export const Cart = () => {
         try {
             const res = await createOrder(cartTotal, cart)
             console.log(res.message)
+            setCart([])
             navigate("/")
         } catch (e) {
             console.log(e)
