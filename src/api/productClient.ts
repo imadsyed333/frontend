@@ -1,5 +1,5 @@
-import axios from "axios"
-import { Product, apiUrl } from "../constants"
+import { Product } from "../constants"
+import api from "./api"
 
 type ProductWithIdResponse = {
     product: Product,
@@ -8,10 +8,6 @@ type ProductWithIdResponse = {
 type AllProductsResponse = {
     products: Product[]
 }
-
-const api = axios.create({
-    baseURL: apiUrl
-})
 
 export const getProductWithId = async (id: number) => {
     const res = await api.get<ProductWithIdResponse>(`/products/${id}`)

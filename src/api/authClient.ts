@@ -1,5 +1,5 @@
-import axios from "axios";
-import { apiUrl, User } from "../constants";
+import { User } from "../constants";
+import api from "./api";
 
 type RegisterResponse = {
     id: number,
@@ -22,11 +22,6 @@ type LogoutResponse = {
 type ProfileResponse = {
     user: User,
 }
-
-const api = axios.create({
-    baseURL: apiUrl,
-    withCredentials: true,
-})
 
 export const registerUser = async (email: string, password: string, name: string) => {
     const res = await api.post<RegisterResponse>("/user/register", { email, password, name })

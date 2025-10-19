@@ -1,5 +1,5 @@
-import axios from "axios";
-import { apiUrl, Order, Purchase } from "../constants";
+import { Order, Purchase } from "../constants";
+import api from "./api";
 
 type CreateOrderResponse = {
     message: string
@@ -8,11 +8,6 @@ type CreateOrderResponse = {
 type GetOrdersResponse = {
     orders: Order[]
 }
-
-const api = axios.create({
-    baseURL: apiUrl,
-    withCredentials: true,
-})
 
 export const createOrder = async (cost: number, purchases: Purchase[]) => {
     const res = await api.post<CreateOrderResponse>("/orders", { cost, purchases })
