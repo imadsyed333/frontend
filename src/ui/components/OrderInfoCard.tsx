@@ -1,7 +1,8 @@
-import { Box, Card, List, ListItem } from '@mui/material'
+import { Box, Card, List, ListItem, Typography } from '@mui/material'
 import React from 'react'
 import { Order } from '../../constants'
 import { OrderItemCard } from './OrderItemCard'
+import { formatOrderId } from '../../utils'
 
 export const OrderInfoCard = ({ order }: { order: Order | undefined }) => {
 
@@ -10,8 +11,21 @@ export const OrderInfoCard = ({ order }: { order: Order | undefined }) => {
             <div>Select an order to view its info</div>
         ) :
             (
-                <Box>
-                    <List>
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'start',
+                    alignItems: 'start',
+                    height: '100%',
+                    width: '100%'
+                }}>
+                    <Typography variant='h2'>Order #{formatOrderId(order.id)}</Typography>
+                    <List sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: '100%',
+                        width: '100%'
+                    }}>
                         {
                             order.purchases.map((item) => (
                                 <ListItem>

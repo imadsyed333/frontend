@@ -1,15 +1,25 @@
-import React, { useContext, useEffect, useState } from 'react'
 import { Order } from '../../constants'
-import { AuthContext } from '../../AuthContext'
-import { getUserOrders } from '../../api/orderClient'
-import { Box, List, ListItem } from '@mui/material'
+import { Box, List, ListItem, Typography } from '@mui/material'
 import { OrderCard } from './OrderCard'
 
 export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setCurrentOrderId: Function }) => {
 
     return (
-        <Box>
-            <List>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'start',
+            alignItems: 'start',
+            height: '100%',
+            width: '100%'
+        }}>
+            <Typography variant='h2'>My Orders</Typography>
+            <List sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                width: '100%',
+            }}>
                 {
                     orders.map((order) => (
                         <ListItem>

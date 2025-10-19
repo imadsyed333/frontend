@@ -12,6 +12,7 @@ export const ProfileCard = ({ name, email }: { name: string, email: string }) =>
             height: '100%',
             width: '100%',
             mx: 2,
+            px: 2
         }}>
             <Typography variant='h2'>My Profile</Typography>
             <Box sx={{
@@ -21,8 +22,9 @@ export const ProfileCard = ({ name, email }: { name: string, email: string }) =>
                 alignItems: 'center',
                 border: 1,
                 borderColor: 'lightgrey',
-                p: 2,
                 borderRadius: 2,
+                width: '100%'
+
             }}>
                 <AccountCircle sx={{
                     fontSize: 100
