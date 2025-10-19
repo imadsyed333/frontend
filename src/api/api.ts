@@ -1,4 +1,3 @@
-
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from "axios";
 import { refreshUser, logoutUser } from "./authClient";
 import { apiUrl } from "../constants";
@@ -7,7 +6,6 @@ const api: AxiosInstance = axios.create({
     baseURL: apiUrl,
     withCredentials: true,
 });
-
 
 let isRefreshing = false;
 let failedQueue: {
