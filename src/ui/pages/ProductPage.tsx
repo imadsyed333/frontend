@@ -6,6 +6,7 @@ import { Product, Purchase } from '../../constants'
 import { IncrementalButton } from '../components/IncrementalButton'
 import { StoreContext } from '../../StoreContext'
 import { saveCart } from '../../actions/cartActions'
+import { formatPrice } from '../../utils'
 
 export const ProductPage = () => {
     const { id } = useParams()
@@ -71,7 +72,7 @@ export const ProductPage = () => {
                                 {product.name}
                             </Typography>
                             <Typography variant='h3'>
-                                ${product.price}
+                                ${formatPrice(product.price)}
                             </Typography>
                             <Box sx={{
                                 display: 'flex',
