@@ -25,8 +25,8 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
     useEffect(() => {
         userProfile().then((res) => {
             setUser(res.user)
-        }).catch(() => {
-            console.log("Unexpected error")
+        }).catch((e) => {
+            console.log(e)
             setUser(null)
         })
     }, [])
