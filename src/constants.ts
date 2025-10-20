@@ -27,4 +27,4 @@ export type Purchase = {
     product_count: number,
 }
 
-export const apiUrl = process.env.API_URL
+export const apiUrl = process.env.REACT_APP_SERVER_URL
