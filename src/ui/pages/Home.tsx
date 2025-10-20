@@ -12,15 +12,10 @@ export const Home = () => {
         }}>
             <Typography
                 variant='h1'
-                sx={{
-                    fontFamily: 'serif'
-                }}>
+            >
                 Welcome
             </Typography>
-            <Typography variant='h6'
-                sx={{
-                    fontFamily: 'serif',
-                }}>
+            <Typography variant='h6'>
                 We make crazy frozen samosas. And other stuff.
             </Typography>
         </Box>

@@ -11,11 +11,7 @@ export const NavBar = () => {
     const MenuLink = () => {
         if (user) {
             return (
-                <Typography variant='h6'
-                    sx={{
-                        fontFamily: 'serif',
-                        fontWeight: 200,
-                    }}>
+                <Typography variant='h6'>
                     Menu
                 </Typography>
             )
@@ -25,7 +21,7 @@ export const NavBar = () => {
     return (
         <AppBar sx={{
             display: 'flex',
-            backgroundColor: 'orange',
+            backgroundColor: '#f89259',
             flexDirection: 'row',
             justifyContent: 'space-between',
             height: '70px'
@@ -33,15 +29,20 @@ export const NavBar = () => {
             <Box sx={{
                 display: 'flex',
                 flexDirection: 'row',
-                m: 1
+                ml: 1,
+                height: '100%',
+                alignItems: 'center'
             }}>
+                <Box component={'img'} src='logo.png' alt='logo' sx={{
+                    height: '90%',
+                    mr: 1
+                }} />
                 <Typography variant="h4"
                     noWrap
                     sx={{
-                        fontFamily: 'serif',
-                        fontWeight: 200,
                         alignContent: 'center',
                         mr: 2,
+                        letterSpacing: '.2rem',
                     }}>
                     Samosa Stuff
                 </Typography>
@@ -61,11 +62,7 @@ export const NavBar = () => {
                     }} onClick={() => {
                         navigate('/')
                     }}>
-                        <Typography variant='h6'
-                            sx={{
-                                fontFamily: 'serif',
-                                fontWeight: 200,
-                            }}>
+                        <Typography variant='h6'>
                             Home
                         </Typography>
                     </CardActionArea>
@@ -98,7 +95,6 @@ export const NavBar = () => {
                         p: 1,
                         borderRadius: 1,
                         display: { xs: 'none', md: 'flex' },
-                        letterSpacing: '.1rem',
                         color: 'inherit',
                         textDecoration: 'none',
                         alignItems: 'center',

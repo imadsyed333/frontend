@@ -20,16 +20,10 @@ export const Menu = () => {
             alignItems: 'center',
             minHeight: '100vh'
         }}>
-            <Typography variant='h1'
-                sx={{
-                    fontFamily: 'serif'
-                }}>
+            <Typography variant='h1'>
                 Menu
             </Typography>
-            <Typography variant='h5'
-                sx={{
-                    fontFamily: 'serif'
-                }}>
+            <Typography variant='h5'>
                 Order something. Anything.
             </Typography>
             <Box sx={{

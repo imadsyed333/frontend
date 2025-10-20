@@ -21,11 +21,7 @@ export const AccountLinks = () => {
             }} onClick={() => {
                 navigate('/cart')
             }}>
-                <Typography variant='h6'
-                    sx={{
-                        fontFamily: 'serif',
-                        fontWeight: 200,
-                    }}>
+                <Typography variant='h6'>
                     My Cart
                 </Typography>
             </CardActionArea>

@@ -27,8 +27,6 @@ export const AccountMenu = () => {
             }} {...bindTrigger(popupState)}>
                 <Typography variant='h6' noWrap
                     sx={{
-                        fontFamily: 'serif',
-                        fontWeight: 200,
                         width: 'fit-content',
                     }}>
                     Hi, {user?.name}!
