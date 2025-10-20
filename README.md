@@ -1,1 +1,3 @@
 This is the working repository for the frontend of Samosa Stuff, a full-stack, e-commerce app for purchasing homemade frozen samosas and other stuff. It is currently being developed using Material UI, React, and Typescript.
+
+You can find the backend repository [here](https://github.com/imadsyed333/backend).
