@@ -44,56 +44,38 @@ export const ProductPage = () => {
     const PageContent = () => {
         if (product) {
             return (
-                <Box sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: '89vh',
-                    width: '100%',
-                    mt: '85px',
-                }}>
-                    <Card sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                <>
+                    <CardMedia component={'img'} image={product.image} alt={product.name} sx={{
                         height: '100%',
                         width: '100%',
-                        mx: 2,
-                    }}>
-                        <CardMedia component={'img'} image={product.image} alt={product.name} sx={{
-                            height: '100%',
-                            width: '100%',
-                            objectFit: 'contain'
-                        }} />
-                        <CardContent>
-                            <Typography variant='h1'>
-                                {product.name}
-                            </Typography>
-                            <Typography variant='h3'>
-                                ${formatPrice(product.price)}
-                            </Typography>
-                            <Box sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center',
-                                px: 10,
-                                justifySelf: 'center',
-                            }}>
-                                <IncrementalButton count={count} setCount={setCount} />
-                                <Button variant='contained' onClick={addToCart} sx={{
-                                    my: 1,
-                                }}>Add to Cart</Button>
-                            </Box>
-                            <Typography sx={{
-                                m: 1
-                            }}>
-                                {product.description}
-                            </Typography>
-                        </CardContent>
-                    </Card>
-                </Box>
+                        objectFit: 'contain'
+                    }} />
+                    <CardContent>
+                        <Typography variant='h1'>
+                            {product.name}
+                        </Typography>
+                        <Typography variant='h3'>
+                            ${formatPrice(product.price)}
+                        </Typography>
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            px: 10,
+                            justifySelf: 'center',
+                        }}>
+                            <IncrementalButton count={count} setCount={setCount} />
+                            <Button variant='contained' onClick={addToCart} sx={{
+                                my: 1,
+                            }}>Add to Cart</Button>
+                        </Box>
+                        <Typography sx={{
+                            m: 1
+                        }}>
+                            {product.description}
+                        </Typography>
+                    </CardContent>
+                </>
             )
         }
         return (
@@ -103,12 +85,23 @@ export const ProductPage = () => {
     return (
         <Box sx={{
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             justifyContent: 'center',
             alignItems: 'center',
-            minHeight: '100vh'
+            height: '89vh',
+            mt: '85px',
+            mx: 2,
         }}>
-            <PageContent />
+            <Card sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100%',
+                width: '100%',
+            }}>
+                <PageContent />
+            </Card>
         </Box>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Purchase } from '../../constants'
 import { Card, Typography } from '@mui/material'
+import { formatPrice } from '../../utils'
 
 export const OrderItemCard = ({ item }: { item: Purchase }) => {
     const { product_count, product_name, product_price } = item
@@ -16,7 +17,7 @@ export const OrderItemCard = ({ item }: { item: Purchase }) => {
         }}>
             <Typography variant='h5'>{product_count}</Typography>
             <Typography variant='h5'>{product_name}</Typography>
-            <Typography variant='h5'>${total_price}</Typography>
+            <Typography variant='h5'>${formatPrice(total_price)}</Typography>
         </Card>
     )
 }

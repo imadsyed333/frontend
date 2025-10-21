@@ -26,9 +26,7 @@ export const Login = () => {
                 height: '50%',
                 width: '20%'
             }}>
-                <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)} sx={{
-                    fontSize: 20
-                }} />
+                <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)} />
                 <TextField label='Password' type='password' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <Button variant='contained' sx={{ backgroundColor: '#f89259' }} onClick={() => login(email, password)} size='large'>Login</Button>
                 <Box sx={{

@@ -24,12 +24,14 @@ export const Register = () => {
                 flexDirection: 'column',
                 p: 5,
                 gap: 2,
+                height: '50%',
+                width: '20%'
             }}>
                 <TextField label='Name' variant='outlined' value={name} onChange={(e) => setName(e.target.value)} />
                 <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)} />
                 <TextField label='Password' type='password' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)} />
                 <TextField label='Re-type Password' type='password' variant='outlined' value={retypePassword} onChange={(e) => setRetypePassword(e.target.value)} />
-                <Button variant='contained' sx={{ backgroundColor: 'orange' }} onClick={() => register(email, password, name)}>Sign up</Button>
+                <Button variant='contained' sx={{ backgroundColor: '#f89259' }} onClick={() => register(email, password, name)}>Sign up</Button>
             </Card>
         </Box>
     )

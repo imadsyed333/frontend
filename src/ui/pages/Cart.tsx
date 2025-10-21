@@ -5,6 +5,7 @@ import { CartTable } from '../components/CartTable'
 import { ShoppingCart } from '@mui/icons-material'
 import { createOrder } from '../../api/orderClient'
 import { useNavigate } from 'react-router'
+import { formatPrice } from '../../utils'
 
 export const Cart = () => {
     const [cartTotal, setCartTotal] = useState(0)
@@ -94,14 +95,16 @@ export const Cart = () => {
                         justifyContent: 'space-between',
                         m: 1,
                         pb: 2,
+                        pt: 1,
                         borderBottom: 1,
                         borderColor: 'gray'
                     }}>
                         <Typography variant='h5'>Total:</Typography>
-                        <Typography variant='h5'>${cartTotal}</Typography>
+                        <Typography variant='h5'>${formatPrice(cartTotal)}</Typography>
                     </Box>
                     <Button variant='contained' sx={{
                         m: 1,
+                        backgroundColor: '#48ACF0',
                     }} disabled={(cart.length === 0)} onClick={placeOrder}>Proceed to Checkout</Button>
                 </Card>
             </Box >

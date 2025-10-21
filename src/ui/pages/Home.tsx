@@ -8,7 +8,8 @@ export const Home = () => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            minHeight: '100vh'
+            minHeight: '100vh',
+            backgroundColor: '#FDFFFC'
         }}>
             <Typography
                 variant='h1'

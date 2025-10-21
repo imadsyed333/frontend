@@ -8,8 +8,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
     const navigate = useNavigate()
     return (
         <Card sx={{
-            width: '345px',
-            margin: '2px'
+            mx: 1,
         }}>
             <CardActionArea onClick={() => navigate(`/menu/${id}`)}>
                 <CardMedia component={'img'} image={image}
@@ -18,11 +17,8 @@ export const ProductCard = ({ product }: { product: Product }) => {
                         height: '200px'
                     }} />
                 <CardContent>
-                    <Typography variant='h4'>
+                    <Typography variant='h5'>
                         {name}
-                    </Typography>
-                    <Typography variant='body1'>
-                        {description}
                     </Typography>
                 </CardContent>
             </CardActionArea>

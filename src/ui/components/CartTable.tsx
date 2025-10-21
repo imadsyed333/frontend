@@ -1,9 +1,10 @@
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useContext } from 'react'
 import { StoreContext } from '../../StoreContext'
 import { IncrementalButton } from './IncrementalButton'
 import { Purchase } from '../../constants'
 import { Delete } from '@mui/icons-material'
+import { formatPrice } from '../../utils'
 
 export const CartTable = () => {
     const { cart, setCart } = useContext(StoreContext)
@@ -24,14 +25,22 @@ export const CartTable = () => {
         <TableContainer>
             <Table>
                 <TableHead sx={{
-                    backgroundColor: 'orange',
+                    backgroundColor: '#F89259',
                 }}>
                     <TableRow>
                         <TableCell align='left' padding='none' size='small'></TableCell>
-                        <TableCell align='left'>Product</TableCell>
-                        <TableCell align='left'>Price</TableCell>
-                        <TableCell align='center'>Count</TableCell>
-                        <TableCell align='right'>Total</TableCell>
+                        <TableCell align='left'>
+                            <Typography variant='h6' color='white'>Product</Typography>
+                        </TableCell>
+                        <TableCell align='left'>
+                            <Typography variant='h6' color='white'>Price</Typography>
+                        </TableCell>
+                        <TableCell align='center'>
+                            <Typography variant='h6' color='white'>Count</Typography>
+                        </TableCell>
+                        <TableCell align='right'>
+                            <Typography variant='h6' color='white'>Total</Typography>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -43,19 +52,18 @@ export const CartTable = () => {
                                         py: 1
                                     }}>
                                         <Delete sx={{
-                                            color: 'red',
+                                            color: '#D81159',
                                         }} />
                                     </Button>
                                 </TableCell>
                                 <TableCell align='left'>{purchase.product_name}</TableCell >
-                                <TableCell align='left'>${purchase.product_price}</TableCell>
+                                <TableCell align='left'>${formatPrice(purchase.product_price)}</TableCell>
                                 <TableCell sx={{
                                     px: 1
                                 }}>
-
                                     <IncrementalButton count={purchase.product_count} setCount={(value: number) => { setCountAt(key, value) }} />
                                 </TableCell>
-                                <TableCell align='right'>${purchase.product_price * purchase.product_count}</TableCell>
+                                <TableCell align='right'>${formatPrice(purchase.product_price * purchase.product_count)}</TableCell>
                             </TableRow>
                         ))
                     }
