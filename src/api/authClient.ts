@@ -1,45 +1,23 @@
-import { User } from "../constants";
 import api from "./api";
-
-type RegisterResponse = {
-    id: number,
-    email: string,
-    name: string,
-}
-
-type LoginResponse = {
-    message: string,
-}
-
-type RefreshResponse = {
-    message: string,
-}
-
-type LogoutResponse = {
-    message: string,
-}
-
-type ProfileResponse = {
-    user: User,
-}
+import { AuthResponse, ProfileResponse } from "./responseTypes";
 
 export const registerUser = async (email: string, password: string, name: string) => {
-    const res = await api.post<RegisterResponse>("/user/register", { email, password, name })
+    const res = await api.post<AuthResponse>("/user/register", { email, password, name })
     return res.data
 }
 
 export const loginUser = async (email: string, password: string) => {
-    const res = await api.post<LoginResponse>("/user/login", { email, password })
+    const res = await api.post<AuthResponse>("/user/login", { email, password })
     return res.data
 }
 
 export const refreshUser = async () => {
-    const res = await api.post<RefreshResponse>("/user/refresh")
+    const res = await api.post<AuthResponse>("/user/refresh")
     return res.data
 }
 
 export const logoutUser = async () => {
-    const res = await api.post<LogoutResponse>("/user/logout")
+    const res = await api.post<AuthResponse>("/user/logout")
     return res.data
 }
 
