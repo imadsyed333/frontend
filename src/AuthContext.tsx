@@ -1,24 +1,29 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
-import { User } from "./constants";
+import { FieldErrors, User } from "./constants";
 import { loginUser, logoutUser, registerUser, userProfile } from "./api/authClient";
 import { useNavigate } from "react-router";
+import { AxiosError } from "axios";
 
 type AuthContextType = {
     user: User | null,
     register: Function,
     login: Function,
-    logout: Function
+    logout: Function,
+    fieldErrors: FieldErrors | undefined,
 }
 
 export const AuthContext = createContext<AuthContextType>({
     user: null,
     register: () => { },
     login: () => { },
-    logout: () => { }
+    logout: () => { },
+    fieldErrors: undefined
 })
 
 export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const [user, setUser] = useState<User | null>(null)
+    const [fieldErrors, setFieldErrors] = useState<FieldErrors | undefined>(undefined)
+
 
     const navigate = useNavigate()
 
@@ -32,12 +37,14 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
     }, [])
 
     const register = async (email: string, password: string, name: string) => {
-        try {
-            const res = await registerUser(email, password, name)
+        registerUser(email, password, name).then(res => {
+            console.log(res.message)
+            setFieldErrors(undefined)
             navigate('/login')
-        } catch (e) {
-            console.log("Unexpected error")
-        }
+        }).catch((err: AxiosError<FieldErrors>) => {
+            console.log(err.response?.data)
+            setFieldErrors(err.response?.data)
+        })
     }
 
     const login = async (email: string, password: string) => {
@@ -45,9 +52,10 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
             await loginUser(email, password)
             const profileRes = await userProfile()
             setUser(profileRes.user)
+            setFieldErrors(undefined)
             navigate('/')
         } catch (e) {
-            console.log("Unexpected error")
+            console.log(e)
         }
     }
 
@@ -57,7 +65,7 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
         navigate('/')
     }
 
-    const value = useMemo(() => ({ user, register, login, logout }), [user])
+    const value = useMemo(() => ({ user, register, login, logout, fieldErrors }), [user, fieldErrors])
 
     return (
         <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
