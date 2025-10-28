@@ -27,4 +27,10 @@ export type Purchase = {
     product_count: number,
 }
 
+export type FieldErrors = {
+    name?: String[],
+    email?: String[],
+    password?: String[]
+}
+
 export const apiUrl = process.env.REACT_APP_SERVER_URL
