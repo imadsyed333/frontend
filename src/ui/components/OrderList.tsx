@@ -1,7 +1,6 @@
 import { Order } from '../../types'
 import { Box, List, ListItem, Typography } from '@mui/material'
 import { OrderCard } from './OrderCard'
-
 export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setCurrentOrderId: Function }) => {
 
     return (
@@ -19,6 +18,7 @@ export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setC
                 flexDirection: 'column',
                 height: '100%',
                 width: '100%',
+                overflowY: 'scroll',
             }}>
                 {
                     orders.map((order) => (
