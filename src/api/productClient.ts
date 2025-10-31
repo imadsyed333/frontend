@@ -1,4 +1,4 @@
-import { Product } from "../constants"
+import { Product } from "../types"
 import api from "./api"
 
 type ProductWithIdResponse = {

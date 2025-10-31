@@ -1,4 +1,4 @@
-import { Order, Purchase } from "../constants";
+import { Order, Purchase } from "../types";
 import api from "./api";
 
 type CreateOrderResponse = {

@@ -1,4 +1,4 @@
-import { Order } from '../../constants'
+import { Order } from '../../types'
 import { Box, List, ListItem, Typography } from '@mui/material'
 import { OrderCard } from './OrderCard'
 

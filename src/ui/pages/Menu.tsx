@@ -1,7 +1,7 @@
 import { Box, Card, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { getAllProducts } from '../../api/productClient'
-import { Product } from '../../constants'
+import { Product } from '../../types'
 import { MenuGrid } from '../components/MenuGrid'
 
 export const Menu = () => {

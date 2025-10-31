@@ -1,4 +1,4 @@
-import { FieldErrors, User } from "../constants"
+import { FieldErrors, User } from "../types"
 
 export type AuthResponse = {
     message?: string,

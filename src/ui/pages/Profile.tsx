@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { getUserOrders } from '../../api/orderClient'
 import { Box, Card } from '@mui/material'
-import { Order } from '../../constants'
+import { Order } from '../../types'
 import { ProfileCard } from '../components/ProfileCard'
 import { AuthContext } from '../../AuthContext'
 import { OrderList } from '../components/OrderList'

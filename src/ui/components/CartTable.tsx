@@ -2,7 +2,7 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import React, { useContext } from 'react'
 import { StoreContext } from '../../StoreContext'
 import { IncrementalButton } from './IncrementalButton'
-import { Purchase } from '../../constants'
+import { Purchase } from '../../types'
 import { Delete } from '@mui/icons-material'
 import { formatPrice } from '../../utils'
 

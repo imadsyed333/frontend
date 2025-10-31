@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react'
-import { Purchase } from './constants'
+import { Purchase } from './types'
 
 type StoreContextType = {
   cart: Purchase[],

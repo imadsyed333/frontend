@@ -1,5 +1,5 @@
 import React from 'react'
-import { Purchase } from '../../constants'
+import { Purchase } from '../../types'
 import { Card, Typography } from '@mui/material'
 import { formatPrice } from '../../utils'
 

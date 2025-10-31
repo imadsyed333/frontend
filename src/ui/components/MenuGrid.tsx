@@ -1,6 +1,6 @@
 import { Grid, Skeleton } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Product } from '../../constants'
+import { Product } from '../../types'
 import { getAllProducts } from '../../api/productClient'
 import { ProductCard } from './ProductCard'
 
