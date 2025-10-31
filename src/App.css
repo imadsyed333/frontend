@@ -22,3 +22,37 @@ div {
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.page-transition {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.page-transition.fadeIn {
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.page-transition.fadeOut {
+  animation: fadeOut 0.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
