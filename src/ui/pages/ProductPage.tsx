@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { getProductWithId } from '../../api/productClient'
-import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Typography } from '@mui/material'
 import { Product, Purchase } from '../../types'
 import { IncrementalButton } from '../components/IncrementalButton'
 import { StoreContext } from '../../StoreContext'
@@ -79,7 +79,9 @@ export const ProductPage = () => {
             )
         }
         return (
-            <>The requested product could not be found</>
+            <div>
+                <CircularProgress />
+            </div>
         )
     }
     return (
