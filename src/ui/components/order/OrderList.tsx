@@ -10,7 +10,7 @@ export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setC
             <div>
                 {
                     orders.map((order) => (
-                        <ListItem>
+                        <ListItem key={order.id}>
                             <OrderCard id={order.id} datetime={order.datetime} cost={order.cost} setCurrentOrderId={setCurrentOrderId} />
                         </ListItem>
                     ))
