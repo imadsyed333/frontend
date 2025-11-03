@@ -11,7 +11,7 @@ import { Login } from './ui/pages/Login';
 import { AuthProvider } from './AuthContext';
 import { Register } from './ui/pages/Register';
 import { Profile } from './ui/pages/Profile';
-import { ThemeProvider } from '@mui/material';
+import { Fade, ThemeProvider } from '@mui/material';
 import { theme } from './themes';
 
 function App() {
@@ -28,23 +28,22 @@ function App() {
         <AuthProvider>
           <StoreProvider>
             <NavBar />
-            <div className={`page-transition ${transitionStage}`}
-              onAnimationEnd={() => {
-                if (transitionStage === "fadeOut") {
-                  setTransitionStage("fadeIn");
-                  setDisplayLocation(location);
-                }
-              }}>
-              <Routes location={displayLocation}>
-                <Route index element={<Home />} />
-                <Route path='menu' element={<Menu />} />
-                <Route path='menu/:id' element={<ProductPage />} />
-                <Route path='cart' element={<Cart />} />
-                <Route path='login' element={<Login />} />
-                <Route path='register' element={<Register />} />
-                <Route path='profile' element={<Profile />} />
-              </Routes>
-            </div>
+            <Fade in={transitionStage === "fadeIn"} timeout={300} onExited={() => {
+              setDisplayLocation(location)
+              setTransitionStage("fadeIn")
+            }}>
+              <div>
+                <Routes location={displayLocation}>
+                  <Route index element={<Home />} />
+                  <Route path='menu' element={<Menu />} />
+                  <Route path='menu/:id' element={<ProductPage />} />
+                  <Route path='cart' element={<Cart />} />
+                  <Route path='login' element={<Login />} />
+                  <Route path='register' element={<Register />} />
+                  <Route path='profile' element={<Profile />} />
+                </Routes>
+              </div>
+            </Fade>
           </StoreProvider>
         </AuthProvider>
       </div>
