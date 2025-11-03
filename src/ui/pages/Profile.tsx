@@ -4,7 +4,7 @@ import { Box, Card } from '@mui/material'
 import { Order } from '../../types'
 import { ProfileCard } from '../components/ProfileCard'
 import { AuthContext } from '../../AuthContext'
-import { OrderList } from '../components/OrderList'
+import { OrdersCard } from '../components/OrdersCard'
 import { OrderInfoCard } from '../components/OrderInfoCard'
 
 export const Profile = () => {
@@ -45,7 +45,7 @@ export const Profile = () => {
                 width: '100%',
                 mx: 2,
             }}>
-                <OrderList orders={orders} setCurrentOrderId={setCurrentOrderId} />
+                <OrdersCard orders={orders} setCurrentOrderId={setCurrentOrderId} />
             </Card>
             <Box sx={{
                 display: 'flex',

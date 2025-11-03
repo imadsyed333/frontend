@@ -1,17 +1,18 @@
 import React from 'react'
+import { Order, Purchase } from '../../types'
 import { FadeWrapper } from './FadeWrapper'
 import { OrderCard } from './OrderCard'
 import { ListItem } from '@mui/material'
-import { Order } from '../../types'
+import { PurchaseCard } from './PurchaseCard'
 
-export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setCurrentOrderId: Function }) => {
+export const PurchaseList = ({ purchases }: { purchases: Purchase[] }) => {
     return (
         <FadeWrapper>
             <div>
                 {
-                    orders.map((order) => (
+                    purchases.map((purchase) => (
                         <ListItem>
-                            <OrderCard id={order.id} datetime={order.datetime} cost={order.cost} setCurrentOrderId={setCurrentOrderId} />
+                            <PurchaseCard purchase={purchase} />
                         </ListItem>
                     ))
                 }

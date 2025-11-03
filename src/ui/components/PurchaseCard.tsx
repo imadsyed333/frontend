@@ -3,8 +3,8 @@ import { Purchase } from '../../types'
 import { Card, Typography } from '@mui/material'
 import { formatPrice } from '../../utils'
 
-export const OrderItemCard = ({ item }: { item: Purchase }) => {
-    const { product_count, product_name, product_price } = item
+export const PurchaseCard = ({ purchase }: { purchase: Purchase }) => {
+    const { product_count, product_name, product_price } = purchase
 
     const total_price = product_count * product_price
     return (

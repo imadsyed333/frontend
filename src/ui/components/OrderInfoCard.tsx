@@ -1,8 +1,9 @@
 import { Box, Card, List, ListItem, Typography } from '@mui/material'
 import React from 'react'
 import { Order } from '../../types'
-import { OrderItemCard } from './OrderItemCard'
+import { PurchaseCard } from './PurchaseCard'
 import { formatOrderId, formatPrice } from '../../utils'
+import { PurchaseList } from './PurchaseList'
 
 export const OrderInfoCard = ({ order }: { order: Order | undefined }) => {
 
@@ -29,13 +30,7 @@ export const OrderInfoCard = ({ order }: { order: Order | undefined }) => {
                         height: '100%',
                         width: '100%'
                     }}>
-                        {
-                            order.purchases.map((item) => (
-                                <ListItem>
-                                    <OrderItemCard item={item} />
-                                </ListItem>
-                            ))
-                        }
+                        <PurchaseList purchases={order.purchases} />
                     </List>
                     <Box sx={{
                         display: 'flex',
