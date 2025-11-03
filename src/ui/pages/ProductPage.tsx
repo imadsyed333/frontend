@@ -4,7 +4,7 @@ import { getProductWithId } from '../../api/productClient'
 import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Typography } from '@mui/material'
 import { Product, Purchase } from '../../types'
 import { IncrementalButton } from '../components/IncrementalButton'
-import { CartContext } from '../../CartContext'
+import { CartContext } from '../../context/CartContext'
 import { formatPrice } from '../../utils'
 
 export const ProductPage = () => {

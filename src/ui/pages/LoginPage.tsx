@@ -1,6 +1,6 @@
 import { Box, Button, Card, TextField, Typography } from '@mui/material'
 import React, { useContext } from 'react'
-import { AuthContext } from '../../AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import { NavLink } from 'react-router'
 
 export const Login = () => {

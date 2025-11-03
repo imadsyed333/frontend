@@ -3,7 +3,7 @@ import { getUserOrders } from '../../api/orderClient'
 import { Box, Card } from '@mui/material'
 import { Order } from '../../types'
 import { ProfileCard } from '../components/ProfileCard'
-import { AuthContext } from '../../AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import { OrdersCard } from '../components/OrdersCard'
 import { OrderInfoCard } from '../components/OrderInfoCard'
 

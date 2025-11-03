@@ -1,6 +1,6 @@
 import { Box, Button, Card, TextField } from '@mui/material'
 import React, { useContext, useState } from 'react'
-import { AuthContext } from '../../AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 import { ErrorBox } from '../components/ErrorBox'
 
 export const Register = () => {

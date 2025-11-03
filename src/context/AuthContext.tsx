@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
-import { FieldErrors, User } from "./types";
-import { loginUser, logoutUser, registerUser, userProfile } from "./api/authClient";
+import { FieldErrors, User } from "../types";
+import { loginUser, logoutUser, registerUser, userProfile } from "../api/authClient";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
 

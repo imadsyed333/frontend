@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react'
-import { Purchase } from './types'
+import { Purchase } from '../types'
 
 type CartContextType = {
   cart: Purchase[],

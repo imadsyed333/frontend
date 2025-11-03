@@ -2,7 +2,7 @@ import { Button, CardActionArea, Menu, MenuItem, Typography } from '@mui/materia
 import { bindMenu, bindTrigger, usePopupState } from 'material-ui-popup-state/hooks'
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router'
-import { AuthContext } from '../../AuthContext'
+import { AuthContext } from '../../context/AuthContext'
 
 export const AccountMenu = () => {
     const popupState = usePopupState({ variant: 'popover', popupId: 'accountMenu' })
