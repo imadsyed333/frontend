@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Home } from './ui/pages/Home';
+import { Home } from './ui/pages/HomePage';
 import { NavBar } from './ui/components/NavBar';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
-import { Menu } from './ui/pages/Menu';
+import { Menu } from './ui/pages/MenuPage';
 import { ProductPage } from './ui/pages/ProductPage';
 import { CartProvider } from './CartContext';
-import { Cart } from './ui/pages/Cart';
-import { Login } from './ui/pages/Login';
+import { Cart } from './ui/pages/CartPage';
+import { Login } from './ui/pages/LoginPage';
 import { AuthProvider } from './AuthContext';
-import { Register } from './ui/pages/Register';
-import { Profile } from './ui/pages/Profile';
+import { Register } from './ui/pages/RegisterPage';
+import { Profile } from './ui/pages/ProfilePage';
 import { Fade, ThemeProvider } from '@mui/material';
 import { theme } from './themes';
 
