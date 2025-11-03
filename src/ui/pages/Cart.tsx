@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StoreContext } from '../../StoreContext'
+import { CartContext } from '../../CartContext'
 import { Box, Button, Card, Typography } from '@mui/material'
 import { CartTable } from '../components/CartTable'
 import { ShoppingCart } from '@mui/icons-material'
@@ -9,7 +9,7 @@ import { formatPrice } from '../../utils'
 
 export const Cart = () => {
     const [cartTotal, setCartTotal] = useState(0)
-    const { cart, setCart } = useContext(StoreContext)
+    const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
 
     useEffect(() => {

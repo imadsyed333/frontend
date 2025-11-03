@@ -1,13 +1,13 @@
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useContext } from 'react'
-import { StoreContext } from '../../StoreContext'
+import { CartContext } from '../../CartContext'
 import { IncrementalButton } from './IncrementalButton'
 import { Purchase } from '../../types'
 import { Delete } from '@mui/icons-material'
 import { formatPrice } from '../../utils'
 
 export const CartTable = () => {
-    const { cart, setCart } = useContext(StoreContext)
+    const { cart, setCart } = useContext(CartContext)
 
     const setCountAt = (key: number, value: number) => {
         const copyCart: Purchase[] = [...cart]

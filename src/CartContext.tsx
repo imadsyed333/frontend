@@ -1,14 +1,14 @@
 import React, { createContext, useEffect, useMemo, useState } from 'react'
 import { Purchase } from './types'
 
-type StoreContextType = {
+type CartContextType = {
   cart: Purchase[],
   setCart: React.Dispatch<React.SetStateAction<Purchase[]>>
 }
 
-export const StoreContext = createContext<StoreContextType>({ cart: [], setCart: () => { } })
+export const CartContext = createContext<CartContextType>({ cart: [], setCart: () => { } })
 
-export const StoreProvider = ({ children }: React.PropsWithChildren<{}>) => {
+export const CartProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [cart, setCart] = useState<Purchase[]>([])
   const value = useMemo(() => ({ cart, setCart }), [cart])
 
@@ -18,7 +18,13 @@ export const StoreProvider = ({ children }: React.PropsWithChildren<{}>) => {
     const copyCart: Purchase[] = JSON.parse(cartString)
     setCart([...copyCart])
   }, [])
+
+  useEffect(() => {
+    const cartString = JSON.stringify(cart)
+    window.sessionStorage.setItem('cart', cartString)
+  }, [cart])
+
   return (
-    <StoreContext.Provider value={value}>{children}</StoreContext.Provider>
+    <CartContext.Provider value={value}>{children}</CartContext.Provider>
   )
 }

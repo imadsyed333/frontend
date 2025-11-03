@@ -5,7 +5,7 @@ import { NavBar } from './ui/components/NavBar';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
 import { Menu } from './ui/pages/Menu';
 import { ProductPage } from './ui/pages/ProductPage';
-import { StoreProvider } from './StoreContext';
+import { CartProvider } from './CartContext';
 import { Cart } from './ui/pages/Cart';
 import { Login } from './ui/pages/Login';
 import { AuthProvider } from './AuthContext';
@@ -26,7 +26,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <AuthProvider>
-          <StoreProvider>
+          <CartProvider>
             <NavBar />
             <Fade in={transitionStage === "fadeIn"} timeout={300} onExited={() => {
               setDisplayLocation(location)
@@ -44,7 +44,7 @@ function App() {
                 </Routes>
               </div>
             </Fade>
-          </StoreProvider>
+          </CartProvider>
         </AuthProvider>
       </div>
     </ThemeProvider>

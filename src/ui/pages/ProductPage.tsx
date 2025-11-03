@@ -4,8 +4,7 @@ import { getProductWithId } from '../../api/productClient'
 import { Box, Button, Card, CardContent, CardMedia, CircularProgress, Typography } from '@mui/material'
 import { Product, Purchase } from '../../types'
 import { IncrementalButton } from '../components/IncrementalButton'
-import { StoreContext } from '../../StoreContext'
-import { saveCart } from '../../actions/cartActions'
+import { CartContext } from '../../CartContext'
 import { formatPrice } from '../../utils'
 
 export const ProductPage = () => {
@@ -13,7 +12,7 @@ export const ProductPage = () => {
     const [product, setProduct] = useState<Product>()
     const [count, setCount] = useState(1)
 
-    const { cart, setCart } = useContext(StoreContext)
+    const { cart, setCart } = useContext(CartContext)
 
     const addToCart = () => {
         if (product) {
@@ -32,7 +31,6 @@ export const ProductPage = () => {
                 }
                 newCart = [...cart, newPurchase]
             }
-            saveCart(newCart)
             setCart(newCart)
         }
     }
