@@ -47,7 +47,16 @@ export const Profile = () => {
             }}>
                 <OrderList orders={orders} setCurrentOrderId={setCurrentOrderId} />
             </Card>
-            <OrderInfoCard order={currentOrder} />
+            <Box sx={{
+                display: 'flex',
+                height: '100%',
+                width: '100%'
+            }}>
+                {
+                    orders.length !== 0 &&
+                    <OrderInfoCard order={currentOrder} />
+                }
+            </Box>
         </Box>
     )
 }
