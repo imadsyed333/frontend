@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { Box, Button, Card, Typography } from '@mui/material'
-import { CartTable } from '../components/CartTable'
+import { CartTable } from '../components/cart/CartTable'
 import { ShoppingCart } from '@mui/icons-material'
 import { createOrder } from '../../api/orderClient'
 import { useNavigate } from 'react-router'

@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { getUserOrders } from '../../api/orderClient'
 import { Box, Card } from '@mui/material'
 import { Order } from '../../types'
-import { ProfileCard } from '../components/ProfileCard'
+import { ProfileCard } from '../components/account/ProfileCard'
 import { AuthContext } from '../../context/AuthContext'
-import { OrdersCard } from '../components/OrdersCard'
-import { OrderInfoCard } from '../components/OrderInfoCard'
+import { OrdersCard } from '../components/order/OrdersCard'
+import { OrderInfoCard } from '../components/order/OrderInfoCard'
 
 export const Profile = () => {
     const [orders, setOrders] = useState<Order[]>([])

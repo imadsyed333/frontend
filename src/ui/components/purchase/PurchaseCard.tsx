@@ -1,7 +1,7 @@
 import React from 'react'
-import { Purchase } from '../../types'
+import { Purchase } from '../../../types'
 import { Card, Typography } from '@mui/material'
-import { formatPrice } from '../../utils'
+import { formatPrice } from '../../../utils'
 
 export const PurchaseCard = ({ purchase }: { purchase: Purchase }) => {
     const { product_count, product_name, product_price } = purchase

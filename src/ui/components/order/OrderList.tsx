@@ -1,8 +1,8 @@
 import React from 'react'
-import { FadeWrapper } from './FadeWrapper'
+import { FadeWrapper } from '../FadeWrapper'
 import { OrderCard } from './OrderCard'
 import { ListItem } from '@mui/material'
-import { Order } from '../../types'
+import { Order } from '../../../types'
 
 export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setCurrentOrderId: Function }) => {
     return (

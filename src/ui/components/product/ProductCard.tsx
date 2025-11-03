@@ -1,8 +1,8 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
-import { Product } from '../../types'
+import { Product } from '../../../types'
 import { useNavigate } from 'react-router'
-import { FadeWrapper } from './FadeWrapper'
+import { FadeWrapper } from '../FadeWrapper'
 
 export const ProductCard = ({ product }: { product: Product }) => {
     const { id, name, image, description } = product

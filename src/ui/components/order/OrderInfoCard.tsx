@@ -1,9 +1,9 @@
 import { Box, Card, List, ListItem, Typography } from '@mui/material'
 import React from 'react'
-import { Order } from '../../types'
-import { PurchaseCard } from './PurchaseCard'
-import { formatOrderId, formatPrice } from '../../utils'
-import { PurchaseList } from './PurchaseList'
+import { Order } from '../../../types'
+import { PurchaseCard } from '../purchase/PurchaseCard'
+import { formatOrderId, formatPrice } from '../../../utils'
+import { PurchaseList } from '../purchase/PurchaseList'
 
 export const OrderInfoCard = ({ order }: { order: Order | undefined }) => {
 

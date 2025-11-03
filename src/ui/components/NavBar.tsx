@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AppBar, Box, CardActionArea, Typography } from '@mui/material'
 import { useNavigate } from 'react-router'
-import { AccountLinks } from './AccountLinks'
+import { AccountLinks } from './account/AccountLinks'
 import { AuthContext } from '../../context/AuthContext'
 
 export const NavBar = () => {

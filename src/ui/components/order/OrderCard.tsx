@@ -1,6 +1,6 @@
 import { Box, Card, CardActionArea, Typography } from '@mui/material'
 import React from 'react'
-import { formatOrderId, formatPrice } from '../../utils'
+import { formatOrderId, formatPrice } from '../../../utils'
 
 export const OrderCard = ({ id, cost, datetime, setCurrentOrderId }: { id: number, cost: number, datetime: Date, setCurrentOrderId: Function }) => {
     const newDate: Date = new Date(datetime.toString())

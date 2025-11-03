@@ -1,7 +1,7 @@
 import React from 'react'
-import { Order, Purchase } from '../../types'
-import { FadeWrapper } from './FadeWrapper'
-import { OrderCard } from './OrderCard'
+import { Order, Purchase } from '../../../types'
+import { FadeWrapper } from '../FadeWrapper'
+import { OrderCard } from '../order/OrderCard'
 import { ListItem } from '@mui/material'
 import { PurchaseCard } from './PurchaseCard'
 

@@ -1,8 +1,8 @@
-import { Order } from '../../types'
+import { Order } from '../../../types'
 import { Box, CircularProgress, List, ListItem, Typography } from '@mui/material'
 import { OrderCard } from './OrderCard'
 import { useEffect, useState } from 'react'
-import { FadeWrapper } from './FadeWrapper'
+import { FadeWrapper } from '../FadeWrapper'
 import { OrderList } from './OrderList'
 export const OrdersCard = ({ orders, setCurrentOrderId }: { orders: Order[], setCurrentOrderId: Function }) => {
     const [loading, setLoading] = useState(true)

@@ -1,8 +1,8 @@
 import { Grid, Skeleton } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { Product } from '../../types'
-import { getAllProducts } from '../../api/productClient'
-import { ProductCard } from './ProductCard'
+import { Product } from '../../../types'
+import { getAllProducts } from '../../../api/productClient'
+import { ProductCard } from '../product/ProductCard'
 
 export const MenuGrid = React.memo(() => {
     const [products, setProducts] = useState<Product[]>([])
