@@ -3,15 +3,27 @@ export type Product = {
     id: number,
     name: string,
     price: number,
-    description: string,
     image: string,
+    description: string,
+}
+
+export type CartItem = {
+    product: Product,
+    quantity: number,
 }
 
 export type Order = {
     id: number,
     cost: number,
     datetime: Date,
-    purchases: Array<Purchase>,
+    purchases: Array<OrderItem>,
+}
+
+export type OrderItem = {
+    product: Product,
+    unitPrice: number,
+    quantity: number,
+    subtotal: number,
 }
 
 export type User = {
@@ -20,12 +32,6 @@ export type User = {
     email: string,
 }
 
-export type Purchase = {
-    product_id: number,
-    product_name: string,
-    product_price: number,
-    product_count: number,
-}
 
 export type FieldErrors = {
     name?: String[],
