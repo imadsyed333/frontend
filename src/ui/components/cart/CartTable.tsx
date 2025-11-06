@@ -7,45 +7,7 @@ import { formatPrice } from '../../../utils'
 import { CartItem, DeleteItem, UpdateItem } from '../../../types'
 
 export const CartTable = () => {
-    const [cart, setCart] = useState<CartItem[]>([])
-
-    const [updateItems, setUpdateItems] = useState<UpdateItem[]>([])
-    const [deleteItems, setDeleteItems] = useState<DeleteItem[]>([])
-
-    const setCountAt = (key: number, id: number, value: number) => {
-        const copyUpdateItems = [...updateItems]
-        const index = updateItems.findIndex(item => item.id === id)
-
-        if (index > -1) {
-            copyUpdateItems[index].quantity = value
-        } else {
-            copyUpdateItems.push({
-                id,
-                quantity: value,
-            })
-        }
-        setUpdateItems(copyUpdateItems)
-
-        const copyCart: CartItem[] = [...cart]
-        copyCart[key].quantity = value
-        setCart(copyCart)
-    }
-
-    const deleteOrderAt = (key: number, id: number,) => {
-        const copyDeleteItems = [...deleteItems]
-        const index = deleteItems.findIndex(item => item.id === id)
-
-        if (index < 0) {
-            copyDeleteItems.push({
-                id
-            })
-        }
-        setDeleteItems(copyDeleteItems)
-
-        const copyCart: CartItem[] = [...cart]
-        copyCart.splice(key, 1)
-        setCart(copyCart)
-    }
+    const { cart, setCountAt, deleteItemAt } = useContext(CartContext)
 
     return (
         <TableContainer>
@@ -74,7 +36,7 @@ export const CartTable = () => {
                         cart.map((item, key) => (
                             <TableRow key={key}>
                                 <TableCell align='left' padding='none' size='small'>
-                                    <Button onClick={() => { deleteOrderAt(key, item.id) }} sx={{
+                                    <Button onClick={() => { deleteItemAt(key, item.id) }} sx={{
                                         py: 1
                                     }}>
                                         <Delete sx={{
