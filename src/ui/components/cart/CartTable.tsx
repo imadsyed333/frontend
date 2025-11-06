@@ -1,22 +1,48 @@
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../../../context/CartContext'
 import { IncrementalButton } from '../IncrementalButton'
-import { Purchase } from '../../../types'
 import { Delete } from '@mui/icons-material'
 import { formatPrice } from '../../../utils'
+import { CartItem, DeleteItem, UpdateItem } from '../../../types'
 
 export const CartTable = () => {
-    const { cart, setCart } = useContext(CartContext)
+    const [cart, setCart] = useState<CartItem[]>([])
 
-    const setCountAt = (key: number, value: number) => {
-        const copyCart: Purchase[] = [...cart]
-        copyCart[key].product_count = value
+    const [updateItems, setUpdateItems] = useState<UpdateItem[]>([])
+    const [deleteItems, setDeleteItems] = useState<DeleteItem[]>([])
+
+    const setCountAt = (key: number, id: number, value: number) => {
+        const copyUpdateItems = [...updateItems]
+        const index = updateItems.findIndex(item => item.id === id)
+
+        if (index > -1) {
+            copyUpdateItems[index].quantity = value
+        } else {
+            copyUpdateItems.push({
+                id,
+                quantity: value,
+            })
+        }
+        setUpdateItems(copyUpdateItems)
+
+        const copyCart: CartItem[] = [...cart]
+        copyCart[key].quantity = value
         setCart(copyCart)
     }
 
-    const deletePurchaseAt = (key: number) => {
-        const copyCart: Purchase[] = [...cart]
+    const deleteOrderAt = (key: number, id: number,) => {
+        const copyDeleteItems = [...deleteItems]
+        const index = deleteItems.findIndex(item => item.id === id)
+
+        if (index < 0) {
+            copyDeleteItems.push({
+                id
+            })
+        }
+        setDeleteItems(copyDeleteItems)
+
+        const copyCart: CartItem[] = [...cart]
         copyCart.splice(key, 1)
         setCart(copyCart)
     }
@@ -45,10 +71,10 @@ export const CartTable = () => {
                 </TableHead>
                 <TableBody>
                     {
-                        cart.map((purchase, key) => (
+                        cart.map((item, key) => (
                             <TableRow key={key}>
                                 <TableCell align='left' padding='none' size='small'>
-                                    <Button onClick={() => { deletePurchaseAt(key) }} sx={{
+                                    <Button onClick={() => { deleteOrderAt(key, item.id) }} sx={{
                                         py: 1
                                     }}>
                                         <Delete sx={{
@@ -56,14 +82,14 @@ export const CartTable = () => {
                                         }} />
                                     </Button>
                                 </TableCell>
-                                <TableCell align='left'>{purchase.product_name}</TableCell >
-                                <TableCell align='left'>${formatPrice(purchase.product_price)}</TableCell>
+                                <TableCell align='left'>{item.product.name}</TableCell >
+                                <TableCell align='left'>${formatPrice(item.product.price)}</TableCell>
                                 <TableCell sx={{
                                     px: 1
                                 }}>
-                                    <IncrementalButton count={purchase.product_count} setCount={(value: number) => { setCountAt(key, value) }} />
+                                    <IncrementalButton count={item.quantity} setCount={(value: number) => { setCountAt(key, item.id, value) }} />
                                 </TableCell>
-                                <TableCell align='right'>${formatPrice(purchase.product_price * purchase.product_count)}</TableCell>
+                                <TableCell align='right'>${formatPrice(item.product.price * item.quantity)}</TableCell>
                             </TableRow>
                         ))
                     }
