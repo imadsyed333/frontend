@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
 
 type AuthContextType = {
-    user: User | null,
+    user: User | undefined,
     register: Function,
     login: Function,
     logout: Function,
@@ -13,7 +13,7 @@ type AuthContextType = {
 }
 
 export const AuthContext = createContext<AuthContextType>({
-    user: null,
+    user: undefined,
     register: () => { },
     login: () => { },
     logout: () => { },
@@ -21,7 +21,7 @@ export const AuthContext = createContext<AuthContextType>({
 })
 
 export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
-    const [user, setUser] = useState<User | null>(null)
+    const [user, setUser] = useState<User | undefined>(undefined)
     const [fieldErrors, setFieldErrors] = useState<FieldErrors | undefined>(undefined)
 
 
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
             setUser(res.user)
         }).catch((e) => {
             console.log(e)
-            setUser(null)
+            setUser(undefined)
         })
     }, [])
 
@@ -61,7 +61,7 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
 
     const logout = async () => {
         await logoutUser()
-        setUser(null)
+        setUser(undefined)
         navigate('/')
     }
 
