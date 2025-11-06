@@ -10,12 +10,12 @@ export const getAllCartItems = async () => {
     return res.data
 }
 
-export const addCartItem = async (id: number, quantity: number) => {
-    const res = await api.post("/cart/add", {id, quantity})
+export const addCartItem = async (productId: number, quantity: number) => {
+    const res = await api.post("/cart/add", {productId, quantity})
     return res.data
 }
 
 export const syncCart = async (updateItems: UpdateItem[], deleteItems: DeleteItem[]) => {
-    const res = await api.post("/cart/sync", {updateItems, deleteItems})
+    const res = await api.put("/cart/sync", {updateItems, deleteItems})
     return res.data
 }
