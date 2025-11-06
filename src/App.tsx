@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Home } from './ui/pages/HomePage';
 import { NavBar } from './ui/components/NavBar';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router';
+import { Route, Routes, useLocation } from 'react-router';
 import { Menu } from './ui/pages/MenuPage';
 import { ProductPage } from './ui/pages/ProductPage';
 import { CartProvider } from './context/CartContext';
