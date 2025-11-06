@@ -3,20 +3,15 @@ import { CartContext } from '../../context/CartContext'
 import { Box, Button, Card, Typography } from '@mui/material'
 import { CartTable } from '../components/cart/CartTable'
 import { ShoppingCart } from '@mui/icons-material'
-import { createOrder } from '../../api/orderClient'
-import { useNavigate } from 'react-router'
 import { formatPrice } from '../../utils'
 
 export const Cart = () => {
+    const { cart } = useContext(CartContext)
     const [cartTotal, setCartTotal] = useState(0)
-    const navigate = useNavigate()
 
     useEffect(() => {
-        let sum = 0
-        cart.forEach(purchase => {
-            sum += (purchase.product_count * purchase.product_price)
-        })
-        setCartTotal(sum)
+        const total = cart.reduce((sum, item) => (item.product.price * item.quantity) + sum, 0)
+        setCartTotal(total)
     }, [cart])
 
     const showCart = () => {
