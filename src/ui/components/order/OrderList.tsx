@@ -11,7 +11,7 @@ export const OrderList = ({ orders, setCurrentOrderId }: { orders: Order[], setC
                 {
                     orders.map((order) => (
                         <ListItem key={order.id}>
-                            <OrderCard id={order.id} datetime={order.datetime} cost={order.cost} setCurrentOrderId={setCurrentOrderId} />
+                            <OrderCard id={order.id} datetime={order.createdAt} cost={order.cost} setCurrentOrderId={setCurrentOrderId} />
                         </ListItem>
                     ))
                 }
