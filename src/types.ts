@@ -8,6 +8,7 @@ export type Product = {
 }
 
 export type CartItem = {
+    id: number,
     product: Product,
     quantity: number,
 }
@@ -15,8 +16,8 @@ export type CartItem = {
 export type Order = {
     id: number,
     cost: number,
-    datetime: Date,
-    purchases: Array<OrderItem>,
+    createdAt: Date,
+    orderItems: Array<OrderItem>,
 }
 
 export type OrderItem = {
@@ -37,4 +38,13 @@ export type FieldErrors = {
     name?: String[],
     email?: String[],
     password?: String[]
+}
+
+export type UpdateItem = {
+    id: number,
+    quantity: number,
+}
+
+export type DeleteItem = {
+    id: number,
 }
