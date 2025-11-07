@@ -4,6 +4,7 @@ import { Box, Button, Card, Typography } from '@mui/material'
 import { CartTable } from '../components/cart/CartTable'
 import { ShoppingCart } from '@mui/icons-material'
 import { formatPrice } from '../../utils'
+import { checkoutCart } from '../../api/cartClient'
 
 export const Cart = () => {
     const { cart } = useContext(CartContext)
@@ -29,7 +30,9 @@ export const Cart = () => {
     }
 
     const handleCheckout = () => {
-        
+        if (cart.length > 0) {
+            checkoutCart().then(res =>window.location.href = res.url ).catch(err => console.log(err))
+        }
     }
 
     return (
@@ -92,7 +95,7 @@ export const Cart = () => {
                     <Button variant='contained' sx={{
                         m: 1,
                         backgroundColor: '#48ACF0',
-                    }} disabled={(cart.length === 0)}>Proceed to Checkout</Button>
+                    }} disabled={(cart.length === 0)} onClick={() => handleCheckout()}>Proceed to Checkout</Button>
                 </Card>
             </Box >
         </Box >
