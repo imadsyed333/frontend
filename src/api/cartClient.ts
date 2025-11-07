@@ -5,6 +5,10 @@ type CartItemsResponse = {
   cartItems: CartItem[];
 };
 
+type CheckoutUrlResponse = {
+  url: string;
+};
+
 export const getAllCartItems = async () => {
   const res = await api.get<CartItemsResponse>("/cart");
   return res.data;
@@ -24,6 +28,8 @@ export const syncCart = async (
 };
 
 export const checkoutCart = async () => {
-  const res = await api.post("payment/create-checkout-session");
+  const res = await api.post<CheckoutUrlResponse>(
+    "payments/create-checkout-session"
+  );
   return res.data;
 };
