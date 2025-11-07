@@ -1,10 +1,9 @@
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { CartContext } from '../../../context/CartContext'
 import { IncrementalButton } from '../IncrementalButton'
 import { Delete } from '@mui/icons-material'
 import { formatPrice } from '../../../utils'
-import { CartItem, DeleteItem, UpdateItem } from '../../../types'
 
 export const CartTable = () => {
     const { cart, setCountAt, deleteItemAt } = useContext(CartContext)
