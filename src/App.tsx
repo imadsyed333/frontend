@@ -13,6 +13,8 @@ import { Register } from './ui/pages/RegisterPage';
 import { Profile } from './ui/pages/ProfilePage';
 import { Fade, ThemeProvider } from '@mui/material';
 import { theme } from './themes';
+import { CheckoutSuccessPage } from './ui/pages/CheckoutSuccessPage';
+import { CheckoutCancelPage } from './ui/pages/CheckoutCancelPage';
 
 function App() {
   const location = useLocation()
@@ -41,6 +43,8 @@ function App() {
                   <Route path='login' element={<Login />} />
                   <Route path='register' element={<Register />} />
                   <Route path='profile' element={<Profile />} />
+                  <Route path='/checkout/success' element={<CheckoutSuccessPage/>}/>
+                  <Route path='/checkout/cancel' element={<CheckoutCancelPage/>}/>
                 </Routes>
               </div>
             </Fade>
