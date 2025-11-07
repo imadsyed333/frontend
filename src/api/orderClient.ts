@@ -1,20 +1,11 @@
-import { Order, CartItem } from "../types";
+import { Order } from "../types";
 import api from "./api";
 
-type CreateOrderResponse = {
-    message: string
-}
-
 type GetOrdersResponse = {
-    orders: Order[]
-}
-
-export const createOrder = async () => {
-    const res = await api.post<CreateOrderResponse>("/orders")
-    return res.data
-}
+  orders: Order[];
+};
 
 export const getUserOrders = async () => {
-    const res = await api.get<GetOrdersResponse>("/orders")
-    return res.data
-}
+  const res = await api.get<GetOrdersResponse>("/orders");
+  return res.data;
+};
