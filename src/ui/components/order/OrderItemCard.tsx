@@ -15,7 +15,7 @@ export const OrderItemCard = ({ orderItem }: { orderItem: OrderItem }) => {
             p: 2
         }}>
             <Typography variant='h5'>{quantity}</Typography>
-            <Typography variant='h5'>{product.price}</Typography>
+            <Typography variant='h5'>{product.name}</Typography>
             <Typography variant='h5'>${formatPrice(subtotal)}</Typography>
         </Card>
     )
