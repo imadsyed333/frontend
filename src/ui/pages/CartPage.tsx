@@ -28,6 +28,10 @@ export const Cart = () => {
         )
     }
 
+    const handleCheckout = () => {
+        
+    }
+
     return (
         <Box sx={{
             display: 'flex',
