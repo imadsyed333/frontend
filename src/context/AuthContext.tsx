@@ -1,73 +1,82 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { FieldErrors, User } from "../types";
-import { loginUser, logoutUser, registerUser, userProfile } from "../api/authClient";
+import {
+  loginUser,
+  logoutUser,
+  registerUser,
+  userProfile,
+} from "../api/authClient";
 import { useNavigate } from "react-router";
 import { AxiosError } from "axios";
 
 type AuthContextType = {
-    user: User | undefined,
-    register: Function,
-    login: Function,
-    logout: Function,
-    fieldErrors: FieldErrors | undefined,
-}
+  user: User | null;
+  register: Function;
+  login: Function;
+  logout: Function;
+  fieldErrors: FieldErrors;
+};
 
 export const AuthContext = createContext<AuthContextType>({
-    user: undefined,
-    register: () => { },
-    login: () => { },
-    logout: () => { },
-    fieldErrors: undefined
-})
+  user: null,
+  register: () => {},
+  login: () => {},
+  logout: () => {},
+  fieldErrors: {},
+});
 
 export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
-    const [user, setUser] = useState<User | undefined>(undefined)
-    const [fieldErrors, setFieldErrors] = useState<FieldErrors | undefined>(undefined)
+  const [user, setUser] = useState<User | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  useEffect(() => {
+    userProfile()
+      .then((res) => {
+        setUser(res.user);
+      })
+      .catch((e) => {
+        console.log(e);
+        setUser(null);
+      });
+  }, []);
 
-    useEffect(() => {
-        userProfile().then((res) => {
-            setUser(res.user)
-        }).catch((e) => {
-            console.log(e)
-            setUser(undefined)
-        })
-    }, [])
+  const register = async (email: string, password: string, name: string) => {
+    registerUser(email, password, name)
+      .then((res) => {
+        console.log(res.message);
+        setFieldErrors({});
+        navigate("/login");
+      })
+      .catch((err: AxiosError<FieldErrors>) => {
+        console.log(err.response?.data);
+        setFieldErrors(err.response?.data || {});
+      });
+  };
 
-    const register = async (email: string, password: string, name: string) => {
-        registerUser(email, password, name).then(res => {
-            console.log(res.message)
-            setFieldErrors(undefined)
-            navigate('/login')
-        }).catch((err: AxiosError<FieldErrors>) => {
-            console.log(err.response?.data)
-            setFieldErrors(err.response?.data)
-        })
+  const login = async (email: string, password: string) => {
+    try {
+      await loginUser(email, password);
+      const profileRes = await userProfile();
+      setUser(profileRes.user);
+      setFieldErrors({});
+      navigate("/");
+    } catch (e) {
+      console.log(e);
     }
+  };
 
-    const login = async (email: string, password: string) => {
-        try {
-            await loginUser(email, password)
-            const profileRes = await userProfile()
-            setUser(profileRes.user)
-            setFieldErrors(undefined)
-            navigate('/')
-        } catch (e) {
-            console.log(e)
-        }
-    }
+  const logout = async () => {
+    await logoutUser();
+    setUser(null);
+    navigate("/");
+  };
 
-    const logout = async () => {
-        await logoutUser()
-        setUser(undefined)
-        navigate('/')
-    }
+  const value = useMemo(
+    () => ({ user, register, login, logout, fieldErrors }),
+    [user, fieldErrors]
+  );
 
-    const value = useMemo(() => ({ user, register, login, logout, fieldErrors }), [user, fieldErrors])
-
-    return (
-        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-    )
-}
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
