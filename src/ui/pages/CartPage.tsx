@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Box, Button, Card, Typography } from "@mui/material";
 import { CartTable } from "../components/cart/CartTable";
@@ -8,15 +8,11 @@ import { checkoutCart } from "../../api/cartClient";
 
 export const Cart = () => {
   const { cart } = useContext(CartContext);
-  const [cartTotal, setCartTotal] = useState(0);
 
-  useEffect(() => {
-    const total = cart.reduce(
-      (sum, item) => item.product.price * item.quantity + sum,
-      0
-    );
-    setCartTotal(total);
-  }, [cart]);
+  const cartTotal = cart.reduce(
+    (sum, item) => item.product.price * item.quantity + sum,
+    0
+  );
 
   const showCart = () => {
     if (cart.length > 0) {
