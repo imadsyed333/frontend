@@ -15,53 +15,59 @@ import { Fade, ThemeProvider } from "@mui/material";
 import { theme } from "./themes";
 import { CheckoutSuccessPage } from "./ui/pages/CheckoutSuccessPage";
 import { CheckoutCancelPage } from "./ui/pages/CheckoutCancelPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
   const [transitionStage, setTransitionStage] = useState("fadeIn");
 
+  const queryClient = new QueryClient();
+
   useEffect(() => {
-    if (location !== displayLocation) setTransitionStage("fadeOut");
-  }, [location, displayLocation]);
+    if (location.pathname !== displayLocation.pathname)
+      setTransitionStage("fadeOut");
+  }, [location.pathname, displayLocation.pathname]);
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <AuthProvider>
-          <CartProvider>
-            <NavBar />
-            <Fade
-              in={transitionStage === "fadeIn"}
-              timeout={300}
-              onExited={() => {
-                setDisplayLocation(location);
-                setTransitionStage("fadeIn");
-              }}
-            >
-              <div>
-                <Routes location={displayLocation}>
-                  <Route index element={<Home />} />
-                  <Route path="menu" element={<Menu />} />
-                  <Route path="menu/:id" element={<ProductPage />} />
-                  <Route path="cart" element={<Cart />} />
-                  <Route path="login" element={<Login />} />
-                  <Route path="register" element={<Register />} />
-                  <Route path="profile" element={<Profile />} />
-                  <Route
-                    path="/checkout/success"
-                    element={<CheckoutSuccessPage />}
-                  />
-                  <Route
-                    path="/checkout/cancel"
-                    element={<CheckoutCancelPage />}
-                  />
-                </Routes>
-              </div>
-            </Fade>
-          </CartProvider>
-        </AuthProvider>
-      </div>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <AuthProvider>
+            <CartProvider>
+              <NavBar />
+              <Fade
+                in={transitionStage === "fadeIn"}
+                timeout={300}
+                onExited={() => {
+                  setDisplayLocation(location);
+                  setTransitionStage("fadeIn");
+                }}
+              >
+                <div>
+                  <Routes location={displayLocation}>
+                    <Route index element={<Home />} />
+                    <Route path="menu" element={<Menu />} />
+                    <Route path="menu/:id" element={<ProductPage />} />
+                    <Route path="cart" element={<Cart />} />
+                    <Route path="login" element={<Login />} />
+                    <Route path="register" element={<Register />} />
+                    <Route path="profile" element={<Profile />} />
+                    <Route
+                      path="/checkout/success"
+                      element={<CheckoutSuccessPage />}
+                    />
+                    <Route
+                      path="/checkout/cancel"
+                      element={<CheckoutCancelPage />}
+                    />
+                  </Routes>
+                </div>
+              </Fade>
+            </CartProvider>
+          </AuthProvider>
+        </div>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
