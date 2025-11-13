@@ -1,13 +1,15 @@
 import { Box, Card, List, ListItem, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { Order } from "../../../types";
 import { OrderItemCard } from "./OrderItemCard";
 import { formatOrderId, formatPrice } from "../../../utils";
 import { PurchaseList } from "./OrderItemList";
+import { OrderContext } from "../../../context/OrderContext";
 
-export const OrderInfoCard = ({ order }: { order: Order | null }) => {
+export const OrderInfoCard = () => {
+  const { selectedOrder } = useContext(OrderContext);
   const OrderItems = () => {
-    return !order ? (
+    return !selectedOrder ? (
       <div>Select an order to view its info</div>
     ) : (
       <Box
@@ -27,7 +29,7 @@ export const OrderInfoCard = ({ order }: { order: Order | null }) => {
             mx: 1.5,
           }}
         >
-          Order #{formatOrderId(order.id)}
+          Order #{formatOrderId(selectedOrder.id)}
         </Typography>
         <List
           sx={{
@@ -37,7 +39,7 @@ export const OrderInfoCard = ({ order }: { order: Order | null }) => {
             width: "100%",
           }}
         >
-          <PurchaseList orderItems={order.orderItems} />
+          <PurchaseList orderItems={selectedOrder.orderItems} />
         </List>
         <Box
           sx={{
@@ -64,7 +66,7 @@ export const OrderInfoCard = ({ order }: { order: Order | null }) => {
             }}
             variant="h4"
           >
-            ${formatPrice(order.cost)}
+            ${formatPrice(selectedOrder.cost)}
           </Typography>
         </Box>
       </Box>
