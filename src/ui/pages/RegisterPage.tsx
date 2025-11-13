@@ -1,62 +1,111 @@
-import { Box, Button, Card, TextField } from '@mui/material'
-import React, { useContext, useState } from 'react'
-import { AuthContext } from '../../context/AuthContext'
-import { ErrorBox } from '../components/ErrorBox'
+import { Box, Button, Card, TextField } from "@mui/material";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { ErrorBox } from "../components/ErrorBox";
 
 export const Register = () => {
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [password, setPassword] = useState('')
-    const [retypePassword, setRetypePassword] = useState('')
-    const { register, fieldErrors } = useContext(AuthContext)
+  const { register, fieldErrors } = useContext(AuthContext);
 
-    const [passwordMatch, setPasswordMatch] = useState(true)
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
-    const submitForm = () => {
-        setPasswordMatch(password === retypePassword)
-        register(email, password, name)
-    }
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    retypePassword: "",
+  });
 
-    return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '89vh',
-            width: '100%',
-            mt: '85px',
-        }}>
-            <Card sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                p: 5,
-                gap: 2,
-                height: 'fit-content',
-                width: '20%'
-            }}>
-                <TextField label='Name' variant='outlined' value={name} onChange={(e) => setName(e.target.value)} error={(fieldErrors?.name) !== undefined} />
+  const submitForm = () => {
+    setPasswordMatch(form.password === form.retypePassword);
+    register(form.email, form.password, form.name);
+  };
 
-                <ErrorBox errors={fieldErrors?.name} />
+  const handleInput = (e: any) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-                <TextField label='Email' variant='outlined' value={email} onChange={(e) => setEmail(e.target.value)} error={(fieldErrors?.email) !== undefined} />
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "89vh",
+        width: "100%",
+        mt: "85px",
+      }}
+    >
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          p: 5,
+          gap: 2,
+          height: "fit-content",
+          width: "20%",
+        }}
+      >
+        <TextField
+          label="Name"
+          variant="outlined"
+          name="name"
+          value={form.name}
+          onChange={(e) => handleInput(e)}
+          error={fieldErrors?.name?.length !== 0}
+        />
 
-                <ErrorBox errors={fieldErrors?.email} />
+        <ErrorBox errors={fieldErrors?.name || []} />
 
-                <TextField label='Password' type='password' variant='outlined' value={password} onChange={(e) => setPassword(e.target.value)} error={(fieldErrors?.password) !== undefined} />
+        <TextField
+          label="Email"
+          variant="outlined"
+          name="email"
+          value={form.email}
+          onChange={(e) => handleInput(e)}
+          error={fieldErrors?.email?.length !== 0}
+        />
 
-                <ErrorBox errors={fieldErrors?.password} />
+        <ErrorBox errors={fieldErrors?.email || []} />
 
-                <TextField label='Re-type Password' type='password' variant='outlined' value={retypePassword} onChange={(e) => setRetypePassword(e.target.value)} />
+        <TextField
+          label="Password"
+          type="password"
+          name="password"
+          variant="outlined"
+          value={form.password}
+          onChange={(e) => handleInput(e)}
+          error={fieldErrors?.password?.length !== 0}
+        />
 
-                {
-                    passwordMatch ? <></> : (
-                        <ErrorBox errors={["Passwords do not match"]} />
-                    )
-                }
+        <ErrorBox errors={fieldErrors?.password || []} />
 
-                <Button variant='contained' sx={{ backgroundColor: '#f89259' }} onClick={() => submitForm()}>Sign up</Button>
-            </Card>
-        </Box>
-    )
-}
+        <TextField
+          label="Re-type Password"
+          type="password"
+          name="retypePassword"
+          variant="outlined"
+          value={form.retypePassword}
+          onChange={(e) => handleInput(e)}
+        />
+
+        {passwordMatch ? (
+          <></>
+        ) : (
+          <ErrorBox errors={["Passwords do not match"]} />
+        )}
+
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: "#f89259" }}
+          onClick={() => submitForm()}
+        >
+          Sign up
+        </Button>
+      </Card>
+    </Box>
+  );
+};
