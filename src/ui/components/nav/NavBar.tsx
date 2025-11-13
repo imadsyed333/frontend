@@ -28,14 +28,24 @@ export const NavBar = () => {
           display: "flex",
           flexDirection: "row",
           height: "100%",
-          width: "50%",
+          width: "70%",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
-        <Logo />
-        <NavButton name="Home" link="/" />
-        <NavButton name="Menu" link="/menu" />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Logo />
+          <NavButton name="Home" link="/" />
+          <NavButton name="Menu" link="/menu" />
+        </Box>
         <AccountLinks />
       </Box>
     </AppBar>

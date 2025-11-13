@@ -43,17 +43,8 @@ export const CartButton = () => {
         <ShoppingCart
           sx={{
             color: selected ? "black" : "white",
-            mr: 1,
           }}
         />
-        <Typography
-          variant="h5"
-          sx={{
-            color: selected ? "black" : "white",
-          }}
-        >
-          ({cart.length})
-        </Typography>
       </CardActionArea>
     </Card>
   );
