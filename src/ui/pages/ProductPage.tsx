@@ -1,95 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import { getProductWithId } from "../../api/productClient";
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  CircularProgress,
-  Typography,
-} from "@mui/material";
-import { Product, CartItem } from "../../types";
-import { IncrementalButton } from "../components/IncrementalButton";
-import { formatPrice } from "../../utils";
-import { addCartItem } from "../../api/cartClient";
+import { Box, CircularProgress, Typography } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import { ProductSideCard } from "../components/product/ProductSideCard";
 
 export const ProductPage = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState<Product>();
-  const [quantity, setQuantity] = useState(1);
+  const { isSuccess, isPending, isError, data, error } = useQuery({
+    queryKey: ["product", id],
+    queryFn: () => getProductWithId(parseInt(id!)),
+  });
 
-  const addToCart = () => {
-    if (product && id) {
-      addCartItem(parseInt(id), quantity)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => console.log(err));
-    }
-  };
-
-  useEffect(() => {
-    getProductWithId(Number(id))
-      .then((res) => setProduct(res.product))
-      .catch((e) => console.log(e));
-  }, [id]);
-
-  const PageContent = () => {
-    if (product) {
-      return (
-        <>
-          <CardMedia
-            component={"img"}
-            image={product.image}
-            alt={product.name}
-            sx={{
-              height: "100%",
-              width: "100%",
-              objectFit: "contain",
-            }}
-          />
-          <CardContent>
-            <Typography variant="h1">{product.name}</Typography>
-            <Typography variant="h3">${formatPrice(product.price)}</Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                px: 10,
-                justifySelf: "center",
-              }}
-            >
-              <IncrementalButton count={quantity} setCount={setQuantity} />
-              <Button
-                variant="contained"
-                onClick={addToCart}
-                sx={{
-                  my: 1,
-                }}
-              >
-                Add to Cart
-              </Button>
-            </Box>
-            <Typography
-              sx={{
-                m: 1,
-              }}
-            >
-              {product.description}
-            </Typography>
-          </CardContent>
-        </>
-      );
-    }
-    return (
-      <div>
-        <CircularProgress />
-      </div>
-    );
-  };
   return (
     <Box
       sx={{
@@ -102,18 +24,44 @@ export const ProductPage = () => {
         mx: 2,
       }}
     >
-      <Card
+      <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           height: "100%",
-          width: "100%",
+          width: "70%",
         }}
       >
-        <PageContent />
-      </Card>
+        {isPending && <CircularProgress />}
+        {isError && <Typography>{error.message}</Typography>}
+        {isSuccess && (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                height: "100%",
+                width: "100%",
+                justifyContent: "start",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component={"img"}
+                alt={`${data?.product.name} picture`}
+                src={data?.product.image}
+                sx={{
+                  height: "80%",
+                  width: "80%",
+                  borderRadius: 1,
+                }}
+              />
+            </Box>
+            <ProductSideCard product={data?.product} />
+          </>
+        )}
+      </Box>
     </Box>
   );
 };
