@@ -1,7 +1,5 @@
-import { Box, Card, List, ListItem, Typography } from "@mui/material";
+import { Box, Card, List, Typography } from "@mui/material";
 import React, { useContext } from "react";
-import { Order } from "../../../types";
-import { OrderItemCard } from "./OrderItemCard";
 import { formatOrderId, formatPrice } from "../../../utils";
 import { PurchaseList } from "./OrderItemList";
 import { OrderContext } from "../../../context/OrderContext";
