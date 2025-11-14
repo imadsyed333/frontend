@@ -46,7 +46,7 @@ export const NavBar = () => {
           <NavButton name="Home" link="/" />
           <NavButton name="Menu" link="/menu" />
         </Box>
-        <AccountLinks />
+        {user && <AccountLinks />}
       </Box>
     </AppBar>
   );
