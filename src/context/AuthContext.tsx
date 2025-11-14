@@ -11,6 +11,7 @@ import { AxiosError } from "axios";
 
 type AuthContextType = {
   user: User | null;
+  loading: boolean;
   register: Function;
   login: Function;
   logout: Function;
@@ -19,6 +20,7 @@ type AuthContextType = {
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
+  loading: false,
   register: () => {},
   login: () => {},
   logout: () => {},
@@ -27,11 +29,13 @@ export const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoading(true);
     userProfile()
       .then((res) => {
         setUser(res.user);
@@ -39,10 +43,12 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
       .catch((e) => {
         console.log(e);
         setUser(null);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const register = async (email: string, password: string, name: string) => {
+    setLoading(true);
     registerUser(email, password, name)
       .then((res) => {
         console.log(res.message);
@@ -52,29 +58,38 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
       .catch((err: AxiosError<FieldErrors>) => {
         console.log(err.response?.data);
         setFieldErrors(err.response?.data || {});
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const login = async (email: string, password: string) => {
-    try {
-      await loginUser(email, password);
-      const profileRes = await userProfile();
-      setUser(profileRes.user);
-      setFieldErrors({});
-      navigate("/");
-    } catch (e) {
-      console.log(e);
-    }
+    setLoading(true);
+    loginUser(email, password)
+      .then((res) => {
+        if (res.user) {
+          setUser(res.user);
+          setFieldErrors({});
+          navigate("/");
+        }
+      })
+      .catch((err: AxiosError<{ error: String }>) => {
+        const errorMessage = err.response?.data.error;
+        setFieldErrors({ error: errorMessage });
+      })
+      .finally(() => setLoading(false));
   };
 
   const logout = async () => {
-    await logoutUser();
-    setUser(null);
-    navigate("/");
+    logoutUser()
+      .then((res) => {
+        setUser(null);
+        navigate("/");
+      })
+      .catch((e) => console.log(e));
   };
 
   const value = useMemo(
-    () => ({ user, register, login, logout, fieldErrors }),
+    () => ({ user, loading, register, login, logout, fieldErrors }),
     [user, fieldErrors]
   );
 
