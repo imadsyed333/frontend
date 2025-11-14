@@ -1,10 +1,10 @@
-import { Box, List, ListItem, ListItemIcon, Typography } from "@mui/material";
+import { List, ListItem, Typography } from "@mui/material";
 import React from "react";
 
 export const ErrorBox = ({ errors }: { errors: String[] }) => {
   return (
     <>
-      {errors ? (
+      {errors.length !== 0 ? (
         <List
           sx={{
             display: "flex",
