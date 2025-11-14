@@ -11,7 +11,7 @@ type CheckoutUrlResponse = {
 
 export const getAllCartItems = async () => {
   const res = await api.get<CartItemsResponse>("/cart");
-  return res.data;
+  return res.data.cartItems;
 };
 
 export const addCartItem = async (productId: number, quantity: number) => {
