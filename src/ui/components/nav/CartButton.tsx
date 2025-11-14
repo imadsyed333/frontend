@@ -8,7 +8,6 @@ export const CartButton = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [selected, setSelected] = useState(false);
-  const { cart } = useContext(CartContext);
 
   useEffect(() => {
     location.pathname === "/cart" ? setSelected(true) : setSelected(false);
@@ -43,6 +42,7 @@ export const CartButton = () => {
         <ShoppingCart
           sx={{
             color: selected ? "black" : "white",
+            fontSize: 30,
           }}
         />
       </CardActionArea>

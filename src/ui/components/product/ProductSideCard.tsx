@@ -28,7 +28,8 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          width: "90%",
+          alignItems: "start",
           mt: 2,
         }}
       >
@@ -42,8 +43,8 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
+          alignItems: "start",
+          width: "90%",
         }}
       >
         <Typography variant="h6">{product.description}</Typography>
@@ -54,7 +55,7 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          width: "100%",
+          width: "90%",
           mb: 2,
         }}
       >
@@ -63,7 +64,7 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           variant="contained"
           sx={{
             mt: 2,
-            width: "90%",
+            width: "100%",
           }}
           onClick={() => addToCart()}
         >
