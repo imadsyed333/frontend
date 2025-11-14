@@ -36,6 +36,7 @@ export type FieldErrors = {
   name?: String[];
   email?: String[];
   password?: String[];
+  error?: String;
 };
 
 export type UpdateItem = {
