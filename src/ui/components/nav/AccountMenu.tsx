@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   CardActionArea,
   Menu,
@@ -13,6 +14,7 @@ import {
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../context/AuthContext";
+import { AccountBox } from "@mui/icons-material";
 
 export const AccountMenu = () => {
   const popupState = usePopupState({
@@ -41,26 +43,25 @@ export const AccountMenu = () => {
         }}
         {...bindTrigger(popupState)}
       >
-        <Typography
-          variant="h6"
-          noWrap
-          sx={{
-            width: "fit-content",
-          }}
-        >
-          Hi, {user?.name}!
-        </Typography>
+        <AccountBox />
       </CardActionArea>
       <Menu
         {...bindMenu(popupState)}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right",
+          horizontal: "left",
         }}
       >
-        <MenuItem>
-          <Typography variant="h5">{user?.name}</Typography>
-          <Typography variant="h6">{user?.email}</Typography>
+        <MenuItem disableTouchRipple>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Typography variant="h5">{user?.name}</Typography>
+            <Typography variant="body2">{user?.email}</Typography>
+          </Box>
         </MenuItem>
         <MenuItem onClick={toProfile}>Profile</MenuItem>
         <MenuItem onClick={toLogout}>Logout</MenuItem>
