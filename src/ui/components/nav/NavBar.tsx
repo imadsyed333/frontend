@@ -1,17 +1,12 @@
 import React, { useContext } from "react";
 import { AppBar, Box, Typography } from "@mui/material";
-import { AuthContext } from "../../../context/AuthContext";
+import { AuthContext, useAuth } from "../../../context/AuthContext";
 import { NavButton } from "./NavButton";
 import { Logo } from "./Logo";
 import { AccountLinks } from "./AccountLinks";
 
-type PageRoute = {
-  name: string;
-  link: string;
-};
-
 export const NavBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   return (
     <AppBar
