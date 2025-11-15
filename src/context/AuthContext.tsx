@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { FieldErrors, User } from "../types";
 import {
   loginUser,
@@ -94,4 +100,8 @@ export const AuthProvider = ({ children }: React.PropsWithChildren<{}>) => {
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => {
+  return useContext(AuthContext);
 };
