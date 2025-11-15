@@ -14,7 +14,7 @@ import {
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../context/AuthContext";
-import { AccountBox, AccountCircle } from "@mui/icons-material";
+import { AccountCircle } from "@mui/icons-material";
 
 export const AccountMenu = () => {
   const popupState = usePopupState({
@@ -38,6 +38,7 @@ export const AccountMenu = () => {
       <CardActionArea
         sx={{
           display: "flex",
+          width: "50%",
           m: 1,
           p: 1,
         }}

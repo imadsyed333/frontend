@@ -12,7 +12,7 @@ export const CartButton = () => {
   const location = useLocation();
   const [selected, setSelected] = useState(false);
 
-  const { cart } = useCartQuery();
+  const { cart = [] } = useCartQuery();
 
   useEffect(() => {
     location.pathname === "/cart" ? setSelected(true) : setSelected(false);
@@ -35,11 +35,9 @@ export const CartButton = () => {
           display: "flex",
           flexDirection: "row",
           height: "100%",
-          width: "100%",
           justifyContent: "center",
           alignItems: "center",
-          py: 1,
-          px: 4,
+          px: 3,
         }}
         onClick={() => {
           navigate("/cart");
