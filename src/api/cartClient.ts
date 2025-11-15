@@ -10,26 +10,46 @@ type CheckoutUrlResponse = {
 };
 
 export const getAllCartItems = async () => {
-  const res = await api.get<CartItemsResponse>("/cart");
-  return res.data.cartItems;
+  try {
+    const res = await api.get<CartItemsResponse>("/cart");
+    return res.data.cartItems;
+  } catch (e) {
+    console.error("Error fetching cart:", e);
+    throw e;
+  }
 };
 
 export const addCartItem = async (productId: number, quantity: number) => {
-  const res = await api.post("/cart/add", { productId, quantity });
-  return res.data;
+  try {
+    const res = await api.post("/cart/add", { productId, quantity });
+    return res.data;
+  } catch (e) {
+    console.error("Error adding to cart:", e);
+    throw e;
+  }
 };
 
 export const syncCart = async (
   updateItems: UpdateItem[],
   deleteItems: DeleteItem[]
 ) => {
-  const res = await api.put("/cart/sync", { updateItems, deleteItems });
-  return res.data;
+  try {
+    const res = await api.put("/cart/sync", { updateItems, deleteItems });
+    return res.data;
+  } catch (e) {
+    console.error("Error syncing cart:", e);
+    throw e;
+  }
 };
 
 export const checkoutCart = async () => {
-  const res = await api.post<CheckoutUrlResponse>(
-    "payments/create-checkout-session"
-  );
-  return res.data;
+  try {
+    const res = await api.post<CheckoutUrlResponse>(
+      "payments/create-checkout-session"
+    );
+    return res.data;
+  } catch (e) {
+    console.error("Error creating payment session:", e);
+    throw e;
+  }
 };
