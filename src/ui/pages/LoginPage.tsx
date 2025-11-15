@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext, useAuth } from "../../context/AuthContext";
 import { NavLink } from "react-router";
 import { ErrorBox } from "../components/ErrorBox";
 
@@ -16,7 +16,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
-  const { login, fieldErrors, loading } = useContext(AuthContext);
+  const { login, fieldErrors, loading } = useAuth();
 
   const handleInput = (e: any) => {
     setForm({
