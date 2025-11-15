@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import React from "react";
 import { Box, Button, Card, Typography } from "@mui/material";
 import { CartTable } from "../components/cart/CartTable";
 import { ShoppingCart } from "@mui/icons-material";
 import { formatPrice } from "../../utils";
 import { checkoutCart } from "../../api/cartClient";
+import { useCartQuery } from "../../hooks/useCartQuery";
 
 export const Cart = () => {
-  const { cart } = useContext(CartContext);
+  const { cart } = useCartQuery();
 
   const cartTotal = cart.reduce(
     (sum, item) => item.product.price * item.quantity + sum,
