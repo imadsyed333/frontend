@@ -3,15 +3,11 @@ import React, { useState } from "react";
 import { formatPrice } from "../../../utils";
 import { IncrementalButton } from "../IncrementalButton";
 import { Product } from "../../../types";
-import { addCartItem } from "../../../api/cartClient";
+import { useCartActions } from "../../../hooks/useCartActions";
 
 export const ProductSideCard = ({ product }: { product: Product }) => {
   const [quantity, setQuantity] = useState(1);
-  const addToCart = () => {
-    addCartItem(product.id, quantity)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
+  const { addToCart } = useCartActions();
   return (
     <Card
       sx={{
@@ -66,7 +62,7 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
             mt: 2,
             width: "100%",
           }}
-          onClick={() => addToCart()}
+          onClick={() => addToCart(product, quantity)}
         >
           <Typography variant="h6">Add to Cart</Typography>
         </Button>
