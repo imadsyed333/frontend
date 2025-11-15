@@ -9,14 +9,16 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+import React from "react";
 import { IncrementalButton } from "../IncrementalButton";
 import { Delete } from "@mui/icons-material";
 import { formatPrice } from "../../../utils";
+import { useCartActions } from "../../../hooks/useCartActions";
+import { useCartQuery } from "../../../hooks/useCartQuery";
 
 export const CartTable = () => {
-  const { cart, setCountAt, deleteItemAt } = useContext(CartContext);
+  const { updateQuantity, deleteItem } = useCartActions();
+  const { cart } = useCartQuery();
 
   return (
     <TableContainer>
@@ -56,7 +58,7 @@ export const CartTable = () => {
               <TableCell align="left" padding="none" size="small">
                 <Button
                   onClick={() => {
-                    deleteItemAt(key, item.id);
+                    deleteItem(item.id);
                   }}
                   sx={{
                     py: 1,
@@ -92,7 +94,7 @@ export const CartTable = () => {
                   <IncrementalButton
                     count={item.quantity}
                     setCount={(value: number) => {
-                      setCountAt(key, item.id, value);
+                      updateQuantity(item.id, value);
                     }}
                   />
                 </Box>
