@@ -1,10 +1,10 @@
-import { Box, Button, Card, TextField } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { Box, Button, Card, CircularProgress, TextField } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext, useAuth } from "../../context/AuthContext";
 import { ErrorBox } from "../components/ErrorBox";
 
 export const Register = () => {
-  const { register, fieldErrors } = useContext(AuthContext);
+  const { register, fieldErrors, loading } = useAuth();
 
   const [passwordMatch, setPasswordMatch] = useState(true);
 
@@ -55,7 +55,7 @@ export const Register = () => {
           name="name"
           value={form.name}
           onChange={(e) => handleInput(e)}
-          error={fieldErrors?.name?.length !== 0}
+          error={!!fieldErrors?.name}
         />
 
         <ErrorBox errors={fieldErrors?.name || []} />
@@ -66,7 +66,7 @@ export const Register = () => {
           name="email"
           value={form.email}
           onChange={(e) => handleInput(e)}
-          error={fieldErrors?.email?.length !== 0}
+          error={!!fieldErrors?.email}
         />
 
         <ErrorBox errors={fieldErrors?.email || []} />
@@ -78,7 +78,7 @@ export const Register = () => {
           variant="outlined"
           value={form.password}
           onChange={(e) => handleInput(e)}
-          error={fieldErrors?.password?.length !== 0}
+          error={!!fieldErrors.password}
         />
 
         <ErrorBox errors={fieldErrors?.password || []} />
@@ -103,7 +103,7 @@ export const Register = () => {
           sx={{ backgroundColor: "#f89259" }}
           onClick={() => submitForm()}
         >
-          Sign up
+          {!loading ? "Sign up" : <CircularProgress />}
         </Button>
       </Card>
     </Box>
