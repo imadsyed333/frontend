@@ -1,19 +1,12 @@
-import {
-  Box,
-  Button,
-  CardActionArea,
-  Menu,
-  MenuItem,
-  Typography,
-} from "@mui/material";
+import { Box, CardActionArea, Menu, MenuItem, Typography } from "@mui/material";
 import {
   bindMenu,
   bindTrigger,
   usePopupState,
 } from "material-ui-popup-state/hooks";
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router";
-import { AuthContext } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext";
 import { AccountCircle } from "@mui/icons-material";
 
 export const AccountMenu = () => {
@@ -22,7 +15,7 @@ export const AccountMenu = () => {
     popupId: "accountMenu",
   });
   const navigate = useNavigate();
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout } = useAuth();
 
   const toProfile = () => {
     popupState.close();
@@ -32,6 +25,11 @@ export const AccountMenu = () => {
   const toLogout = () => {
     popupState.close();
     logout();
+  };
+
+  const toAdminPanel = () => {
+    popupState.close();
+    navigate("/admin");
   };
   return (
     <>
@@ -69,6 +67,9 @@ export const AccountMenu = () => {
           </Box>
         </MenuItem>
         <MenuItem onClick={toProfile}>Profile</MenuItem>
+        {user?.role === "ADMIN" && (
+          <MenuItem onClick={() => toAdminPanel()}>Admin Panel</MenuItem>
+        )}
         <MenuItem onClick={toLogout}>Logout</MenuItem>
       </Menu>
     </>

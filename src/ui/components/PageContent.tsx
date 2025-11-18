@@ -9,7 +9,7 @@ import { Login } from "../pages/LoginPage";
 import { Register } from "../pages/RegisterPage";
 import { Profile } from "../pages/ProfilePage";
 import { CheckoutSuccessPage } from "../pages/CheckoutSuccessPage";
-import { CheckoutCancelPage } from "../pages/CheckoutCancelPage";
+import { AdminPage } from "../pages/AdminPage";
 
 export const PageContent = () => {
   return (
@@ -23,7 +23,7 @@ export const PageContent = () => {
         <Route path="register" element={<Register />} />
         <Route path="profile" element={<Profile />} />
         <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
-        <Route path="/checkout/cancel" element={<CheckoutCancelPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </div>
   );
