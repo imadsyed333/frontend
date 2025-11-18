@@ -1,4 +1,4 @@
-import { Fade } from "@mui/material";
+import { Box, Fade } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router";
 import { Home } from "../pages/HomePage";
@@ -13,18 +13,16 @@ import { AdminPage } from "../pages/AdminPage";
 
 export const PageContent = () => {
   return (
-    <div>
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="menu" element={<Menu />} />
-        <Route path="menu/:id" element={<ProductPage />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
-        <Route path="/admin" element={<AdminPage />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route index element={<Home />} />
+      <Route path="menu" element={<Menu />} />
+      <Route path="menu/:id" element={<ProductPage />} />
+      <Route path="cart" element={<Cart />} />
+      <Route path="login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route path="profile" element={<Profile />} />
+      <Route path="/checkout/success" element={<CheckoutSuccessPage />} />
+      <Route path="/admin" element={<AdminPage />} />
+    </Routes>
   );
 };
