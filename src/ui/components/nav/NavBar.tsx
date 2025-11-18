@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppBar, Box, Button, Typography } from "@mui/material";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { AuthContext, useAuth } from "../../../context/AuthContext";
 import { NavButton } from "./NavButton";
 import { Logo } from "./Logo";
@@ -11,6 +11,7 @@ export const NavBar = () => {
 
   return (
     <AppBar
+      position="fixed"
       sx={{
         display: "flex",
         backgroundColor: colors.secondary,
@@ -19,32 +20,40 @@ export const NavBar = () => {
         height: "70px",
       }}
     >
-      <Box
+      <Toolbar
         sx={{
           display: "flex",
-          flexDirection: "row",
-          height: "100%",
-          width: "70%",
-          justifyContent: "space-between",
-          alignItems: "center",
+          width: "100%",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
             height: "100%",
+            width: "70%",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <Logo />
-          <NavButton name="Home" link="/" />
-          <NavButton name="Menu" link="/menu" />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <Logo />
+            <NavButton name="Home" link="/" />
+            <NavButton name="Menu" link="/menu" />
+          </Box>
+          {user && <AccountLinks />}
+          {!user && <NavButton name="Login" link="/login" />}
         </Box>
-        {user && <AccountLinks />}
-        {!user && <NavButton name="Login" link="/login" />}
-      </Box>
+      </Toolbar>
     </AppBar>
   );
 };
