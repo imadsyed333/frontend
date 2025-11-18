@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React from "react";
 import z from "zod";
+import { colors } from "../../themes";
 
 export const IncrementalButton = ({
   count,
@@ -36,7 +37,7 @@ export const IncrementalButton = ({
         justifyContent: "space-between",
         width: "100%",
         alignItems: "center",
-        backgroundColor: "white",
+        backgroundColor: colors.primary,
         border: 1,
         borderRadius: 1,
         borderColor: "lightgray",
@@ -46,7 +47,7 @@ export const IncrementalButton = ({
         onClick={decrementCount}
         sx={{
           m: 1,
-          color: "black",
+          color: colors.secondary,
         }}
       >
         <RemoveIcon />
@@ -58,14 +59,15 @@ export const IncrementalButton = ({
           input: {
             textAlign: "center",
           },
-          width: "30%",
+          width: "60%",
         }}
+        variant="outlined"
       />
       <Button
         onClick={incrementCount}
         sx={{
           m: 1,
-          color: "black",
+          color: colors.secondary,
         }}
       >
         <AddIcon />

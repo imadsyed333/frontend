@@ -6,6 +6,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCartItems } from "../../../api/cartClient";
 import { useCartQuery } from "../../../hooks/useCartQuery";
+import { colors } from "../../../themes";
 
 export const CartButton = () => {
   const navigate = useNavigate();
@@ -45,14 +46,14 @@ export const CartButton = () => {
       >
         <ShoppingCart
           sx={{
-            color: selected ? "black" : "white",
+            color: selected ? colors.secondary : colors.primary,
             fontSize: 30,
             mr: 1,
           }}
         />
         <Typography
           sx={{
-            color: selected ? "black" : "white",
+            color: selected ? colors.secondary : colors.primary,
             fontSize: 25,
             mb: 1,
           }}

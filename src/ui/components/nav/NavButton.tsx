@@ -7,6 +7,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
+import { colors } from "../../../themes";
 
 export const NavButton = ({ name, link }: { name: string; link: string }) => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export const NavButton = ({ name, link }: { name: string; link: string }) => {
         <Typography
           variant="h6"
           sx={{
-            color: selected ? "black" : "white",
+            color: selected ? colors.secondary : colors.primary,
           }}
         >
           {name}

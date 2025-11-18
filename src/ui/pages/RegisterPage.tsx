@@ -2,6 +2,7 @@ import { Box, Button, Card, CircularProgress, TextField } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext, useAuth } from "../../context/AuthContext";
 import { ErrorBox } from "../components/ErrorBox";
+import { colors } from "../../themes";
 
 export const Register = () => {
   const { register, fieldErrors, loading } = useAuth();
@@ -100,10 +101,12 @@ export const Register = () => {
 
         <Button
           variant="contained"
-          sx={{ backgroundColor: "#f89259" }}
+          sx={{ backgroundColor: colors.button.primary }}
           onClick={() => submitForm()}
+          loading={loading}
+          size="large"
         >
-          {!loading ? "Sign up" : <CircularProgress />}
+          Sign up
         </Button>
       </Card>
     </Box>

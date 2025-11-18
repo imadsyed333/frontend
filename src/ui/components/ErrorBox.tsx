@@ -1,5 +1,6 @@
 import { List, ListItem, Typography } from "@mui/material";
 import React from "react";
+import { colors } from "../../themes";
 
 export const ErrorBox = ({ errors }: { errors: String[] }) => {
   return (
@@ -17,7 +18,7 @@ export const ErrorBox = ({ errors }: { errors: String[] }) => {
               <Typography
                 variant="caption"
                 sx={{
-                  color: "red",
+                  color: colors.error,
                 }}
               >
                 - {error}

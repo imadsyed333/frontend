@@ -10,6 +10,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext, useAuth } from "../../context/AuthContext";
 import { NavLink } from "react-router";
 import { ErrorBox } from "../components/ErrorBox";
+import { colors } from "../../themes";
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -65,11 +66,12 @@ export const Login = () => {
         <ErrorBox errors={fieldErrors.error ? [fieldErrors.error] : []} />
         <Button
           variant="contained"
-          sx={{ backgroundColor: "#f89259" }}
+          sx={{ backgroundColor: colors.button.primary }}
           onClick={() => login(form.email, form.password)}
           size="large"
+          loading={loading}
         >
-          {loading ? <CircularProgress /> : "Login"}
+          Login
         </Button>
         <Box
           sx={{

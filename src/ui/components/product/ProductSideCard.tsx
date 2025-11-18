@@ -4,6 +4,7 @@ import { formatPrice } from "../../../utils";
 import { IncrementalButton } from "../IncrementalButton";
 import { Product } from "../../../types";
 import { useCartActions } from "../../../hooks/useCartActions";
+import { colors } from "../../../themes";
 
 export const ProductSideCard = ({ product }: { product: Product }) => {
   const [quantity, setQuantity] = useState(1);
@@ -27,6 +28,7 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           width: "90%",
           alignItems: "start",
           mt: 2,
+          color: colors.secondary,
         }}
       >
         <Typography variant="h4">{product.name}</Typography>
@@ -43,7 +45,14 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           width: "90%",
         }}
       >
-        <Typography variant="h6">{product.description}</Typography>
+        <Typography
+          variant="h6"
+          sx={{
+            color: colors.secondary,
+          }}
+        >
+          {product.description}
+        </Typography>
       </Box>
       <Box
         sx={{
@@ -61,10 +70,18 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           sx={{
             mt: 2,
             width: "100%",
+            backgroundColor: colors.tertiary,
           }}
           onClick={() => addToCart(product, quantity)}
         >
-          <Typography variant="h6">Add to Cart</Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              color: colors.primary,
+            }}
+          >
+            Add to Cart
+          </Typography>
         </Button>
       </Box>
     </Card>
