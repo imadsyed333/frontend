@@ -28,7 +28,7 @@ export const MenuGrid = React.memo(() => {
       }}
     >
       {isPending && <CircularProgress />}
-      {isError && <Typography>{error.message}</Typography>}
+      {isError && <Typography>Menu could not be loaded.</Typography>}
       {isSuccess && (
         <Grid
           container
