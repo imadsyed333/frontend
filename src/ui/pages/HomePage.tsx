@@ -3,7 +3,6 @@ import { Box, Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
 
 export const Home = () => {
-  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -19,7 +18,6 @@ export const Home = () => {
       <Typography variant="h6">
         We make crazy frozen samosas. And other stuff.
       </Typography>
-      <Button onClick={() => navigate("/login")}>Login</Button>
     </Box>
   );
 };
