@@ -19,9 +19,8 @@ export const ProductPage = () => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        height: "89vh",
-        mt: "85px",
-        mx: 2,
+        flexGrow: 1,
+        m: 2,
       }}
     >
       <Box

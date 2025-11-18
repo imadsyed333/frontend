@@ -8,10 +8,9 @@ export const Home = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        flexGrow: 1,
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "100vh",
-        backgroundColor: "#FDFFFC",
       }}
     >
       <Typography variant="h1">Welcome</Typography>

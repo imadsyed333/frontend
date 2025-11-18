@@ -32,8 +32,8 @@ export const Cart = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "89vh",
-        mt: "85px",
+        height: "100%",
+        width: "100%",
         mx: 2,
       }}
     >

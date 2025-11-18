@@ -10,56 +10,32 @@ export const Menu = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "89vh",
-        mt: "85px",
         mx: 2,
+        flexGrow: 1,
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "start",
-          alignItems: "center",
           height: "100%",
-          width: "100%",
+          width: "70%",
         }}
       >
-        <Box
+        <Typography
+          variant="h1"
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "start",
-            alignItems: "start",
-            width: "75%",
-            p: 1,
+            color: colors.secondary,
+            textAlign: "left",
+            mb: 1,
           }}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              color: colors.secondary,
-            }}
-          >
-            Samosa
-          </Typography>
-        </Box>
-        <Card
-          sx={{
-            display: "flex",
-            justifyContent: "start",
-            alignItems: "start",
-            height: "100%",
-            width: "75%",
-            p: 1,
-            mt: 2,
-          }}
-        >
-          <MenuGrid />
-        </Card>
+          Samosa
+        </Typography>
+        <MenuGrid />
       </Box>
     </Box>
   );

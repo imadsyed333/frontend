@@ -13,12 +13,8 @@ export const Profile = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "89vh",
-        width: "100%",
-        mt: "85px",
+        flexGrow: 1,
+        my: 2,
       }}
     >
       <ProfileCard name={user?.name || ""} email={user?.email || ""} />

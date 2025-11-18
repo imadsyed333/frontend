@@ -35,9 +35,7 @@ export const Register = () => {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        height: "89vh",
-        width: "100%",
-        mt: "85px",
+        flexGrow: 1,
       }}
     >
       <Card
