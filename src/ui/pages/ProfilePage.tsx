@@ -14,6 +14,7 @@ export const Profile = () => {
       sx={{
         display: "flex",
         flexGrow: 1,
+        minHeight: 0,
         my: 2,
       }}
     >
@@ -27,7 +28,6 @@ export const Profile = () => {
             alignItems: "center",
             height: "100%",
             width: "100%",
-            mx: 2,
           }}
         >
           <OrdersCard />

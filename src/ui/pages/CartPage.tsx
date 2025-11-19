@@ -34,7 +34,7 @@ export const Cart = () => {
         alignItems: "center",
         height: "100%",
         width: "100%",
-        mx: 2,
+        my: 2,
       }}
     >
       {cart.length === 0 && (
