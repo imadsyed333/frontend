@@ -19,22 +19,19 @@ function App() {
                 display: "flex",
                 flexDirection: "column",
                 height: "100vh",
-                overflowX: "hidden",
               }}
             >
-              <NavBar />
-              <Toolbar />
+              <Toolbar>
+                <NavBar />
+              </Toolbar>
               <Box
                 component={"main"}
                 sx={{
                   display: "flex",
-                  flexGrow: 1,
-                  // minHeight: `calc(100vh - ${theme.mixins.toolbar.minHeight}px)`,
+                  height: "100%",
+                  width: "100%",
                   flexDirection: "column",
-                  overflow: "auto",
-                  overflowX: "hidden",
-                  // justifyContent: "center",
-                  // alignItems: "center",
+                  overflowY: "auto",
                 }}
               >
                 <PageContent />
