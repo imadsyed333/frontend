@@ -16,7 +16,8 @@ export type Order = {
   id: number;
   cost: number;
   createdAt: Date;
-  orderItems: Array<OrderItem>;
+  orderItems: OrderItem[];
+  status: "PLACED" | "READY" | "RECIEVED";
 };
 
 export type OrderItem = {
