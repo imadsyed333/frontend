@@ -9,3 +9,8 @@ export const getUserOrders = async () => {
   const res = await api.get<GetOrdersResponse>("/orders");
   return res.data;
 };
+
+export const getAllOrders = async () => {
+  const res = await api.get<GetOrdersResponse>("/orders/all");
+  return res.data;
+};
