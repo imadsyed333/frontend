@@ -20,40 +20,32 @@ export const NavBar = () => {
         height: "70px",
       }}
     >
-      <Toolbar
+      <Box
         sx={{
           display: "flex",
-          width: "100%",
-          justifyContent: "center",
+          flexDirection: "row",
+          height: "100%",
+          width: "70%",
+          justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
-            height: "100%",
-            width: "70%",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
+            height: "100%",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-            }}
-          >
-            <Logo />
-            <NavButton name="Home" link="/" />
-            <NavButton name="Menu" link="/menu" />
-          </Box>
-          {user && <AccountLinks />}
-          {!user && <NavButton name="Login" link="/login" />}
+          <Logo />
+          <NavButton name="Home" link="/" />
+          <NavButton name="Menu" link="/menu" />
         </Box>
-      </Toolbar>
+        {user && <AccountLinks />}
+        {!user && <NavButton name="Login" link="/login" />}
+      </Box>
     </AppBar>
   );
 };
