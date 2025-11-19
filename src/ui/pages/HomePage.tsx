@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
-import { useNavigate } from "react-router";
+import { Box, Typography } from "@mui/material";
 
 export const Home = () => {
   return (
@@ -15,7 +14,7 @@ export const Home = () => {
     >
       <Typography variant="h1">Welcome</Typography>
       <Typography variant="h6">
-        We make crazy frozen samosas. And other stuff.
+        We make crazy good samosas. And other stuff.
       </Typography>
     </Box>
   );
