@@ -1,7 +1,7 @@
 import { Box, Card, List, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { formatOrderId, formatPrice } from "../../../utils";
-import { PurchaseList } from "./OrderItemList";
+import { OrderItemList } from "./OrderItemList";
 import { OrderContext } from "../../../context/OrderContext";
 
 export const OrderInfoCard = () => {
@@ -37,7 +37,7 @@ export const OrderInfoCard = () => {
             width: "100%",
           }}
         >
-          <PurchaseList orderItems={selectedOrder.orderItems} />
+          <OrderItemList orderItems={selectedOrder.orderItems} />
         </List>
         <Box
           sx={{
