@@ -12,12 +12,19 @@ export type CartItem = {
   quantity: number;
 };
 
+export enum OrderStatus {
+  PLACED = "PLACED",
+  READY = "READY",
+  RECEIVED = "RECEIVED",
+}
+
 export type Order = {
   id: number;
+  user: User;
   cost: number;
   createdAt: Date;
   orderItems: OrderItem[];
-  status: "PLACED" | "READY" | "RECIEVED";
+  status: OrderStatus;
 };
 
 export type OrderItem = {
@@ -27,11 +34,16 @@ export type OrderItem = {
   subtotal: number;
 };
 
+export enum UserRole {
+  ADMIN = "ADMIN",
+  USER = "USER",
+}
+
 export type User = {
   id: number;
   name: string;
   email: string;
-  role: "ADMIN" | "USER";
+  role: UserRole;
 };
 
 export type FieldErrors = {
