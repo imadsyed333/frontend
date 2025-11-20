@@ -6,6 +6,7 @@ import { Box, ThemeProvider, Toolbar } from "@mui/material";
 import { theme } from "./themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PageContent } from "./ui/components/PageContent";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ function App() {
           </AuthProvider>
         </div>
       </ThemeProvider>
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
