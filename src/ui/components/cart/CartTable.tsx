@@ -1,21 +1,6 @@
-import {
-  Box,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
-import { IncrementalButton } from "../IncrementalButton";
-import { Delete } from "@mui/icons-material";
-import { formatPrice } from "../../../utils";
-import { useCartActions } from "../../../hooks/useCartActions";
 import { useCartQuery } from "../../../hooks/useCartQuery";
-import { colors } from "../../../themes";
 import { CartItemCard } from "./CartItemCard";
 
 export const CartTable = () => {
