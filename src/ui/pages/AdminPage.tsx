@@ -13,12 +13,12 @@ import { getAllOrders } from "../../api/orderClient";
 import { OrderCard } from "../components/order/OrderCard";
 import { OrderProvider } from "../../context/OrderContext";
 import { OrderInfoCard } from "../components/order/OrderInfoCard";
+import { CustomerInfoCard } from "../components/admin/CustomerInfoCard";
+import { useOrderQuery } from "../components/admin/useOrderQuery";
+import { OrderInfoPanel } from "../components/admin/OrderInfoPanel";
 
 export const AdminPage = () => {
-  const { isSuccess, isPending, isError, data, error } = useQuery({
-    queryKey: ["all_orders"],
-    queryFn: getAllOrders,
-  });
+  const { isSuccess, isPending, isError, orders } = useOrderQuery();
   return (
     <Box
       sx={{
@@ -30,41 +30,52 @@ export const AdminPage = () => {
         my: 2,
       }}
     >
-      <OrderProvider>
-        <Card
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "start",
-            alignItems: "center",
-            width: "30%",
-            height: "100%",
-          }}
-          variant="outlined"
-        >
-          <Typography variant="h3">Orders</Typography>
-          {isPending && <CircularProgress />}
-          {isError && <Typography>Could not fetch orders</Typography>}
-          {isSuccess && (
-            <List
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                width: "100%",
-                overflowY: "scroll",
-              }}
-            >
-              {data.orders.map((order) => (
-                <ListItem key={order.id}>
-                  <OrderCard order={order} />
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </Card>
-        <OrderInfoCard />
-      </OrderProvider>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          height: "100%",
+          width: "70%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <OrderProvider>
+          <Card
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "start",
+              alignItems: "center",
+              width: "100%",
+              height: "100%",
+            }}
+            variant="outlined"
+          >
+            <Typography variant="h3">Orders</Typography>
+            {isPending && <CircularProgress />}
+            {isError && <Typography>Could not fetch orders</Typography>}
+            {isSuccess && (
+              <List
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                  width: "100%",
+                  overflowY: "scroll",
+                }}
+              >
+                {orders.map((order) => (
+                  <ListItem key={order.id}>
+                    <OrderCard order={order} />
+                  </ListItem>
+                ))}
+              </List>
+            )}
+          </Card>
+          <OrderInfoPanel />
+        </OrderProvider>
+      </Box>
     </Box>
   );
 };
