@@ -6,30 +6,58 @@ export const registerUser = async (
   password: string,
   name: string
 ) => {
-  const res = await api.post<AuthResponse>("/user/register", {
-    email,
-    password,
-    name,
-  });
-  return res.data;
+  try {
+    const res = await api.post<AuthResponse>("/user/register", {
+      email,
+      password,
+      name,
+    });
+    return res.data;
+  } catch (e) {
+    console.error("Error signing up:", e);
+    throw e;
+  }
 };
 
 export const loginUser = async (email: string, password: string) => {
-  const res = await api.post<LoginResponse>("/user/login", { email, password });
-  return res.data;
+  try {
+    const res = await api.post<LoginResponse>("/user/login", {
+      email,
+      password,
+    });
+    return res.data;
+  } catch (e) {
+    console.error("Error logging in:", e);
+    throw e;
+  }
 };
 
 export const refreshUser = async () => {
-  const res = await api.post<AuthResponse>("/user/refresh");
-  return res.data;
+  try {
+    const res = await api.post<AuthResponse>("/user/refresh");
+    return res.data;
+  } catch (e) {
+    console.error("Error refreshing session:", e);
+    throw e;
+  }
 };
 
 export const logoutUser = async () => {
-  const res = await api.post<AuthResponse>("/user/logout");
-  return res.data;
+  try {
+    const res = await api.post<AuthResponse>("/user/logout");
+    return res.data;
+  } catch (e) {
+    console.error("Error logging out:", e);
+    throw e;
+  }
 };
 
 export const userProfile = async () => {
-  const res = await api.get<ProfileResponse>("/user/profile");
-  return res.data;
+  try {
+    const res = await api.get<ProfileResponse>("/user/profile");
+    return res.data;
+  } catch (e) {
+    console.error("Error fetching user profile:", e);
+    throw e;
+  }
 };

@@ -1,20 +1,30 @@
-import { Product } from "../types"
-import api from "./api"
+import { Product } from "../types";
+import api from "./api";
 
 type ProductWithIdResponse = {
-    product: Product,
-}
+  product: Product;
+};
 
 type AllProductsResponse = {
-    products: Product[]
-}
+  products: Product[];
+};
 
 export const getProductWithId = async (id: number) => {
-    const res = await api.get<ProductWithIdResponse>(`/products/${id}`)
-    return res.data
-}
+  try {
+    const res = await api.get<ProductWithIdResponse>(`/products/${id}`);
+    return res.data;
+  } catch (e) {
+    console.error("Error fetching product:", e);
+    throw e;
+  }
+};
 
 export const getAllProducts = async () => {
-    const res = await api.get<AllProductsResponse>("/products/all")
-    return res.data
-}
+  try {
+    const res = await api.get<AllProductsResponse>("/products/all");
+    return res.data;
+  } catch (e) {
+    console.error("Error fetching products:", e);
+    throw e;
+  }
+};
