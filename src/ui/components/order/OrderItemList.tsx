@@ -9,8 +9,8 @@ export const OrderItemList = ({ orderItems }: { orderItems: OrderItem[] }) => {
   return (
     <FadeWrapper>
       <div>
-        {orderItems.map((orderItem) => (
-          <ListItem>
+        {orderItems.map((orderItem, key) => (
+          <ListItem key={key}>
             <OrderItemCard orderItem={orderItem} />
           </ListItem>
         ))}

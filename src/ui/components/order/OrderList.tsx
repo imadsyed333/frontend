@@ -7,7 +7,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getUserOrders } from "../../../api/orderClient";
 
 export const OrderList = () => {
-  const { isSuccess, isPending, isError, data, error } = useQuery({
+  const {
+    isSuccess,
+    isPending,
+    isError,
+    data: orders = [],
+    error,
+  } = useQuery({
     queryKey: ["user_orders"],
     queryFn: getUserOrders,
   });
@@ -17,7 +23,7 @@ export const OrderList = () => {
         {isPending && <CircularProgress />}
         {isError && <Typography>{error.message}</Typography>}
         {isSuccess &&
-          data.orders.map((order) => (
+          orders.map((order) => (
             <ListItem key={order.id}>
               <OrderCard order={order} />
             </ListItem>
