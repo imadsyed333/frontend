@@ -1,6 +1,6 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, Card, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CartItem } from "../../../types";
 import { formatPrice } from "../../../utils";
 import { IncrementalButton } from "../IncrementalButton";
@@ -9,6 +9,7 @@ import { colors } from "../../../themes";
 
 export const CartItemCard = ({ item }: { item: CartItem }) => {
   const { deleteItem, updateQuantity } = useCartActions();
+
   return (
     <Card
       sx={{
@@ -42,8 +43,8 @@ export const CartItemCard = ({ item }: { item: CartItem }) => {
         }}
       >
         <IncrementalButton
-          count={item.quantity}
-          setCount={(value: number) => updateQuantity(item.id, value)}
+          value={item.quantity}
+          onChange={(qty: number) => updateQuantity(item.id, qty)}
         />
       </Box>
       <Typography>

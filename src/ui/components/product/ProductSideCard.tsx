@@ -64,7 +64,10 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           mb: 2,
         }}
       >
-        <IncrementalButton count={quantity} setCount={setQuantity} />
+        <IncrementalButton
+          value={quantity}
+          onChange={(qty: number) => setQuantity(qty)}
+        />
         <Button
           variant="contained"
           sx={{

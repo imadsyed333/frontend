@@ -1,31 +1,41 @@
 import { Box, Button, InputBase, TextField, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import z from "zod";
 import { colors } from "../../themes";
 
 export const IncrementalButton = ({
-  count,
-  setCount,
+  value,
+  onChange,
 }: {
-  count: number;
-  setCount: Function;
+  value: number;
+  onChange: (qty: number) => void;
 }) => {
+  const [quantity, setQuantity] = useState(value);
+
+  useEffect(() => {
+    setQuantity(value);
+  }, [value]);
   const handleInput = (e: any) => {
     const input = Number(e.target.value);
     if (!isNaN(input)) {
-      setCount(input);
+      setQuantity(input);
+      onChange(input);
     }
   };
 
   const incrementCount = () => {
-    setCount(count + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onChange(newQuantity);
   };
 
   const decrementCount = () => {
-    if (count > 1) {
-      setCount(count - 1);
+    if (quantity > 1) {
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+      onChange(newQuantity);
     }
   };
 
@@ -53,7 +63,7 @@ export const IncrementalButton = ({
         <RemoveIcon />
       </Button>
       <TextField
-        value={count}
+        value={quantity}
         onChange={(e) => handleInput(e)}
         sx={{
           input: {
