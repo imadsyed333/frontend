@@ -29,6 +29,7 @@ export const OrderInfoCard = () => {
         >
           Order #{formatOrderId(selectedOrder.id)}
         </Typography>
+        <Typography>{selectedOrder.status}</Typography>
         <List
           sx={{
             display: "flex",

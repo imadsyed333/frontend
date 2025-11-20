@@ -2,19 +2,19 @@ import React, { createContext, useState } from "react";
 import { Order } from "../types";
 
 type OrderContextType = {
-  selectedOrder: Order | null;
-  setSelectedOrder: Function;
+  selectedOrderId: number | null;
+  setSelectedOrderId: Function;
 };
 
 export const OrderContext = createContext<OrderContextType>({
-  selectedOrder: null,
-  setSelectedOrder: (order: Order) => {},
+  selectedOrderId: null,
+  setSelectedOrderId: (id: number) => {},
 });
 
 export const OrderProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
 
-  const value = { selectedOrder, setSelectedOrder };
+  const value = { selectedOrderId, setSelectedOrderId };
   return (
     <OrderContext.Provider value={value}>{children}</OrderContext.Provider>
   );
