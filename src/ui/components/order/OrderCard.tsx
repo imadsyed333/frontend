@@ -1,12 +1,14 @@
 import { Box, Card, CardActionArea, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React from "react";
 import { formatOrderId, formatPrice } from "../../../utils";
-import { OrderContext } from "../../../context/OrderContext";
+import { useSelectedOrder } from "../../../context/OrderContext";
 import { Order } from "../../../types";
+import { Circle } from "@mui/icons-material";
+import { colors } from "../../../themes";
 
 export const OrderCard = ({ order }: { order: Order }) => {
   const newDate: Date = new Date(order.createdAt.toString());
-  const { setSelectedOrder } = useContext(OrderContext);
+  const { setSelectedOrderId } = useSelectedOrder();
 
   return (
     <Card
@@ -24,11 +26,29 @@ export const OrderCard = ({ order }: { order: Order }) => {
           p: 1,
         }}
         onClick={() => {
-          setSelectedOrder(order);
+          setSelectedOrderId(order.id);
         }}
       >
         <Box>
-          <Typography variant="h5">Order #{formatOrderId(order.id)}</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h5">
+              Order #{formatOrderId(order.id)}
+            </Typography>
+            <Circle
+              sx={{
+                color: colors.status[order.status],
+                fontSize: 15,
+                mx: 1,
+              }}
+            />
+          </Box>
           <Typography variant="h6">{newDate.toDateString()}</Typography>
         </Box>
         <Typography variant="h6">${formatPrice(order.cost)}</Typography>
