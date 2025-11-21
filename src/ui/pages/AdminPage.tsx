@@ -4,9 +4,11 @@ import {
   CircularProgress,
   List,
   ListItem,
+  Tab,
+  Tabs,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { SyntheticEvent, useState } from "react";
 import { colors } from "../../themes";
 import { useQuery } from "@tanstack/react-query";
 import { getAllOrders } from "../../api/orderClient";
@@ -15,9 +17,14 @@ import { useOrderQuery } from "../components/admin/useOrderQuery";
 import { OrderList } from "../components/order/OrderList";
 import { OrderInfo } from "../components/order/OrderInfo";
 import { AdminOrderInfo } from "../components/admin/AdminOrderInfo";
+import { AdminOrderView } from "../components/admin/AdminOrderView";
 
 export const AdminPage = () => {
-  const { isSuccess, isPending, isError, orders } = useOrderQuery();
+  const [tabValue, setTabValue] = useState(0);
+
+  const handleChange = (event: SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
   return (
     <Box
       sx={{
@@ -26,49 +33,42 @@ export const AdminPage = () => {
         minHeight: 0,
         justifyContent: "center",
         alignItems: "center",
-        my: 2,
+        mt: 1,
+        mb: 4,
       }}
     >
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           height: "100%",
           width: "70%",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <OrderProvider>
-          <Card
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "start",
-              alignItems: "center",
-              width: "100%",
-              height: "100%",
-              mr: 2,
-            }}
-            variant="outlined"
-          >
-            <Typography variant="h3">Orders</Typography>
-            <OrderList orders={orders} />
-          </Card>
-          <Card
-            variant="outlined"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100%",
-              width: "100%",
-            }}
-          >
-            <AdminOrderInfo />
-          </Card>
-        </OrderProvider>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Tabs value={tabValue} onChange={handleChange}>
+            <Tab label="Orders" />
+            <Tab label="Products" />
+          </Tabs>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            minHeight: 0,
+            width: "100%",
+          }}
+        >
+          {tabValue === 0 && <AdminOrderView />}
+        </Box>
       </Box>
     </Box>
   );
