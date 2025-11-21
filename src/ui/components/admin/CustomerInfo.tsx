@@ -1,6 +1,6 @@
 import { Box, Button, Card, MenuItem, Select, Typography } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { OrderContext } from "../../../context/OrderContext";
+import { OrderContext, useSelectedOrder } from "../../../context/OrderContext";
 import { OrderStatus } from "../../../types";
 import { colors } from "../../../themes";
 import { useOrderActions } from "./useOrderActions";
@@ -8,7 +8,7 @@ import { useOrderQuery } from "./useOrderQuery";
 import { Circle } from "@mui/icons-material";
 
 export const CustomerInfo = () => {
-  const { selectedOrderId } = useContext(OrderContext);
+  const { selectedOrderId } = useSelectedOrder();
   const { orders } = useOrderQuery();
   const selectedOrder = orders.find((order) => order.id === selectedOrderId);
   const { id, user, status } = selectedOrder!;
