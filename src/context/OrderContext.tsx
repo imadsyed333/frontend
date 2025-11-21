@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { Order } from "../types";
 
 type OrderContextType = {
@@ -18,4 +18,8 @@ export const OrderProvider = ({ children }: React.PropsWithChildren<{}>) => {
   return (
     <OrderContext.Provider value={value}>{children}</OrderContext.Provider>
   );
+};
+
+export const useSelectedOrder = () => {
+  return useContext(OrderContext);
 };
