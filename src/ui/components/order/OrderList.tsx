@@ -1,34 +1,27 @@
 import React from "react";
 import { FadeWrapper } from "../FadeWrapper";
-import { OrderCard } from "./OrderCard";
-import { CircularProgress, ListItem, Typography } from "@mui/material";
+import { CircularProgress, List, ListItem, Typography } from "@mui/material";
 import { Order } from "../../../types";
-import { useQuery } from "@tanstack/react-query";
-import { getUserOrders } from "../../../api/orderClient";
+import { OrderCard } from "./OrderCard";
 
-export const OrderList = () => {
-  const {
-    isSuccess,
-    isPending,
-    isError,
-    data: orders = [],
-    error,
-  } = useQuery({
-    queryKey: ["user_orders"],
-    queryFn: getUserOrders,
-  });
+export const OrderList = ({ orders }: { orders: Order[] }) => {
   return (
     <FadeWrapper>
-      <div>
-        {isPending && <CircularProgress />}
-        {isError && <Typography>{error.message}</Typography>}
-        {isSuccess &&
-          orders.map((order) => (
-            <ListItem key={order.id}>
-              <OrderCard order={order} />
-            </ListItem>
-          ))}
-      </div>
+      <List
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          height: "100%",
+          width: "100%",
+          overflowY: "scroll",
+        }}
+      >
+        {orders.map((order, key) => (
+          <ListItem key={key}>
+            <OrderCard order={order} />
+          </ListItem>
+        ))}
+      </List>
     </FadeWrapper>
   );
 };
