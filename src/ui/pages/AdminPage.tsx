@@ -10,12 +10,11 @@ import React from "react";
 import { colors } from "../../themes";
 import { useQuery } from "@tanstack/react-query";
 import { getAllOrders } from "../../api/orderClient";
-import { OrderCard } from "../components/order/OrderCard";
-import { OrderProvider } from "../../context/OrderContext";
-import { OrderInfoCard } from "../components/order/OrderInfoCard";
-import { CustomerInfoCard } from "../components/admin/CustomerInfoCard";
+import { OrderProvider, useSelectedOrder } from "../../context/OrderContext";
 import { useOrderQuery } from "../components/admin/useOrderQuery";
-import { OrderInfoPanel } from "../components/admin/OrderInfoPanel";
+import { OrderList } from "../components/order/OrderList";
+import { OrderInfo } from "../components/order/OrderInfo";
+import { AdminOrderInfo } from "../components/admin/AdminOrderInfo";
 
 export const AdminPage = () => {
   const { isSuccess, isPending, isError, orders } = useOrderQuery();
@@ -49,31 +48,26 @@ export const AdminPage = () => {
               alignItems: "center",
               width: "100%",
               height: "100%",
+              mr: 2,
             }}
             variant="outlined"
           >
             <Typography variant="h3">Orders</Typography>
-            {isPending && <CircularProgress />}
-            {isError && <Typography>Could not fetch orders</Typography>}
-            {isSuccess && (
-              <List
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  width: "100%",
-                  overflowY: "scroll",
-                }}
-              >
-                {orders.map((order) => (
-                  <ListItem key={order.id}>
-                    <OrderCard order={order} />
-                  </ListItem>
-                ))}
-              </List>
-            )}
+            <OrderList orders={orders} />
           </Card>
-          <OrderInfoPanel />
+          <Card
+            variant="outlined"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            <AdminOrderInfo />
+          </Card>
         </OrderProvider>
       </Box>
     </Box>

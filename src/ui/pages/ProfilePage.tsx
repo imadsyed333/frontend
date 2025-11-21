@@ -1,14 +1,30 @@
 import React, { useContext } from "react";
-import { Box, Card } from "@mui/material";
-import { ProfileCard } from "../components/account/ProfileCard";
-import { AuthContext } from "../../context/AuthContext";
-import { OrdersCard } from "../components/order/OrdersCard";
-import { OrderInfoCard } from "../components/order/OrderInfoCard";
+import {
+  Box,
+  Card,
+  CircularProgress,
+  List,
+  ListItem,
+  Typography,
+} from "@mui/material";
 import { OrderProvider } from "../../context/OrderContext";
+import { useQuery } from "@tanstack/react-query";
+import { getUserOrders } from "../../api/orderClient";
+import { OrderList } from "../components/order/OrderList";
+import { OrderItemList } from "../components/order/OrderItemList";
+import { OrderInfo } from "../components/order/OrderInfo";
 
 export const Profile = () => {
-  const { user } = useContext(AuthContext);
-
+  const {
+    isSuccess,
+    isError,
+    isPending,
+    data: orders = [],
+    error,
+  } = useQuery({
+    queryKey: ["user_orders"],
+    queryFn: getUserOrders,
+  });
   return (
     <Box
       sx={{
@@ -16,32 +32,55 @@ export const Profile = () => {
         flexGrow: 1,
         minHeight: 0,
         my: 2,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <ProfileCard name={user?.name || ""} email={user?.email || ""} />
-      <OrderProvider>
-        <Card
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            width: "100%",
-          }}
-        >
-          <OrdersCard />
-        </Card>
+      {isError && (
+        <Typography variant="h3">Error fetching your orders</Typography>
+      )}
+      {isPending && <CircularProgress />}
+      {isSuccess && (
         <Box
           sx={{
             display: "flex",
+            flexDirection: "row",
             height: "100%",
-            width: "100%",
+            width: "70%",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <OrderInfoCard />
+          <OrderProvider>
+            <Card
+              variant="outlined"
+              sx={{
+                display: "flex",
+                height: "100%",
+                width: "100%",
+                flexDirection: "column",
+                justifyContent: "start",
+                alignItems: "center",
+                mr: 2,
+              }}
+            >
+              <Typography variant="h3">My Orders</Typography>
+              <OrderList orders={orders} />
+            </Card>
+            <Card
+              variant="outlined"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                width: "100%",
+              }}
+            >
+              <OrderInfo orders={orders} />
+            </Card>
+          </OrderProvider>
         </Box>
-      </OrderProvider>
+      )}
     </Box>
   );
 };
