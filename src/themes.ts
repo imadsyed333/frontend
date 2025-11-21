@@ -30,9 +30,9 @@ export const colors = {
     delete: "#E71D36",
   },
   status: {
-    placed: "#d8cc34",
-    ready: "#23C768",
-    recieved: "#1b9aaa",
+    PLACED: "#d8cc34",
+    READY: "#23C768",
+    RECEIVED: "#1b9aaa",
   },
   error: "#E71D36",
 };
