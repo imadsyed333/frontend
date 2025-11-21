@@ -3,7 +3,7 @@ import React from "react";
 import { useSelectedOrder } from "../../../context/OrderContext";
 import { OrderInfo } from "../order/OrderInfo";
 import { useOrderQuery } from "./useOrderQuery";
-import { CustomerInfoCard } from "./CustomerInfoCard";
+import { CustomerInfo } from "./CustomerInfo";
 
 export const AdminOrderInfo = () => {
   const { selectedOrderId } = useSelectedOrder();
@@ -27,7 +27,7 @@ export const AdminOrderInfo = () => {
       {selectedOrderId && (
         <>
           <OrderInfo orders={orders} />
-          <CustomerInfoCard />
+          <CustomerInfo />
         </>
       )}
     </Box>
