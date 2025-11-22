@@ -1,5 +1,21 @@
 import { createTheme } from "@mui/material";
 
+export const colors = {
+  primary: "#FFFFFF",
+  secondary: "#00072D",
+  tertiary: "#001C55",
+  button: {
+    primary: "#001C55",
+    delete: "#E71D36",
+  },
+  status: {
+    PLACED: "#d8cc34",
+    READY: "#23C768",
+    RECEIVED: "#1b9aaa",
+  },
+  error: "#E71D36",
+};
+
 export const theme = createTheme({
   typography: {
     allVariants: {
@@ -16,23 +32,15 @@ export const theme = createTheme({
           fontSize: 20,
           fontWeight: 300,
         },
+        containedPrimary: {
+          backgroundColor: colors.button.primary,
+        },
+      },
+    },
+    MuiTab: {
+      styleOverrides: {
+        textColorPrimary: colors.secondary,
       },
     },
   },
 });
-
-export const colors = {
-  primary: "#FFFFFF",
-  secondary: "#00072D",
-  tertiary: "#001C55",
-  button: {
-    primary: "#001C55",
-    delete: "#E71D36",
-  },
-  status: {
-    PLACED: "#d8cc34",
-    READY: "#23C768",
-    RECEIVED: "#1b9aaa",
-  },
-  error: "#E71D36",
-};
