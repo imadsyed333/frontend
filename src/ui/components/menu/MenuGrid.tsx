@@ -10,12 +10,10 @@ import { Product } from "../../../types";
 import { getAllProducts } from "../../../api/productClient";
 import { ProductCard } from "../product/ProductCard";
 import { useQuery } from "@tanstack/react-query";
+import { useProductQuery } from "../../../hooks/useProductQuery";
 
-export const MenuGrid = React.memo(() => {
-  const { isPending, isError, data, error, isSuccess } = useQuery({
-    queryKey: ["products"],
-    queryFn: getAllProducts,
-  });
+export const MenuGrid = () => {
+  const { isPending, isError, products, error, isSuccess } = useProductQuery();
 
   return (
     <Box
@@ -40,7 +38,7 @@ export const MenuGrid = React.memo(() => {
           }}
         >
           {isSuccess &&
-            data?.products.map((product, index) => (
+            products.map((product, index) => (
               <Grid key={index} size={{ xs: 2, sm: 4, md: 3 }}>
                 <ProductCard product={product} />
               </Grid>
@@ -49,4 +47,4 @@ export const MenuGrid = React.memo(() => {
       )}
     </Box>
   );
-});
+};
