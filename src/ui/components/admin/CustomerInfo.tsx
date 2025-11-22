@@ -1,6 +1,6 @@
-import { Box, Button, Card, MenuItem, Select, Typography } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { OrderContext, useSelectedOrder } from "../../../context/OrderContext";
+import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useSelectedOrder } from "../../../context/OrderContext";
 import { OrderStatus } from "../../../types";
 import { colors } from "../../../themes";
 import { useOrderActions } from "./useOrderActions";
