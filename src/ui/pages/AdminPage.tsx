@@ -1,23 +1,7 @@
-import {
-  Box,
-  Card,
-  CircularProgress,
-  List,
-  ListItem,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import React, { SyntheticEvent, useState } from "react";
-import { colors } from "../../themes";
-import { useQuery } from "@tanstack/react-query";
-import { getAllOrders } from "../../api/orderClient";
-import { OrderProvider, useSelectedOrder } from "../../context/OrderContext";
-import { useOrderQuery } from "../components/admin/useOrderQuery";
-import { OrderList } from "../components/order/OrderList";
-import { OrderInfo } from "../components/order/OrderInfo";
-import { AdminOrderInfo } from "../components/admin/AdminOrderInfo";
 import { AdminOrderView } from "../components/admin/AdminOrderView";
+import { AdminProductView } from "../components/admin/AdminProductView";
 
 export const AdminPage = () => {
   const [tabValue, setTabValue] = useState(0);
@@ -54,7 +38,7 @@ export const AdminPage = () => {
             alignItems: "center",
           }}
         >
-          <Tabs value={tabValue} onChange={handleChange}>
+          <Tabs value={tabValue} onChange={handleChange} textColor="primary">
             <Tab label="Orders" />
             <Tab label="Products" />
           </Tabs>
@@ -68,6 +52,7 @@ export const AdminPage = () => {
           }}
         >
           {tabValue === 0 && <AdminOrderView />}
+          {tabValue === 1 && <AdminProductView />}
         </Box>
       </Box>
     </Box>
