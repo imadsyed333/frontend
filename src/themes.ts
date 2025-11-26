@@ -39,7 +39,19 @@ export const theme = createTheme({
     },
     MuiTab: {
       styleOverrides: {
-        textColorPrimary: colors.secondary,
+        root: {
+          color: colors.tertiary,
+          "&.Mui-selected": {
+            color: colors.tertiary,
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        indicator: {
+          backgroundColor: colors.tertiary,
+        },
       },
     },
   },
