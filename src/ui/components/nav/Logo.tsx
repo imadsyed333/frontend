@@ -14,7 +14,7 @@ export const Logo = () => {
     >
       <Box
         component={"img"}
-        src="logo.png"
+        src="/logo.png"
         alt="logo"
         sx={{
           height: "90%",
