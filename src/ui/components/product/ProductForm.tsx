@@ -29,12 +29,10 @@ export const ProductForm = () => {
   });
 
   useEffect(() => {
-    if (selectedProduct) {
+    if (selectedProduct?.id) {
+      const { id, ...rest } = selectedProduct;
       setFormProduct({
-        name: selectedProduct?.name,
-        description: selectedProduct?.description,
-        price: selectedProduct?.price,
-        image: selectedProduct?.image,
+        ...rest,
       });
     }
   }, [selectedProduct?.id]);
@@ -80,6 +78,15 @@ export const ProductForm = () => {
             }}
           />
           <TextField
+            label="Price"
+            name="price"
+            onChange={(e) => handleInput(e)}
+            value={formProduct.price}
+            sx={{
+              mb: 1,
+            }}
+          />
+          <TextField
             label="Description"
             name="description"
             value={formProduct.description}
@@ -89,7 +96,7 @@ export const ProductForm = () => {
             }}
           />
           <TextField
-            label="image"
+            label="Image"
             name="image"
             value={formProduct.image}
             onChange={(e) => handleInput(e)}
