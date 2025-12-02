@@ -1,13 +1,58 @@
-import { Box, Button, Card, CircularProgress, TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext, useAuth } from "../../context/AuthContext";
+import { Box, Button, Card, TextField } from "@mui/material";
+import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import { ErrorBox } from "../components/ErrorBox";
-import { colors } from "../../themes";
+import z from "zod";
+import { verifyEmail } from "../../api/authClient";
+
+type RegisterFormErrors = {
+  name?: String[] | undefined;
+  email?: String[] | undefined;
+  password?: String[] | undefined;
+  retypePassword?: String[] | undefined;
+};
+
+const RegisterFormSchema = z
+  .object({
+    name: z.string().nonempty({ error: "Must not be empty" }),
+    email: z.email(),
+    password: z
+      .string()
+      .min(8, { error: "Must have at least 8 characters" })
+      .regex(/[a-z]+/, { error: "Must contain a lower-case letter" })
+      .regex(/[A-Z]+/, { error: "Must contain an upper-case letter" })
+      .regex(/[0-9]+/, { error: "Must contain a digit" }),
+    retypePassword: z.string(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.password !== data.retypePassword) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Passwords do not match",
+        path: ["retypePassword"],
+      });
+    }
+  })
+  .refine(
+    async (data) => {
+      if (data.email) {
+        const emailExists = await verifyEmail(data.email);
+        return !emailExists;
+      }
+      return true;
+    },
+    {
+      message: "Email already exists",
+      path: ["email"],
+    }
+  );
 
 export const Register = () => {
-  const { register, fieldErrors, loading } = useAuth();
+  const { register } = useAuth();
 
-  const [passwordMatch, setPasswordMatch] = useState(true);
+  const [loading, setLoading] = useState(false);
+
+  const [formErrors, setFormErrors] = useState<RegisterFormErrors>({});
 
   const [form, setForm] = useState({
     name: "",
@@ -16,15 +61,27 @@ export const Register = () => {
     retypePassword: "",
   });
 
-  const submitForm = () => {
-    setPasswordMatch(form.password === form.retypePassword);
-    register(form.email, form.password, form.name);
+  const submitForm = async () => {
+    setLoading(true);
+    const parsed = await RegisterFormSchema.safeParseAsync(form);
+    if (parsed.success) {
+      const { name, email, password } = parsed.data;
+      register(email, password, name);
+    } else {
+      const errors = z.flattenError(parsed.error);
+      setFormErrors(errors.fieldErrors);
+    }
+    setLoading(false);
   };
 
   const handleInput = (e: any) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
+    });
+    setFormErrors({
+      ...formErrors,
+      [e.target.name]: undefined,
     });
   };
 
@@ -54,10 +111,10 @@ export const Register = () => {
           name="name"
           value={form.name}
           onChange={(e) => handleInput(e)}
-          error={!!fieldErrors?.name}
+          error={!!formErrors?.name}
         />
 
-        <ErrorBox errors={fieldErrors?.name || []} />
+        <ErrorBox errors={formErrors?.name || []} />
 
         <TextField
           label="Email"
@@ -65,10 +122,10 @@ export const Register = () => {
           name="email"
           value={form.email}
           onChange={(e) => handleInput(e)}
-          error={!!fieldErrors?.email}
+          error={!!formErrors?.email}
         />
 
-        <ErrorBox errors={fieldErrors?.email || []} />
+        <ErrorBox errors={formErrors?.email || []} />
 
         <TextField
           label="Password"
@@ -77,10 +134,10 @@ export const Register = () => {
           variant="outlined"
           value={form.password}
           onChange={(e) => handleInput(e)}
-          error={!!fieldErrors.password}
+          error={!!formErrors.password}
         />
 
-        <ErrorBox errors={fieldErrors?.password || []} />
+        <ErrorBox errors={formErrors?.password || []} />
 
         <TextField
           label="Re-type Password"
@@ -91,15 +148,9 @@ export const Register = () => {
           onChange={(e) => handleInput(e)}
         />
 
-        {passwordMatch ? (
-          <></>
-        ) : (
-          <ErrorBox errors={["Passwords do not match"]} />
-        )}
-
+        <ErrorBox errors={formErrors?.retypePassword || []} />
         <Button
           variant="contained"
-          sx={{ backgroundColor: colors.button.primary }}
           onClick={() => submitForm()}
           loading={loading}
           size="large"
