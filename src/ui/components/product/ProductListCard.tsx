@@ -1,7 +1,6 @@
 import React from "react";
 import { Product } from "../../../types";
 import { Card, CardActionArea, Typography } from "@mui/material";
-import { useSelectedOrder } from "../../../context/OrderContext";
 import { useSelectedProduct } from "../../../context/SelectProductContext";
 import { formatPrice } from "../../../utils";
 
