@@ -44,6 +44,8 @@ export const ProductForm = () => {
 
   const { products } = useProductQuery();
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (selectedProductId) {
       const selectedProduct = products.find(
@@ -84,6 +86,7 @@ export const ProductForm = () => {
   };
 
   const handleSubmit = () => {
+    setLoading(true);
     const { imagePreview, image, ...rest } = formProduct;
     const parse = ProductFormSchema.safeParse(rest);
 
@@ -97,6 +100,11 @@ export const ProductForm = () => {
       const errors = z.flattenError(parse.error);
       setFormErrors(errors.fieldErrors);
     }
+    setLoading(false);
+  };
+
+  const formatImageUrl = (imageUrl: string) => {
+    return imageUrl.startsWith("/uploads") ? `${apiUrl}${imageUrl}` : imageUrl;
   };
 
   return (
@@ -106,8 +114,7 @@ export const ProductForm = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        width: "100%",
-        height: "100%",
+        width: "fit-content",
       }}
     >
       <TextField
@@ -118,6 +125,7 @@ export const ProductForm = () => {
         onChange={(e) => setFormValue("name", e.target.value)}
         sx={{
           mb: 1,
+          width: "300px",
         }}
         helperText={!!formErrors.name && <>{formErrors.name[0]}</>}
       />
@@ -128,11 +136,14 @@ export const ProductForm = () => {
         value={formProduct.description}
         onChange={(e) => setFormValue("description", e.target.value)}
         sx={{
+          width: "100%",
           mb: 1,
         }}
         helperText={
           !!formErrors.description && <>{formErrors.description[0]}</>
         }
+        multiline
+        rows={4}
       />
       <TextField
         error={!!formErrors.price}
@@ -142,6 +153,7 @@ export const ProductForm = () => {
         onChange={(e) => setFormValue("price", Number(e.target.value))}
         sx={{
           mb: 1,
+          width: "100%",
         }}
         helperText={!!formErrors.price && <>{formErrors.price[0]}</>}
       />
@@ -149,14 +161,20 @@ export const ProductForm = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
+          width: "100%",
+          mb: 1,
         }}
       >
         <TextField
           name="imagePreview"
           value={formProduct.imagePreview}
           disabled
+          sx={{
+            width: "100%",
+            mr: 1,
+          }}
         />
-        <Button component="label" variant="contained">
+        <Button component="label" variant="contained" sx={{}}>
           <FileUpload />
           <input type="file" hidden accept="image/*" onChange={handleUpload} />
         </Button>
@@ -164,14 +182,22 @@ export const ProductForm = () => {
       {formProduct.imagePreview && (
         <Box
           component={"img"}
-          src={`${apiUrl}${formProduct.imagePreview}`}
+          src={formatImageUrl(formProduct.imagePreview)}
           sx={{
             height: 200,
+            mb: 1,
           }}
         />
       )}
-      <Button variant="contained" onClick={() => handleSubmit()}>
-        Submit
+      <Button
+        variant="contained"
+        onClick={() => handleSubmit()}
+        loading={loading}
+        sx={{
+          width: "100%",
+        }}
+      >
+        {selectedProductId ? "Update Product" : "Add Produt"}
       </Button>
     </Box>
   );
