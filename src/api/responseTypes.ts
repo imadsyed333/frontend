@@ -14,3 +14,7 @@ export type LoginResponse = {
 export type ProfileResponse = {
   user: User;
 };
+
+export type EmailResponse = {
+  emailExists: boolean;
+};
