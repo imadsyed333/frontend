@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useState } from "react";
-import { Order } from "../types";
 
 type OrderContextType = {
   selectedOrderId: number | null;
-  setSelectedOrderId: Function;
+  setSelectedOrderId: (id: number) => void;
 };
 
 export const OrderContext = createContext<OrderContextType>({

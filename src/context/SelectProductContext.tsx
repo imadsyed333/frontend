@@ -7,7 +7,7 @@ import React, {
 
 type SelectProductContextType = {
   selectedProductId: number | null;
-  setSelectedProductId: Function;
+  setSelectedProductId: (id: number) => void;
 };
 
 export const SelectProductContext = createContext<SelectProductContextType>({
