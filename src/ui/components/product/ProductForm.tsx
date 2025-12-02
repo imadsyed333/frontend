@@ -5,6 +5,7 @@ import { useProductActions } from "../../../hooks/useProductActions";
 import { useSelectedProduct } from "../../../context/SelectProductContext";
 import { useProductQuery } from "../../../hooks/useProductQuery";
 import z from "zod";
+import { apiUrl } from "../../../constants";
 
 type ProductFormType = {
   name: string;
@@ -163,7 +164,7 @@ export const ProductForm = () => {
       {formProduct.imagePreview && (
         <Box
           component={"img"}
-          src={formProduct.imagePreview}
+          src={`${apiUrl}${formProduct.imagePreview}`}
           sx={{
             height: 200,
           }}
