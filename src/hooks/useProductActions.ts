@@ -1,16 +1,37 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Product } from "../types";
-import { updateProduct } from "../api/productClient";
+import { Product, ProductUploadType } from "../types";
+import { createProduct, updateProduct } from "../api/productClient";
 
 export const useProductActions = () => {
   const queryClient = useQueryClient();
 
-  const addMutation = () => {};
+  const addMutation = useMutation({
+    mutationFn: async (product: ProductUploadType) => {
+      try {
+        const newProduct = await createProduct(product);
+        return newProduct;
+      } catch (e) {
+        console.error(e);
+        throw e;
+      }
+    },
+    onSuccess: (newProduct) => {
+      queryClient.setQueryData<Product[]>(["products"], (oldProducts) => {
+        return oldProducts ? [...oldProducts, newProduct] : [newProduct];
+      });
+    },
+  });
 
   const editMutation = useMutation({
-    mutationFn: async (product: Product) => {
+    mutationFn: async ({
+      id,
+      product,
+    }: {
+      id: number;
+      product: ProductUploadType;
+    }) => {
       try {
-        const updatedProduct = await updateProduct(product);
+        const updatedProduct = await updateProduct(id, product);
         return updatedProduct;
       } catch (e) {
         console.error(e);
@@ -35,11 +56,17 @@ export const useProductActions = () => {
     );
   };
 
-  const editProduct = (product: Product) => {
-    editMutation.mutate(product);
+  const editProduct = (id: number, product: ProductUploadType) => {
+    console.log(product);
+    editMutation.mutate({ id, product });
+  };
+
+  const addProduct = (product: ProductUploadType) => {
+    addMutation.mutate(product);
   };
 
   return {
     editProduct,
+    addProduct,
   };
 };
