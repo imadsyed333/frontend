@@ -1,5 +1,10 @@
 import api from "./api";
-import { AuthResponse, LoginResponse, ProfileResponse } from "./responseTypes";
+import {
+  AuthResponse,
+  EmailResponse,
+  LoginResponse,
+  ProfileResponse,
+} from "./responseTypes";
 
 export const registerUser = async (
   email: string,
@@ -15,6 +20,16 @@ export const registerUser = async (
     return res.data;
   } catch (e) {
     console.error("Error signing up:", e);
+    throw e;
+  }
+};
+
+export const verifyEmail = async (email: string) => {
+  try {
+    const res = await api.post<EmailResponse>("/user/email-check", { email });
+    return res.data.emailExists;
+  } catch (e) {
+    console.error("Error verifying email:", e);
     throw e;
   }
 };
