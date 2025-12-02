@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { getProductWithId } from "../../api/productClient";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { ProductSideCard } from "../components/product/ProductSideCard";
+import { apiUrl } from "../../constants";
 
 export const ProductPage = () => {
   const { id } = useParams();
@@ -49,7 +50,7 @@ export const ProductPage = () => {
               <Box
                 component={"img"}
                 alt={`${data?.product.name} picture`}
-                src={data?.product.image}
+                src={`${apiUrl}${data?.product.image}`}
                 sx={{
                   height: "80%",
                   width: "80%",
