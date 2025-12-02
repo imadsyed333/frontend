@@ -1,47 +1,101 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { FileUpload } from "@mui/icons-material";
+import { Box, Button, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useProductActions } from "../../../hooks/useProductActions";
 import { useSelectedProduct } from "../../../context/SelectProductContext";
 import { useProductQuery } from "../../../hooks/useProductQuery";
-import { useProductActions } from "../../../hooks/useProductActions";
+import z from "zod";
 
 type ProductFormType = {
   name: string;
   description: string;
   price: number;
-  image: string;
+  image: File | null;
+  imagePreview: string;
 };
 
+type ProductFormErrors = {
+  name?: String[] | undefined;
+  description?: String[] | undefined;
+  price?: String[] | undefined;
+};
+
+const ProductFormSchema = z.object({
+  name: z.string().min(1, { error: "Name is required" }),
+  description: z.string().min(1, { error: "Description is required" }),
+  price: z.number(),
+});
+
 export const ProductForm = () => {
-  const { selectedProductId } = useSelectedProduct();
-  const { products } = useProductQuery();
-
-  const { editProduct } = useProductActions();
-
-  const selectedProduct = products.find(
-    (product) => product.id === selectedProductId
-  );
-
   const [formProduct, setFormProduct] = useState<ProductFormType>({
-    name: selectedProduct?.name || "",
-    description: selectedProduct?.description || "",
-    price: selectedProduct?.price || 0,
-    image: selectedProduct?.image || "",
+    name: "",
+    description: "",
+    price: 0,
+    image: null,
+    imagePreview: "",
   });
 
-  useEffect(() => {
-    if (selectedProduct?.id) {
-      const { id, ...rest } = selectedProduct;
-      setFormProduct({
-        ...rest,
-      });
-    }
-  }, [selectedProduct?.id]);
+  const [formErrors, setFormErrors] = useState<ProductFormErrors>({});
 
-  const handleInput = (e: any) => {
+  const { addProduct, editProduct } = useProductActions();
+
+  const { selectedProductId } = useSelectedProduct();
+
+  const { products } = useProductQuery();
+
+  useEffect(() => {
+    if (selectedProductId) {
+      const selectedProduct = products.find(
+        (product) => product.id === selectedProductId
+      );
+      if (selectedProduct) {
+        const { id, image: imagePreview, ...rest } = selectedProduct;
+        setFormProduct({
+          imagePreview,
+          image: null,
+          ...rest,
+        });
+      }
+    }
+    setFormErrors({});
+  }, [selectedProductId, products]);
+
+  const setFormValue = (key: string, value: any) => {
     setFormProduct({
       ...formProduct,
-      [e.target.name]: e.target.value,
+      [key]: value,
     });
+    setFormErrors({
+      ...formErrors,
+      [key]: undefined,
+    });
+  };
+
+  const handleUpload = (e: any) => {
+    const selectedFile = e.target.files[0];
+    if (!selectedFile) return;
+
+    setFormProduct({
+      ...formProduct,
+      imagePreview: URL.createObjectURL(selectedFile),
+      image: selectedFile,
+    });
+  };
+
+  const handleSubmit = () => {
+    const { imagePreview, image, ...rest } = formProduct;
+    const parse = ProductFormSchema.safeParse(rest);
+
+    if (parse.success) {
+      if (selectedProductId) {
+        editProduct(selectedProductId, { image, ...parse.data });
+      } else {
+        addProduct({ image, ...parse.data });
+      }
+    } else {
+      const errors = z.flattenError(parse.error);
+      setFormErrors(errors.fieldErrors);
+    }
   };
 
   return (
@@ -49,72 +103,75 @@ export const ProductForm = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: !selectedProductId ? "center" : "",
-        alignItems: !selectedProductId ? "center" : "",
+        justifyContent: "center",
+        alignItems: "center",
         width: "100%",
         height: "100%",
       }}
     >
-      {!selectedProductId && (
-        <Typography variant="h5">Select a product to edit it</Typography>
-      )}
-      {selectedProductId && (
+      <TextField
+        error={!!formErrors.name}
+        label="Name"
+        name="name"
+        value={formProduct.name}
+        onChange={(e) => setFormValue("name", e.target.value)}
+        sx={{
+          mb: 1,
+        }}
+        helperText={!!formErrors.name && <>{formErrors.name[0]}</>}
+      />
+      <TextField
+        error={!!formErrors.description}
+        label="Description"
+        name="description"
+        value={formProduct.description}
+        onChange={(e) => setFormValue("description", e.target.value)}
+        sx={{
+          mb: 1,
+        }}
+        helperText={
+          !!formErrors.description && <>{formErrors.description[0]}</>
+        }
+      />
+      <TextField
+        error={!!formErrors.price}
+        label="Price"
+        name="price"
+        value={formProduct.price}
+        onChange={(e) => setFormValue("price", Number(e.target.value))}
+        sx={{
+          mb: 1,
+        }}
+        helperText={!!formErrors.price && <>{formErrors.price[0]}</>}
+      />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <TextField
+          name="imagePreview"
+          value={formProduct.imagePreview}
+          disabled
+        />
+        <Button component="label" variant="contained">
+          <FileUpload />
+          <input type="file" hidden accept="image/*" onChange={handleUpload} />
+        </Button>
+      </Box>
+      {formProduct.imagePreview && (
         <Box
+          component={"img"}
+          src={formProduct.imagePreview}
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            my: 2,
-            mx: 2,
+            height: 200,
           }}
-        >
-          <TextField
-            label="Name"
-            name="name"
-            onChange={(e) => handleInput(e)}
-            value={formProduct.name}
-            sx={{
-              mb: 1,
-            }}
-          />
-          <TextField
-            label="Price"
-            name="price"
-            onChange={(e) => handleInput(e)}
-            value={formProduct.price}
-            sx={{
-              mb: 1,
-            }}
-          />
-          <TextField
-            label="Description"
-            name="description"
-            value={formProduct.description}
-            onChange={(e) => handleInput(e)}
-            sx={{
-              mb: 1,
-            }}
-          />
-          <TextField
-            label="Image"
-            name="image"
-            value={formProduct.image}
-            onChange={(e) => handleInput(e)}
-            sx={{
-              mb: 1,
-            }}
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() =>
-              editProduct({ id: selectedProductId, ...formProduct })
-            }
-          >
-            Save Changes
-          </Button>
-        </Box>
+        />
       )}
+      <Button variant="contained" onClick={() => handleSubmit()}>
+        Submit
+      </Button>
     </Box>
   );
 };
