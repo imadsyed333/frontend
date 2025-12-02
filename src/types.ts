@@ -61,3 +61,10 @@ export type UpdateItem = {
 export type DeleteItem = {
   id: number;
 };
+
+export type ProductUploadType = {
+  name: string;
+  description: string;
+  price: number;
+  image: File | null;
+};

@@ -1,17 +1,34 @@
-import { Product } from "../types";
+import { Product, ProductUploadType } from "../types";
 import api from "./api";
 
-type ProductWithIdResponse = {
+type SingleProductResponse = {
   product: Product;
 };
 
-type AllProductsResponse = {
+type ManyProductResponse = {
   products: Product[];
+};
+
+export const createProduct = async (product: ProductUploadType) => {
+  try {
+    const formData = new FormData();
+    const { name, price, description, image } = product;
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", String(price));
+    if (image) formData.append("image", image);
+
+    const res = await api.post<SingleProductResponse>("/products", formData);
+    return res.data.product;
+  } catch (e) {
+    console.error("Error creating product", e);
+    throw e;
+  }
 };
 
 export const getProductWithId = async (id: number) => {
   try {
-    const res = await api.get<ProductWithIdResponse>(`/products/${id}`);
+    const res = await api.get<SingleProductResponse>(`/products/${id}`);
     return res.data;
   } catch (e) {
     console.error("Error fetching product:", e);
@@ -21,7 +38,7 @@ export const getProductWithId = async (id: number) => {
 
 export const getAllProducts = async () => {
   try {
-    const res = await api.get<AllProductsResponse>("/products/all");
+    const res = await api.get<ManyProductResponse>("/products/all");
     return res.data.products;
   } catch (e) {
     console.error("Error fetching products:", e);
@@ -29,12 +46,19 @@ export const getAllProducts = async () => {
   }
 };
 
-export const updateProduct = async (product: Product) => {
+export const updateProduct = async (id: number, product: ProductUploadType) => {
   try {
-    const { id, ...rest } = product;
-    const res = await api.put<ProductWithIdResponse>(`/products/${id}}`, {
-      ...rest,
-    });
+    const formData = new FormData();
+    const { name, price, description, image } = product;
+
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("price", String(price));
+    if (image) formData.append("image", image);
+    const res = await api.put<SingleProductResponse>(
+      `/products/${id}}`,
+      formData
+    );
     return res.data.product;
   } catch (e) {
     console.error("Error updating product:", e);
