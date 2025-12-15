@@ -14,18 +14,19 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "100%",
-        width: "40%",
         justifyContent: "space-between",
+        height: "100%",
+        width: "fit-content",
+        p: 2,
         alignItems: "center",
       }}
+      variant="outlined"
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          width: "90%",
           alignItems: "start",
           mt: 2,
           color: colors.secondary,
@@ -42,7 +43,6 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "start",
-          width: "90%",
         }}
       >
         <Typography
@@ -60,7 +60,6 @@ export const ProductSideCard = ({ product }: { product: Product }) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          width: "90%",
           mb: 2,
         }}
       >

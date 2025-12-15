@@ -58,7 +58,7 @@ export const Cart = () => {
             justifyContent: "start",
             alignItems: "center",
             height: "100%",
-            width: "50%",
+            maxWidth: "100%",
           }}
         >
           <Typography variant="h2">

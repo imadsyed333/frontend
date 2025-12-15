@@ -17,11 +17,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   return (
     <FadeWrapper>
       <div>
-        <Card
-          sx={{
-            mx: 1,
-          }}
-        >
+        <Card>
           <CardActionArea onClick={() => navigate(`/menu/${id}`)}>
             <CardMedia
               component={"img"}
