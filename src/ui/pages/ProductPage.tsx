@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { getProductWithId } from "../../api/productClient";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { ProductSideCard } from "../components/product/ProductSideCard";
 import { apiUrl } from "../../constants";
@@ -17,7 +17,6 @@ export const ProductPage = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
         flexGrow: 1,
@@ -28,38 +27,43 @@ export const ProductPage = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
           height: "100%",
           width: "70%",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         {isPending && <CircularProgress />}
         {isError && <Typography>{error.message}</Typography>}
         {isSuccess && (
-          <>
-            <Box
+          <Grid
+            container
+            columns={{ xs: 1, sm: 2 }}
+            columnSpacing={2}
+            rowSpacing={2}
+          >
+            <Grid size={1}>
+              <Box
+                component={"img"}
+                alt={`${data?.product.name} image`}
+                src={`${apiUrl}${data?.product.image}`}
+                sx={{
+                  height: "400px",
+                  maxWidth: "100%",
+                }}
+              />
+            </Grid>
+            <Grid
+              size={1}
               sx={{
                 display: "flex",
-                height: "100%",
-                width: "100%",
-                justifyContent: "start",
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              <Box
-                component={"img"}
-                alt={`${data?.product.name} picture`}
-                src={`${apiUrl}${data?.product.image}`}
-                sx={{
-                  height: "80%",
-                  width: "80%",
-                  borderRadius: 1,
-                }}
-              />
-            </Box>
-            <ProductSideCard product={data?.product} />
-          </>
+              <ProductSideCard product={data.product} />
+            </Grid>
+          </Grid>
         )}
       </Box>
     </Box>
