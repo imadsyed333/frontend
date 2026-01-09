@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Button, Grid, Toolbar, Typography } from "@mui/material";
 import { AuthContext, useAuth } from "../../../context/AuthContext";
 import { NavButton } from "./NavButton";
 import { Logo } from "./Logo";
 import { AccountLinks } from "./AccountLinks";
 import { colors } from "../../../themes";
+import { CartButton } from "./CartButton";
+import { AccountMenu } from "./AccountMenu";
 
 export const NavBar = () => {
   const { user } = useAuth();
@@ -20,7 +22,95 @@ export const NavBar = () => {
         height: "70px",
       }}
     >
-      <Box
+      <Grid
+        container
+        sx={{
+          mx: 1,
+        }}
+        spacing={0}
+      >
+        <Grid
+          container
+          sx={{
+            height: "100%",
+            justifyContent: "flex-start",
+          }}
+          size={6}
+          columns={{ xs: 2, md: 3 }}
+        >
+          <Grid
+            sx={{
+              display: "flex",
+              background: "pink",
+              height: "100%",
+            }}
+          >
+            <Logo />
+          </Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              height: "100%",
+              justifyContent: "flex-start",
+              background: "red",
+            }}
+            size={{ xs: 0, xl: 1 }}
+          >
+            <Typography
+              variant="h4"
+              noWrap
+              sx={{
+                letterSpacing: ".2rem",
+                background: "black",
+                alignSelf: "center",
+              }}
+            >
+              Samosa Stuff
+            </Typography>
+          </Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              height: "100%",
+              justifyContent: "center",
+            }}
+          >
+            <NavButton name="Menu" link="/menu" />
+          </Grid>
+        </Grid>
+        <Grid
+          container
+          sx={{
+            height: "100%",
+            justifyContent: "flex-end",
+            background: "red",
+          }}
+          size={6}
+        >
+          <Grid
+            sx={{
+              display: "flex",
+              height: "100%",
+              background: "pink",
+              justifyContent: "center",
+            }}
+            size={{ xs: 7 }}
+          >
+            <CartButton />
+          </Grid>
+          <Grid
+            sx={{
+              display: "flex",
+              height: "100%",
+              justifyContent: "center",
+            }}
+            size={{ xs: 4 }}
+          >
+            <AccountMenu />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* <Box
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -45,7 +135,7 @@ export const NavBar = () => {
         </Box>
         {user && <AccountLinks />}
         {!user && <NavButton name="Login" link="/login" />}
-      </Box>
+      </Box> */}
     </AppBar>
   );
 };
