@@ -2,7 +2,6 @@ import { Box, Button, InputBase, TextField, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React, { useEffect, useState } from "react";
-import z from "zod";
 import { colors } from "../../themes";
 
 export const IncrementalButton = ({
@@ -33,7 +32,7 @@ export const IncrementalButton = ({
 
   const decrementCount = () => {
     if (quantity > 1) {
-      const newQuantity = quantity + 1;
+      const newQuantity = quantity - 1;
       setQuantity(newQuantity);
       onChange(newQuantity);
     }
