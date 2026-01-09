@@ -28,7 +28,7 @@ export const ProductPage = () => {
           display: "flex",
           flexDirection: "row",
           height: "100%",
-          width: "70%",
+          width: "100%",
           justifyContent: "center",
           alignItems: "center",
         }}
