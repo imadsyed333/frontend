@@ -21,17 +21,6 @@ export const Logo = () => {
           mr: 1,
         }}
       />
-      <Typography
-        variant="h4"
-        noWrap
-        sx={{
-          alignContent: "center",
-          mr: 2,
-          letterSpacing: ".2rem",
-        }}
-      >
-        Samosa Stuff
-      </Typography>
     </Box>
   );
 };
