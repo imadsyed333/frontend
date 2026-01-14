@@ -2,7 +2,13 @@ import React from "react";
 import "./App.css";
 import { NavBar } from "./ui/components/nav/NavBar";
 import { AuthProvider } from "./context/AuthContext";
-import { Box, ThemeProvider, Toolbar } from "@mui/material";
+import {
+  Box,
+  ThemeProvider,
+  Toolbar,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { theme } from "./themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PageContent } from "./ui/components/PageContent";
@@ -10,6 +16,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
   const queryClient = new QueryClient();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
@@ -20,6 +27,8 @@ function App() {
                 display: "flex",
                 flexDirection: "column",
                 height: "100vh",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <Toolbar>
@@ -30,7 +39,7 @@ function App() {
                 sx={{
                   display: "flex",
                   height: "100%",
-                  width: "100%",
+                  width: isMobile ? "100%" : "70%",
                   flexDirection: "column",
                   overflowY: "auto",
                 }}
