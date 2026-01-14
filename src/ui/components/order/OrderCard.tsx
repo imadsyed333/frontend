@@ -1,32 +1,41 @@
-import { Box, Card, CardActionArea, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Divider,
+  Typography,
+} from "@mui/material";
 import React from "react";
 import { formatOrderId, formatPrice } from "../../../lib/utils";
-import { useSelectedOrder } from "../../../context/OrderContext";
 import { Order } from "../../../lib/types";
-import { Circle } from "@mui/icons-material";
+import { Circle, ExpandMore } from "@mui/icons-material";
 import { colors } from "../../../lib/themes";
+import { OrderItemList } from "./OrderItemList";
+import { CustomerInfo } from "../admin/CustomerInfo";
 
-export const OrderCard = ({ order }: { order: Order }) => {
+type OrderCardProps = {
+  order: Order;
+  isAdmin: boolean;
+};
+
+export const OrderCard = ({ order, isAdmin }: OrderCardProps) => {
   const newDate: Date = new Date(order.createdAt.toString());
-  const { setSelectedOrderId } = useSelectedOrder();
 
   return (
-    <Card
+    <Accordion
+      variant="outlined"
       sx={{
         display: "flex",
+        flexDirection: "column",
         width: "100%",
       }}
     >
-      <CardActionArea
+      <AccordionSummary
+        expandIcon={<ExpandMore />}
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 1,
-        }}
-        onClick={() => {
-          setSelectedOrderId(order.id);
+          pb: 0,
+          mb: 0,
         }}
       >
         <Box>
@@ -51,8 +60,35 @@ export const OrderCard = ({ order }: { order: Order }) => {
           </Box>
           <Typography variant="h6">{newDate.toDateString()}</Typography>
         </Box>
-        <Typography variant="h6">${formatPrice(order.cost)}</Typography>
-      </CardActionArea>
-    </Card>
+      </AccordionSummary>
+      <AccordionDetails
+        sx={{
+          p: 0,
+        }}
+      >
+        {isAdmin && <CustomerInfo order={order} />}
+        <OrderItemList orderItems={order.orderItems} />
+        <Divider
+          variant="middle"
+          sx={{
+            color: colors.secondary,
+            opacity: 1,
+          }}
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mx: 2,
+            my: 1,
+          }}
+        >
+          <Typography variant="h5">Total:</Typography>
+          <Typography variant="h5">${formatPrice(order.cost)}</Typography>
+        </Box>
+      </AccordionDetails>
+    </Accordion>
   );
 };
