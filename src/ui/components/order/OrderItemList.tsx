@@ -11,7 +11,6 @@ export const OrderItemList = ({ orderItems }: { orderItems: OrderItem[] }) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          flex: 1,
           overflowY: "auto",
         }}
       >

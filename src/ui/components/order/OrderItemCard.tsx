@@ -13,12 +13,13 @@ export const OrderItemCard = ({ orderItem }: { orderItem: OrderItem }) => {
         flexDirection: "row",
         justifyContent: "space-between",
         width: "100%",
-        p: 2,
+        p: 1,
       }}
+      variant="outlined"
     >
-      <Typography variant="h5">{quantity}</Typography>
-      <Typography variant="h5">{product.name}</Typography>
-      <Typography variant="h5">${formatPrice(subtotal)}</Typography>
+      <Typography variant="h6">{quantity}</Typography>
+      <Typography variant="h6">{product.name}</Typography>
+      <Typography variant="h6">${formatPrice(subtotal)}</Typography>
     </Card>
   );
 };
