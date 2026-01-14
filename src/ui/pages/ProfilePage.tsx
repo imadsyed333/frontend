@@ -11,8 +11,6 @@ import { OrderProvider } from "../../context/OrderContext";
 import { useQuery } from "@tanstack/react-query";
 import { getUserOrders } from "../../api/orderClient";
 import { OrderList } from "../components/order/OrderList";
-import { OrderItemList } from "../components/order/OrderItemList";
-import { OrderInfo } from "../components/order/OrderInfo";
 
 export const Profile = () => {
   const {
@@ -61,22 +59,10 @@ export const Profile = () => {
                 flexDirection: "column",
                 justifyContent: "start",
                 alignItems: "center",
-                mr: 2,
               }}
             >
               <Typography variant="h3">My Orders</Typography>
               <OrderList orders={orders} />
-            </Card>
-            <Card
-              variant="outlined"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                width: "100%",
-              }}
-            >
-              <OrderInfo orders={orders} />
             </Card>
           </OrderProvider>
         </Box>
