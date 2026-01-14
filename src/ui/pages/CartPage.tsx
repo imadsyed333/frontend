@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
 import { CartTable } from "../components/cart/CartTable";
 import { ShoppingCart } from "@mui/icons-material";
 import { formatPrice } from "../../utils";
@@ -9,7 +9,7 @@ import { colors } from "../../themes";
 import { useNavigate } from "react-router";
 
 export const Cart = () => {
-  const { cart } = useCartQuery();
+  const { cart, isPending } = useCartQuery();
   const navigate = useNavigate();
 
   const cartTotal = cart.reduce(
@@ -37,7 +37,8 @@ export const Cart = () => {
         my: 2,
       }}
     >
-      {cart.length === 0 && (
+      {isPending && <CircularProgress />}
+      {cart.length === 0 && !isPending && (
         <Box>
           <ShoppingCart
             sx={{
