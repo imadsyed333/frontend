@@ -1,13 +1,5 @@
-import React, { useContext } from "react";
-import {
-  Box,
-  Card,
-  CircularProgress,
-  List,
-  ListItem,
-  Typography,
-} from "@mui/material";
-import { OrderProvider } from "../../context/OrderContext";
+import React from "react";
+import { Box, Card, CircularProgress, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { getUserOrders } from "../../api/orderClient";
 import { OrderList } from "../components/order/OrderList";
@@ -49,22 +41,20 @@ export const Profile = () => {
             alignItems: "center",
           }}
         >
-          <OrderProvider>
-            <Card
-              variant="outlined"
-              sx={{
-                display: "flex",
-                height: "100%",
-                width: "100%",
-                flexDirection: "column",
-                justifyContent: "start",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="h3">My Orders</Typography>
-              <OrderList orders={orders} />
-            </Card>
-          </OrderProvider>
+          <Card
+            variant="outlined"
+            sx={{
+              display: "flex",
+              height: "100%",
+              width: "100%",
+              flexDirection: "column",
+              justifyContent: "start",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="h3">My Orders</Typography>
+            <OrderList orders={orders} />
+          </Card>
         </Box>
       )}
     </Box>

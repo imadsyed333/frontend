@@ -1,7 +1,6 @@
 import React from "react";
 import { useOrderQuery } from "./useOrderQuery";
 import { Box, Card, Typography } from "@mui/material";
-import { OrderProvider } from "../../../context/OrderContext";
 import { OrderList } from "../order/OrderList";
 
 export const AdminOrderView = () => {
@@ -18,22 +17,20 @@ export const AdminOrderView = () => {
         my: 2,
       }}
     >
-      <OrderProvider>
-        <Card
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "start",
-            alignItems: "center",
-            width: "100%",
-            height: "100%",
-          }}
-          variant="outlined"
-        >
-          <Typography variant="h3">Orders</Typography>
-          <OrderList orders={orders} isAdmin={true} />
-        </Card>
-      </OrderProvider>
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "start",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        }}
+        variant="outlined"
+      >
+        <Typography variant="h3">Orders</Typography>
+        <OrderList orders={orders} isAdmin={true} />
+      </Card>
     </Box>
   );
 };
