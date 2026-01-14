@@ -1,5 +1,11 @@
 import React from "react";
-import { AppBar, Box, useMediaQuery, useTheme } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useAuth } from "../../../context/AuthContext";
 import { NavButton } from "./NavButton";
 import { Logo } from "./Logo";
@@ -43,6 +49,16 @@ export const NavBar = () => {
           }}
         >
           <Logo />
+          <Typography
+            variant="h4"
+            sx={{
+              display: { xs: "none", md: "flex" },
+              letterSpacing: 4,
+              mr: 2,
+            }}
+          >
+            Samosa Stuff
+          </Typography>
           {!isMobile && <NavButton name="Home" link="/" />}
           <NavButton name="Menu" link="/menu" />
         </Box>
