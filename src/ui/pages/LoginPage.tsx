@@ -42,9 +42,8 @@ export const Login = () => {
           flexDirection: "column",
           p: 5,
           gap: 2,
-          height: "50%",
-          width: "20%",
         }}
+        variant="outlined"
       >
         <TextField
           label="Email"

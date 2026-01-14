@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Card, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../../api/productClient";
 import { Product } from "../../types";
@@ -22,7 +22,7 @@ export const Menu = () => {
           display: "flex",
           flexDirection: "column",
           height: "100%",
-          width: "70%",
+          width: "100%",
         }}
       >
         <Typography

@@ -26,7 +26,7 @@ export const AdminPage = () => {
           display: "flex",
           flexDirection: "column",
           height: "100%",
-          width: "70%",
+          width: "100%",
           justifyContent: "center",
           alignItems: "center",
         }}

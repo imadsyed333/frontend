@@ -102,8 +102,8 @@ export const Register = () => {
           p: 5,
           gap: 2,
           height: "fit-content",
-          width: "20%",
         }}
+        variant="outlined"
       >
         <TextField
           label="Name"
