@@ -1,61 +1,63 @@
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelectedOrder } from "../../../context/OrderContext";
-import { OrderStatus } from "../../../lib/types";
+import { Order, OrderStatus } from "../../../lib/types";
 import { colors } from "../../../lib/themes";
 import { useOrderActions } from "./useOrderActions";
 import { useOrderQuery } from "./useOrderQuery";
 import { Circle } from "@mui/icons-material";
 
-export const CustomerInfo = () => {
-  const { selectedOrderId } = useSelectedOrder();
-  const { orders } = useOrderQuery();
-  const selectedOrder = orders.find((order) => order.id === selectedOrderId);
-  const { id, user, status } = selectedOrder!;
-  const [orderStatus, setOrderStatus] = useState<OrderStatus>(status);
+type CustomerInfoProps = {
+  order: Order;
+};
+
+export const CustomerInfo = ({ order }: CustomerInfoProps) => {
+  const { id, user, status } = order;
+
+  const [orderStatus, setOrderStatus] = useState(status);
 
   const { updateStatus } = useOrderActions();
-
-  useEffect(() => {
-    setOrderStatus(status);
-  }, [selectedOrder?.id]);
 
   return (
     <Box
       sx={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
-        my: 2,
+        mx: 2,
       }}
     >
       <Box
         sx={{
           display: "flex",
+          width: "100%",
           flexDirection: "column",
-          alignItems: "start",
-          ml: 2,
+          justifyContent: "start",
+          mb: 1,
         }}
       >
-        <Typography variant="h5">
-          Name: <b>{user?.name}</b>
+        <Typography variant="h6">
+          <b>Name:</b> {user?.name}
         </Typography>
-        <Typography variant="h5">
-          Email: <b>{user.email}</b>
+        <Typography variant="h6">
+          <b>Email: </b> {user?.email}
         </Typography>
       </Box>
       <Box
         sx={{
           display: "flex",
+          width: "100%",
           flexDirection: "row",
-          mr: 2,
         }}
       >
         <Select
           defaultValue={status}
           value={orderStatus}
           onChange={(e) => setOrderStatus(e.target.value)}
+          sx={{
+            flex: 1,
+          }}
         >
           {Object.values(OrderStatus).map((value, key) => (
             <MenuItem
@@ -66,14 +68,22 @@ export const CustomerInfo = () => {
                 flexDirection: "row",
               }}
             >
-              <Circle
+              <Box
                 sx={{
-                  fontSize: 15,
-                  color: colors.status[value],
-                  mr: 1,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
                 }}
-              />
-              <Typography>{value}</Typography>
+              >
+                <Circle
+                  sx={{
+                    fontSize: 15,
+                    color: colors.status[value],
+                    mr: 1,
+                  }}
+                />
+                <Typography>{value}</Typography>
+              </Box>
             </MenuItem>
           ))}
         </Select>
@@ -81,6 +91,7 @@ export const CustomerInfo = () => {
           variant="contained"
           sx={{
             backgroundColor: colors.button.primary,
+            flex: 1,
             ml: 1,
           }}
           onClick={() => updateStatus(id, orderStatus)}
