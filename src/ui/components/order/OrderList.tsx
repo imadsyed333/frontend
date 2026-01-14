@@ -1,7 +1,7 @@
 import React from "react";
 import { FadeWrapper } from "../FadeWrapper";
 import { CircularProgress, List, ListItem, Typography } from "@mui/material";
-import { Order } from "../../../types";
+import { Order } from "../../../lib/types";
 import { OrderCard } from "./OrderCard";
 
 export const OrderList = ({ orders }: { orders: Order[] }) => {

@@ -1,4 +1,4 @@
-import { CartItem, DeleteItem, UpdateItem } from "../types";
+import { CartItem, DeleteItem, UpdateItem } from "../lib/types";
 import api from "./api";
 
 type CartItemsResponse = {

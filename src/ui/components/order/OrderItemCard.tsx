@@ -1,22 +1,24 @@
-import React from 'react'
-import { OrderItem } from '../../../types'
-import { Card, Typography } from '@mui/material'
-import { formatPrice } from '../../../utils'
+import React from "react";
+import { OrderItem } from "../../../lib/types";
+import { Card, Typography } from "@mui/material";
+import { formatPrice } from "../../../lib/utils";
 
 export const OrderItemCard = ({ orderItem }: { orderItem: OrderItem }) => {
-    const { quantity, product, subtotal } = orderItem
+  const { quantity, product, subtotal } = orderItem;
 
-    return (
-        <Card sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '100%',
-            p: 2
-        }}>
-            <Typography variant='h5'>{quantity}</Typography>
-            <Typography variant='h5'>{product.name}</Typography>
-            <Typography variant='h5'>${formatPrice(subtotal)}</Typography>
-        </Card>
-    )
-}
+  return (
+    <Card
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "100%",
+        p: 2,
+      }}
+    >
+      <Typography variant="h5">{quantity}</Typography>
+      <Typography variant="h5">{product.name}</Typography>
+      <Typography variant="h5">${formatPrice(subtotal)}</Typography>
+    </Card>
+  );
+};

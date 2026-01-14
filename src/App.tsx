@@ -9,7 +9,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { theme } from "./themes";
+import { theme } from "./lib/themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PageContent } from "./ui/components/PageContent";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";

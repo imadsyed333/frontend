@@ -1,8 +1,8 @@
 import React from "react";
-import { Product } from "../../../types";
+import { Product } from "../../../lib/types";
 import { Card, CardActionArea, Typography } from "@mui/material";
 import { useSelectedProduct } from "../../../context/SelectProductContext";
-import { formatPrice } from "../../../utils";
+import { formatPrice } from "../../../lib/utils";
 
 export const ProductListCard = ({ product }: { product: Product }) => {
   const { setSelectedProductId } = useSelectedProduct();

@@ -1,10 +1,10 @@
 import { Box, Button, Card, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { formatPrice } from "../../../utils";
+import { formatPrice } from "../../../lib/utils";
 import { IncrementalButton } from "../IncrementalButton";
-import { Product } from "../../../types";
+import { Product } from "../../../lib/types";
 import { useCartActions } from "../../../hooks/useCartActions";
-import { colors } from "../../../themes";
+import { colors } from "../../../lib/themes";
 
 export const ProductSideCard = ({ product }: { product: Product }) => {
   const [quantity, setQuantity] = useState(1);

@@ -2,10 +2,10 @@ import React from "react";
 import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
 import { CartTable } from "../components/cart/CartTable";
 import { ShoppingCart } from "@mui/icons-material";
-import { formatPrice } from "../../utils";
+import { formatPrice } from "../../lib/utils";
 import { checkoutCart } from "../../api/cartClient";
 import { useCartQuery } from "../../hooks/useCartQuery";
-import { colors } from "../../themes";
+import { colors } from "../../lib/themes";
 import { useNavigate } from "react-router";
 
 export const Cart = () => {

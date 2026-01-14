@@ -6,7 +6,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import { getAllCartItems } from "../../../api/cartClient";
 import { useCartQuery } from "../../../hooks/useCartQuery";
-import { colors } from "../../../themes";
+import { colors } from "../../../lib/themes";
 
 export const CartButton = () => {
   const navigate = useNavigate();

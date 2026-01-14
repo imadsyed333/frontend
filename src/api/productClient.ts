@@ -1,4 +1,4 @@
-import { Product, ProductUploadType } from "../types";
+import { Product, ProductUploadType } from "../lib/types";
 import api from "./api";
 
 type SingleProductResponse = {

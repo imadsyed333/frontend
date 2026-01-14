@@ -6,10 +6,10 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Product } from "../../../types";
+import { Product } from "../../../lib/types";
 import { useNavigate } from "react-router";
 import { FadeWrapper } from "../FadeWrapper";
-import { apiUrl } from "../../../constants";
+import { apiUrl } from "../../../lib/constants";
 
 export const ProductCard = ({ product }: { product: Product }) => {
   const { id, name, image } = product;

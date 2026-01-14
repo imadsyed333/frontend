@@ -1,10 +1,10 @@
 import { Box, Divider, Typography } from "@mui/material";
 import React, { useContext } from "react";
 import { OrderItemList } from "./OrderItemList";
-import { Order } from "../../../types";
+import { Order } from "../../../lib/types";
 import { useSelectedOrder } from "../../../context/OrderContext";
-import { formatOrderId, formatPrice } from "../../../utils";
-import { colors } from "../../../themes";
+import { formatOrderId, formatPrice } from "../../../lib/utils";
+import { colors } from "../../../lib/themes";
 
 export const OrderInfo = ({ orders }: { orders: Order[] }) => {
   const { selectedOrderId } = useSelectedOrder();

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Order, OrderStatus } from "../../../types";
+import { Order, OrderStatus } from "../../../lib/types";
 import { updateOrderStatus } from "../../../api/orderClient";
 
 export const useOrderActions = () => {

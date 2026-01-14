@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addCartItem, getAllCartItems, syncCart } from "../api/cartClient";
-import { CartItem, DeleteItem, Product, UpdateItem } from "../types";
+import { CartItem, DeleteItem, Product, UpdateItem } from "../lib/types";
 import { useRef } from "react";
 
 var debounce = require("lodash/debounce");

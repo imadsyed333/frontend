@@ -1,4 +1,4 @@
-import { FieldErrors, User } from "../types";
+import { FieldErrors, User } from "../lib/types";
 
 export type AuthResponse = {
   message?: string;

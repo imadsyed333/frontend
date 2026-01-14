@@ -1,6 +1,6 @@
 import { List, ListItem, Typography } from "@mui/material";
 import React from "react";
-import { colors } from "../../themes";
+import { colors } from "../../lib/themes";
 
 export const ErrorBox = ({ errors }: { errors: String[] }) => {
   return (

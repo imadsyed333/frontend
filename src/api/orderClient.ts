@@ -1,4 +1,4 @@
-import { Order, OrderStatus } from "../types";
+import { Order, OrderStatus } from "../lib/types";
 import api from "./api";
 
 type GetOrdersResponse = {

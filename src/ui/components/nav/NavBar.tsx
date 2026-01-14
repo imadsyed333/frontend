@@ -4,7 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { NavButton } from "./NavButton";
 import { Logo } from "./Logo";
 import { AccountLinks } from "./AccountLinks";
-import { colors } from "../../../themes";
+import { colors } from "../../../lib/themes";
 
 export const NavBar = () => {
   const { user } = useAuth();

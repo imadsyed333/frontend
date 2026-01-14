@@ -1,10 +1,10 @@
 import { Box, Card, CardActionArea, Typography } from "@mui/material";
 import React from "react";
-import { formatOrderId, formatPrice } from "../../../utils";
+import { formatOrderId, formatPrice } from "../../../lib/utils";
 import { useSelectedOrder } from "../../../context/OrderContext";
-import { Order } from "../../../types";
+import { Order } from "../../../lib/types";
 import { Circle } from "@mui/icons-material";
-import { colors } from "../../../themes";
+import { colors } from "../../../lib/themes";
 
 export const OrderCard = ({ order }: { order: Order }) => {
   const newDate: Date = new Date(order.createdAt.toString());

@@ -2,7 +2,7 @@ import { Box, Button, InputBase, TextField, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React, { useEffect, useState } from "react";
-import { colors } from "../../themes";
+import { colors } from "../../lib/themes";
 
 export const IncrementalButton = ({
   value,

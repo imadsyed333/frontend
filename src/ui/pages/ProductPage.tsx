@@ -4,7 +4,7 @@ import { getProductWithId } from "../../api/productClient";
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { ProductSideCard } from "../components/product/ProductSideCard";
-import { apiUrl } from "../../constants";
+import { apiUrl } from "../../lib/constants";
 
 export const ProductPage = () => {
   const { id } = useParams();

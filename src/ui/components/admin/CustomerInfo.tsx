@@ -1,8 +1,8 @@
 import { Box, Button, MenuItem, Select, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelectedOrder } from "../../../context/OrderContext";
-import { OrderStatus } from "../../../types";
-import { colors } from "../../../themes";
+import { OrderStatus } from "../../../lib/types";
+import { colors } from "../../../lib/themes";
 import { useOrderActions } from "./useOrderActions";
 import { useOrderQuery } from "./useOrderQuery";
 import { Circle } from "@mui/icons-material";

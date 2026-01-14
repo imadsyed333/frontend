@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import { FieldErrors, User } from "../types";
+import { FieldErrors, User } from "../lib/types";
 import {
   loginUser,
   logoutUser,

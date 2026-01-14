@@ -5,7 +5,7 @@ import { useProductActions } from "../../../hooks/useProductActions";
 import { useSelectedProduct } from "../../../context/SelectProductContext";
 import { useProductQuery } from "../../../hooks/useProductQuery";
 import z from "zod";
-import { apiUrl } from "../../../constants";
+import { apiUrl } from "../../../lib/constants";
 
 type ProductFormType = {
   name: string;

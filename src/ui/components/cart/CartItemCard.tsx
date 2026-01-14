@@ -1,11 +1,11 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, Card, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { CartItem } from "../../../types";
-import { formatPrice } from "../../../utils";
+import { CartItem } from "../../../lib/types";
+import { formatPrice } from "../../../lib/utils";
 import { IncrementalButton } from "../IncrementalButton";
 import { useCartActions } from "../../../hooks/useCartActions";
-import { colors } from "../../../themes";
+import { colors } from "../../../lib/themes";
 
 export const CartItemCard = ({ item }: { item: CartItem }) => {
   const { deleteItem, updateQuantity } = useCartActions();

@@ -10,7 +10,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext, useAuth } from "../../context/AuthContext";
 import { NavLink } from "react-router";
 import { ErrorBox } from "../components/ErrorBox";
-import { colors } from "../../themes";
+import { colors } from "../../lib/themes";
 
 export const Login = () => {
   const [form, setForm] = useState({
