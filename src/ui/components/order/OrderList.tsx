@@ -4,7 +4,12 @@ import { CircularProgress, List, ListItem, Typography } from "@mui/material";
 import { Order } from "../../../lib/types";
 import { OrderCard } from "./OrderCard";
 
-export const OrderList = ({ orders }: { orders: Order[] }) => {
+type OrderListProps = {
+  orders: Order[];
+  isAdmin?: boolean;
+};
+
+export const OrderList = ({ orders, isAdmin = false }: OrderListProps) => {
   return (
     <FadeWrapper>
       <List
@@ -18,7 +23,7 @@ export const OrderList = ({ orders }: { orders: Order[] }) => {
       >
         {orders.map((order, key) => (
           <ListItem key={key}>
-            <OrderCard order={order} />
+            <OrderCard order={order} isAdmin={isAdmin} />
           </ListItem>
         ))}
       </List>
