@@ -37,8 +37,6 @@ export const AccountMenu = () => {
         sx={{
           display: "flex",
           width: "50%",
-          m: 1,
-          p: 1,
         }}
         {...bindTrigger(popupState)}
       >
