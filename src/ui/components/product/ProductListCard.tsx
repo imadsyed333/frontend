@@ -5,13 +5,14 @@ import { useSelectedProduct } from "../../../context/SelectProductContext";
 import { formatPrice } from "../../../lib/utils";
 
 export const ProductListCard = ({ product }: { product: Product }) => {
-  const { setSelectedProductId } = useSelectedProduct();
+  const { setSelectedProduct, setOpen } = useSelectedProduct();
   return (
     <Card
       sx={{
         display: "flex",
         width: "100%",
       }}
+      variant="outlined"
     >
       <CardActionArea
         sx={{
@@ -21,7 +22,10 @@ export const ProductListCard = ({ product }: { product: Product }) => {
           alignItems: "center",
           p: 2,
         }}
-        onClick={() => setSelectedProductId(product.id)}
+        onClick={() => {
+          setSelectedProduct(product);
+          setOpen(true);
+        }}
       >
         <Typography variant="h5">{product.name}</Typography>
         <Typography variant="h6">${formatPrice(product.price)}</Typography>

@@ -40,28 +40,23 @@ export const ProductForm = () => {
 
   const { addProduct, editProduct } = useProductActions();
 
-  const { selectedProductId } = useSelectedProduct();
+  const { selectedProduct, setOpen } = useSelectedProduct();
 
   const { products } = useProductQuery();
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (selectedProductId) {
-      const selectedProduct = products.find(
-        (product) => product.id === selectedProductId
-      );
-      if (selectedProduct) {
-        const { id, image: imagePreview, ...rest } = selectedProduct;
-        setFormProduct({
-          imagePreview,
-          image: null,
-          ...rest,
-        });
-      }
+    if (selectedProduct) {
+      const { id, image: imagePreview, ...rest } = selectedProduct;
+      setFormProduct({
+        imagePreview,
+        image: null,
+        ...rest,
+      });
     }
     setFormErrors({});
-  }, [selectedProductId, products]);
+  }, [selectedProduct?.id, products]);
 
   const setFormValue = (key: string, value: any) => {
     setFormProduct({
@@ -91,11 +86,12 @@ export const ProductForm = () => {
     const parse = ProductFormSchema.safeParse(rest);
 
     if (parse.success) {
-      if (selectedProductId) {
-        editProduct(selectedProductId, { image, ...parse.data });
+      if (selectedProduct) {
+        editProduct(selectedProduct.id, { image, ...parse.data });
       } else {
         addProduct({ image, ...parse.data });
       }
+      setOpen(false);
     } else {
       const errors = z.flattenError(parse.error);
       setFormErrors(errors.fieldErrors);
@@ -197,7 +193,7 @@ export const ProductForm = () => {
           width: "100%",
         }}
       >
-        {selectedProductId ? "Update Product" : "Add Produt"}
+        {selectedProduct ? "Update Product" : "Add Product"}
       </Button>
     </Box>
   );
