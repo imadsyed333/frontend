@@ -3,10 +3,12 @@ import React from "react";
 import { SelectedProductProvider } from "../../../context/SelectProductContext";
 import { ProductList } from "../product/ProductList";
 import { useProductQuery } from "../../../hooks/useProductQuery";
-import { ProductForm } from "../product/ProductForm";
+import AdminProductDialog from "./AdminProductDialog";
+import AddProductFab from "./AddProductFab";
 
 export const AdminProductView = () => {
   const { products } = useProductQuery();
+
   return (
     <Box
       sx={{
@@ -34,20 +36,9 @@ export const AdminProductView = () => {
         >
           <Typography variant="h3">Products</Typography>
           <ProductList products={products} />
+          <AddProductFab />
         </Card>
-        <Card
-          variant="outlined"
-          sx={{
-            display: "flex",
-            height: "100%",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            ml: 1,
-          }}
-        >
-          <ProductForm />
-        </Card>
+        <AdminProductDialog />
       </SelectedProductProvider>
     </Box>
   );
