@@ -37,6 +37,13 @@ export const theme = createTheme({
         },
       },
     },
+    MuiFab: {
+      styleOverrides: {
+        root: {
+          background: colors.button.primary,
+        },
+      },
+    },
     MuiTab: {
       styleOverrides: {
         root: {
