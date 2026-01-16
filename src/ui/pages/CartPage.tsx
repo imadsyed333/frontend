@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Card, CircularProgress, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
 import { CartTable } from "../components/cart/CartTable";
 import { ShoppingCart } from "@mui/icons-material";
 import { formatPrice } from "../../lib/utils";

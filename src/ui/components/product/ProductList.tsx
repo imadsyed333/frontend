@@ -1,6 +1,6 @@
 import React from "react";
 import { Product } from "../../../lib/types";
-import { Box, List, ListItem } from "@mui/material";
+import { List, ListItem } from "@mui/material";
 import { FadeWrapper } from "../FadeWrapper";
 import { ProductListCard } from "./ProductListCard";
 
