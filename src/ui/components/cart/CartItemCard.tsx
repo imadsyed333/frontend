@@ -1,5 +1,5 @@
 import { Delete } from "@mui/icons-material";
-import { Box, Button, Card, Typography } from "@mui/material";
+import { Box, Button, Card, IconButton, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { CartItem } from "../../../lib/types";
 import { formatPrice } from "../../../lib/utils";
@@ -14,42 +14,48 @@ export const CartItemCard = ({ item }: { item: CartItem }) => {
     <Card
       sx={{
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "100%",
-        m: 1,
-        p: 1,
+        mx: 1,
+        mb: 1,
+        py: 1,
       }}
       variant="outlined"
     >
-      <Button
-        onClick={() => deleteItem(item.id)}
-        sx={{
-          height: "100%",
-        }}
-      >
-        <Delete
-          sx={{
-            color: colors.button.delete,
-          }}
-        />
-      </Button>
-      <Typography>${formatPrice(item.product.price)}</Typography>
-      <Typography>{item.product.name}</Typography>
       <Box
         sx={{
-          width: "30%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
         }}
       >
-        <IncrementalButton
-          value={item.quantity}
-          onChange={(qty: number) => updateQuantity(item.id, qty)}
-        />
+        <IconButton
+          onClick={() => deleteItem(item.id)}
+          sx={{
+            ml: 1,
+          }}
+        >
+          <Delete
+            sx={{
+              color: colors.button.delete,
+            }}
+            fontSize="small"
+          />
+        </IconButton>
+        <Typography>{item.product.name}</Typography>
+        <Box
+          sx={{
+            px: 1,
+          }}
+        >
+          <IncrementalButton
+            value={item.quantity}
+            onChange={(qty: number) => updateQuantity(item.id, qty)}
+          />
+        </Box>
+        <Typography sx={{ pr: 2 }}>
+          ${formatPrice(item.product.price)}
+        </Typography>
       </Box>
-      <Typography>
-        ${formatPrice(item.product.price * item.quantity)}
-      </Typography>
     </Card>
   );
 };
