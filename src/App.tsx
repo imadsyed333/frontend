@@ -50,7 +50,7 @@ function App() {
           </AuthProvider>
         </div>
       </ThemeProvider>
-      <ReactQueryDevtools />
+      {/* <ReactQueryDevtools /> */}
     </QueryClientProvider>
   );
 }
