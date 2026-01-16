@@ -1,5 +1,11 @@
 import React from "react";
-import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Divider,
+  Typography,
+} from "@mui/material";
 import { CartTable } from "../components/cart/CartTable";
 import { ShoppingCart } from "@mui/icons-material";
 import { formatPrice } from "../../lib/utils";
@@ -54,42 +60,57 @@ export const Cart = () => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "start",
+            justifyContent: "space-between",
             alignItems: "center",
             height: "100%",
-            maxWidth: "100%",
+            width: "100%",
           }}
         >
-          <Typography variant="h2">
-            Your total is ${formatPrice(cartTotal)}
-          </Typography>
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
               width: "100%",
+              flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <Button
-              variant="outlined"
-              color="inherit"
-              size="large"
+            <Typography
+              variant="h3"
               sx={{
-                color: colors.button.primary,
-                m: 1,
+                mb: 2,
               }}
-              onClick={() => navigate("/menu")}
             >
-              <Typography variant="h5">Keep Shopping</Typography>
-            </Button>
+              Cart
+            </Typography>
+            <Divider
+              variant="middle"
+              sx={{
+                color: colors.secondary,
+                opacity: 1,
+              }}
+            />
+            <CartTable />
+          </Box>
+          <Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                my: 1,
+              }}
+            >
+              <Typography variant="h5">Total:</Typography>
+              <Typography variant="h5">${formatPrice(cartTotal)}</Typography>
+            </Box>
             <Button
               variant="contained"
               size="large"
               sx={{
+                display: "flex",
                 backgroundColor: colors.button.primary,
-                m: 1,
               }}
               onClick={() => handleCheckout()}
             >
@@ -103,7 +124,6 @@ export const Cart = () => {
               </Typography>
             </Button>
           </Box>
-          <CartTable />
         </Box>
       )}
     </Box>
