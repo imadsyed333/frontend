@@ -1,6 +1,6 @@
 import { Delete } from "@mui/icons-material";
-import { Box, Button, Card, IconButton, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Card, IconButton, Typography } from "@mui/material";
+import React from "react";
 import { CartItem } from "../../../lib/types";
 import { formatPrice } from "../../../lib/utils";
 import { IncrementalButton } from "../IncrementalButton";

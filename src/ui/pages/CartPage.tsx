@@ -12,11 +12,9 @@ import { formatPrice } from "../../lib/utils";
 import { checkoutCart } from "../../api/cartClient";
 import { useCartQuery } from "../../hooks/useCartQuery";
 import { colors } from "../../lib/themes";
-import { useNavigate } from "react-router";
 
 export const Cart = () => {
   const { cart, isPending } = useCartQuery();
-  const navigate = useNavigate();
 
   const cartTotal = cart.reduce(
     (sum, item) => item.product.price * item.quantity + sum,
