@@ -17,7 +17,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   return (
     <FadeWrapper>
       <div>
-        <Card>
+        <Card variant="outlined">
           <CardActionArea onClick={() => navigate(`/menu/${id}`)}>
             <CardMedia
               component={"img"}
