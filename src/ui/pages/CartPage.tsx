@@ -46,9 +46,7 @@ export const Cart = () => {
               fontSize: 100,
             }}
           />
-          <Typography variant="h4">
-            Your cart is empty. Go add something to it.
-          </Typography>
+          <Typography variant="h4">Your cart is empty.</Typography>
         </Box>
       )}
       {cart.length > 0 && (
