@@ -1,4 +1,11 @@
-import { Box, Button, InputBase, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputBase,
+  TextField,
+  Typography,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import React, { useEffect, useState } from "react";
@@ -43,8 +50,8 @@ export const IncrementalButton = ({
       sx={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
-        width: "100%",
+        justifyContent: "center",
+        height: "100%",
         alignItems: "center",
         backgroundColor: colors.primary,
         border: 1,
@@ -52,15 +59,15 @@ export const IncrementalButton = ({
         borderColor: "lightgray",
       }}
     >
-      <Button
+      <IconButton
         onClick={decrementCount}
         sx={{
-          m: 1,
           color: colors.secondary,
+          ml: 1,
         }}
       >
         <RemoveIcon />
-      </Button>
+      </IconButton>
       <TextField
         value={quantity}
         onChange={(e) => handleInput(e)}
@@ -68,19 +75,27 @@ export const IncrementalButton = ({
           input: {
             textAlign: "center",
           },
-          width: "60%",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+          "&.Mui-focused fieldset": {
+            border: "none",
+          },
+          "&:hover fieldset": {
+            border: "none",
+          },
         }}
         variant="outlined"
       />
-      <Button
+      <IconButton
         onClick={incrementCount}
         sx={{
-          m: 1,
           color: colors.secondary,
+          mr: 1,
         }}
       >
         <AddIcon />
-      </Button>
+      </IconButton>
     </Box>
   );
 };
