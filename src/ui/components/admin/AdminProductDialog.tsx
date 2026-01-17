@@ -18,7 +18,6 @@ const AdminProductDialog = () => {
       <DialogContent
         sx={{
           display: "flex",
-          width: "100%",
         }}
       >
         <ProductForm />
