@@ -31,7 +31,6 @@ export const AdminProductView = () => {
             alignItems: "center",
             height: "100%",
             width: "100%",
-            mr: 1,
           }}
         >
           <Typography variant="h3">Products</Typography>
