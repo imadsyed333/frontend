@@ -24,6 +24,7 @@ export const CartItemCard = ({ item }: { item: CartItem }) => {
         sx={{
           display: "flex",
           flexDirection: "row",
+          width: "100%",
           justifyContent: "space-around",
           alignItems: "center",
         }}
