@@ -14,8 +14,8 @@ const AddProductFab = () => {
     <Fab
       sx={{
         position: "absolute",
-        bottom: 30,
-        right: 30,
+        bottom: 20,
+        right: 20,
       }}
       onClick={handleClick}
     >
